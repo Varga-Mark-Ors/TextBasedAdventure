@@ -1,7 +1,9 @@
 package me.felakalandra;
 
+import javafx.application.Application;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Application.launch(GameApplication.class, args);
     }
 }

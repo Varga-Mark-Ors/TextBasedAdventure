@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23"
+            fx:id="startUpBase"
+            fx:controller="me.felakalandra.Controllers.StartUpController"
+            prefWidth="500"
+            prefHeight="400">
+</AnchorPane>
