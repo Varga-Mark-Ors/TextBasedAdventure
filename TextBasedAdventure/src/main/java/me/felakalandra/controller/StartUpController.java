@@ -1,4 +1,4 @@
-package me.felakalandra.Controllers;
+package me.felakalandra.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;

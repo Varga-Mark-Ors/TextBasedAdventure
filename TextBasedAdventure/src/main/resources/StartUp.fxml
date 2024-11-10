@@ -5,7 +5,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/23"
             fx:id="startUpBase"
-            fx:controller="me.felakalandra.Controllers.StartUpController"
+            fx:controller="me.felakalandra.controller.StartUpController"
             prefWidth="500"
             prefHeight="400">
 </AnchorPane>
