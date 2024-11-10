@@ -10,11 +10,27 @@
     <description>Text based javafx game</description>
     <developers>
         <developer>
-            <name>Solymosi Attila</name>
+            <name>Keczeli Dávid</name>
+            <email>dvdkeczeli@mailbox.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
         </developer>
-        <developer/>
-        <developer/>
-        <developer/>
+        <developer>
+            <name>Kiss Ádám</name>
+            <email>adamuni@mailbox.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+        </developer>
+        <developer>
+            <name>Solymosi Attila</name>
+            <email>mr.solymi@mailbox.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+        </developer>
+        <developer>
+            <name>Varga Márk</name>
+            <email>vargamarkors@mailbox.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+        </developer>
+
+
     </developers>
 
 
