@@ -197,4 +197,27 @@ public class GameController {
             e.printStackTrace();
         }
     }
+
+    public void resetGame() {
+        days = 0;
+        gameTime = INITIAL_GAME_TIME;
+
+        // Update UI elements
+        daysLabel.setText("Days: " + days);
+        timeCurrent.setText("Time: " + gameTime.format(TIME_FORMATTER));
+        timeDay.setText("Daytime");
+
+        // Set the default background and characters
+        gameBackground.setImage(dayBackground);
+        characterLeft.setImage(mainCharacter);
+
+        // load the side characters
+        loadSideCharacters();
+        if (!sideCharacters.isEmpty()) {
+            characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
+        }
+
+        // Update the game time
+        updateGameTimeDisplay();
+    }
 }
