@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MainCharacter {
+public class Player {
 
     @FXML
     private int heartPoints;
@@ -20,10 +20,10 @@ public class MainCharacter {
     @FXML
     private boolean alive;
 
-    public MainCharacter() {
-        this.heartPoints = 30;
-        this.gold = 20;
-        this.damagePoints = 20;
+    public Player() {
+        this.heartPoints = 100;
+        this.gold = 50;
+        this.damagePoints = 30;
         this.alive = true;
     }
 }

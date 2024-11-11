@@ -1,26 +1,14 @@
 [
   {
-    "name": "Skeleton"
+    "name": "Skeleton",
+    "picture": "sidecharacters/character1.png"
   },
   {
-    "nev": "Drunk Wizard"
+    "name": "Drunk Wizard",
+    "picture": "sidecharacters/character2.png"
   },
   {
-    "nev": "Villager"
-  },
-  {
-    "nev": "Orc"
-  },
-  {
-    "nev": "King in disguised"
-  },
-  {
-    "nev": "Knight"
-  },
-  {
-    "nev": "Archer"
-  },
-  {
-    "nev": "Kid"
+    "name": "Villager",
+    "picture": "sidecharacters/character3.png"
   }
 ]

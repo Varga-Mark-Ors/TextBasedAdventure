@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import me.felakalandra.model.Characters;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -75,6 +76,7 @@ public class GameController {
     // List of side character images to cycle through on the right
     private List<Image> sideCharacters = new ArrayList<>();
     private int currentSideCharacterIndex = 0;
+    private Characters characters;
 
     // Initialize the game controller
     @FXML
