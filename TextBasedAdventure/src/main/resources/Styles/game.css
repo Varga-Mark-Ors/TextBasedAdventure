@@ -1,0 +1,72 @@
+/* Style for the Background ImageView */
+#gameBackground {
+    -fx-fit-width: 1280px;
+    -fx-fit-height: 800px;
+    -fx-opacity: 0.9;
+}
+
+#characterLeft, #characterRight {
+    -fx-fit-width: 250px;
+    -fx-fit-height: 250px;
+}
+
+#characterLeftBg, #characterRightBg {
+    -fx-background-color: #0d1b2a;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 15;
+}
+
+/* Label texts */
+#hpLabel, #damageLabel, #goldLabel, #timeCurrent, #timeDay, #daysLabel, #scoreLabel {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-color: #778da9;
+    -fx-padding: 3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Style for the mid region of the game */
+
+/* HP, DMG, GOLD background */
+#upperSection {
+    -fx-spacing: 20;
+    -fx-alignment: center;
+    -fx-background-color: #778da9;
+}
+
+/* Mid section */
+#gameplayText {
+    -fx-background-color: #0d1b2a;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* Mid section's text */
+#mainText {
+    -fx-font-size: 20px;
+    -fx-text-fill: #e0e1dd;
+    -fx-wrap-text: true;
+}
+
+/* Bottom, buttons region where the choices shall be made */
+#choices {
+    -fx-background-color: #778da9;
+    -fx-spacing: 10;
+}
+
+/* Button styling */
+.button {
+    -fx-background-color: #0d1b2a;
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 10;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+.button:hover {
+    -fx-background-color: #e0e1dd;
+}
