@@ -29,6 +29,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class GameController {
@@ -36,7 +37,7 @@ public class GameController {
     private static final String DAY_BACKGROUND_PATH = "/Images/day_background.jpg";
     private static final String NIGHT_BACKGROUND_PATH = "/Images/night_background.jpg";
     private static final String MAIN_CHARACTER_PATH = "Images/maincharachter/charachter1.png";
-    private static final String SIDE_CHARACTERS_DIR = "/Images/sidecharachters";
+    private static final String SIDE_CHARACTERS_DIR = "/Images/sideCharacters";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     @FXML
@@ -76,7 +77,7 @@ public class GameController {
     // List of side character images to cycle through on the right
     private List<Image> sideCharacters = new ArrayList<>();
     private int currentSideCharacterIndex = 0;
-    private Characters characters;
+    private Characters characters = new Characters();
 
     // Initialize the game controller
     @FXML
@@ -89,14 +90,33 @@ public class GameController {
 
         // Set initial background and main character
         gameBackground.setImage(dayBackground);
-
-        // Set initial background and main character
         characterLeft.setImage(mainCharacter);
 
-        // Load side characters from directory
-        loadSideCharacters();
-        if (!sideCharacters.isEmpty()) {
-            characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
+        // Load characters from JSON
+        Characters.loadCharacters();
+
+        if (!Characters.getCharacters().isEmpty()) {
+            // Create a Random object to generate a random index
+            Random random = new Random();
+
+            // Get a random index between 0 and Characters.getCharacters().size() - 1
+            int randomIndex = random.nextInt(Characters.getCharacters().size());
+
+            // Get the character at the random index
+            Characters randomCharacter = Characters.getCharacters().get(randomIndex);
+
+            // Get the image path from the random character
+            String imagePath = randomCharacter.getPath();
+
+            // Use the getImage method to load the image from the path
+            Image characterImage = Characters.getImage(imagePath);
+
+            // Assuming characterRight is an ImageView
+            if (characterImage != null) {
+                characterRight.setImage(characterImage);  // Set the image in the ImageView
+            }
+        } else {
+            Logger.error("No characters available to display.");
         }
 
         // Start game clock for simulation

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Skeleton",
+    "picture": "Images/sideCharacters/character1.png"
+  },
+  {
+    "name": "Drunk Wizard",
+    "picture": "Images/sideCharacters/character2.png"
+  },
+  {
+    "name": "Villager",
+    "picture": "Images/sideCharacters/character3.png"
+  }
+]

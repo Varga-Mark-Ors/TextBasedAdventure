@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import me.felakalandra.model.Characters;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -13,6 +14,8 @@ public class GameApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Characters.loadCharacters();
+
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Fxml/GameView.fxml")));
         Scene scene = new Scene(root);
 

@@ -2,14 +2,15 @@ package me.felakalandra.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.image.Image;
 import javafx.fxml.FXML;
 import lombok.Getter;
 import lombok.Setter;
+import org.tinylog.Logger;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,43 +26,46 @@ public class Characters {
     @JsonProperty("picture") // JSON key mapping
     private String path;
 
-    // Egyéb hasznos metódusok, pl. a karakterek lekérése a listából
-    // A list of static characters that contains all `Characters` objects that have been read
+    // A static list to hold all `Characters` objects that have been read
     @Getter
     @FXML
     private static List<Characters> characters = new ArrayList<>();
 
-    //JSON file path
-    @FXML
-    private String filePath = "src/main/java/me/felakalandra/data/Characters.Json";
-
-    // Constructor: Reading JSON and uploading a list of characters
-    public Characters() {
+    // Static method to load characters from JSON
+    public static void loadCharacters() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            // Reading a JSON file and uploading a static list of 'characters'
-            characters = objectMapper.readValue(
-                    new File(filePath),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Characters.class)
-            );
+            // Load the file as a resource from the classpath
+            InputStream inputStream = Characters.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
+            if (inputStream != null) {
+                Logger.info("JSON file found and loading.");
+                characters = objectMapper.readValue(
+                        inputStream,
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Characters.class)
+                );
+                Logger.info("Characters loaded successfully.");
+            } else {
+                Logger.error("JSON file not found in resources. Please check the path.");
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.error("Error reading JSON file: " + e.getMessage());
         }
     }
 
-    // Method to load an image from a file path and return it
+    // Updated getImage method to return a JavaFX Image from a classpath resource
     public static Image getImage(String path) {
         try {
-            // Load image from the given path
-            File imageFile = new File(path);
-            if (imageFile.exists()) {
-                return ImageIO.read(imageFile);  // Returns Image object
+            // Load image as a resource from the classpath
+            InputStream imageStream = Characters.class.getClassLoader().getResourceAsStream(path);
+            if (imageStream != null) {
+                //Logger.info("Image file found at the given path: " + path);
+                return new Image(imageStream); // Create a JavaFX Image object from InputStream
             } else {
-                System.out.println("Image file not found at the given path: " + path);
+                Logger.info("Image file not found at the given path: " + path);
                 return null;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logger.error("Error loading image: " + e.getMessage());
             return null;
         }
     }
