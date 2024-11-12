@@ -84,37 +84,43 @@ public class GameController {
     private List<Image> sideCharacters = new ArrayList<>();
     private int currentSideCharacterIndex = 0;
 
-    // Initialize the game controller
-    @FXML
-    private void initialize() {
+    //Method that contains the common initialization logic
+    private void initializeGameState() {
         gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
 
-        // Initialize game time to 7:00 AM
+        //Set default values
+        days = 0;
         gameTime = INITIAL_GAME_TIME;
-        updateGameTimeDisplay();
+        hpLabel.setText(String.valueOf(HEALTH_POINTS));
+        goldLabel.setText(String.valueOf(GOLD));
+        damageLabel.setText(String.valueOf(DAMAGE));
+        daysLabel.setText("Days: " + days);
 
-        // Set initial background and main character
+        // Set wallpaper and characters
         gameBackground.setImage(dayBackground);
-
-        // Set initial background and main character
         characterLeft.setImage(mainCharacter);
 
-        // Load side characters from directory
+        // Loading supporting characters
         loadSideCharacters();
         if (!sideCharacters.isEmpty()) {
             characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
         }
 
-        // Set initial HP, Gold and Damage
-        hpLabel.setText(String.valueOf(HEALTH_POINTS));
-        goldLabel.setText(String.valueOf(GOLD));
-        damageLabel.setText(String.valueOf(DAMAGE));
+        updateGameTimeDisplay();
 
-        // Start game clock for simulation
-        startGameClock();
-
-        Logger.info("GameController initialized");
+        Logger.info("Game state initialized");
     }
+
+    @FXML
+    private void initialize() {
+        initializeGameState();
+        startGameClock(); // Only required during initialize
+    }
+
+    public void resetGame() {
+        initializeGameState();
+    }
+
 
     // Start the game clock
     private void startGameClock() {
@@ -210,29 +216,4 @@ public class GameController {
         }
     }
 
-    public void resetGame() {
-        days = 0;
-        gameTime = INITIAL_GAME_TIME;
-
-        // Update UI elements
-        daysLabel.setText("Days: " + days);
-        timeCurrent.setText("Time: " + gameTime.format(TIME_FORMATTER));
-        // TODO: Make it for the HP bar and any other values
-
-        // Set the default background and characters
-        gameBackground.setImage(dayBackground);
-        characterLeft.setImage(mainCharacter);
-
-        // load the side characters
-        loadSideCharacters();
-        if (!sideCharacters.isEmpty()) {
-            characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
-        }
-        hpLabel.setText(String.valueOf(HEALTH_POINTS));
-        goldLabel.setText(String.valueOf(GOLD ));
-        damageLabel.setText(String.valueOf(DAMAGE));
-
-        // Update the game time
-        updateGameTimeDisplay();
-    }
 }
