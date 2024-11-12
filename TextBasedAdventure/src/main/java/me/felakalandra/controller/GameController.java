@@ -36,6 +36,9 @@ public class GameController {
     private static final String MAIN_CHARACTER_PATH = "Images/maincharachter/charachter1.png";
     private static final String SIDE_CHARACTERS_DIR = "/Images/sidecharachters";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+    private static final Integer HEALTH_POINTS = 100;
+    private static final Integer GOLD = 50;
+    private static final Integer DAMAGE = 20;
 
     @FXML
     private AnchorPane gameBase;
@@ -51,6 +54,15 @@ public class GameController {
 
     @FXML
     private Label timeDay;
+
+    @FXML
+    private Label hpLabel;
+
+    @FXML
+    private Label goldLabel;
+
+    @FXML
+    private Label damageLabel;
 
     @FXML
     public ImageView characterLeft;
@@ -92,6 +104,11 @@ public class GameController {
         if (!sideCharacters.isEmpty()) {
             characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
         }
+
+        // Set initial HP, Gold and Damage
+        hpLabel.setText(String.valueOf(HEALTH_POINTS));
+        goldLabel.setText(String.valueOf(GOLD));
+        damageLabel.setText(String.valueOf(DAMAGE));
 
         // Start game clock for simulation
         startGameClock();
@@ -211,6 +228,9 @@ public class GameController {
         if (!sideCharacters.isEmpty()) {
             characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
         }
+        hpLabel.setText(String.valueOf(HEALTH_POINTS));
+        goldLabel.setText(String.valueOf(GOLD ));
+        damageLabel.setText(String.valueOf(DAMAGE));
 
         // Update the game time
         updateGameTimeDisplay();
