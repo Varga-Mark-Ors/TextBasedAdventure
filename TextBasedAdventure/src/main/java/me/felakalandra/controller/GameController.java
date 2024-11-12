@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -52,7 +51,7 @@ public class GameController {
 
     @FXML
     private Label timeDay;
-    
+
     @FXML
     public ImageView characterLeft;
 
