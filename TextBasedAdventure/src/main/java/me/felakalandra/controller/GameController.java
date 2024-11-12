@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +38,9 @@ public class GameController {
     private static final String MAIN_CHARACTER_PATH = "Images/maincharachter/charachter1.png";
     private static final String SIDE_CHARACTERS_DIR = "/Images/sideCharacters";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+    private static final Integer HEALTH_POINTS = 100;
+    private static final Integer GOLD = 50;
+    private static final Integer DAMAGE = 20;
 
     @FXML
     private AnchorPane gameBase;
@@ -56,7 +58,13 @@ public class GameController {
     private Label timeDay;
 
     @FXML
-    private Button menuButton;
+    private Label hpLabel;
+
+    @FXML
+    private Label goldLabel;
+
+    @FXML
+    private Label damageLabel;
 
     @FXML
     public ImageView characterLeft;
@@ -79,16 +87,19 @@ public class GameController {
     private int currentSideCharacterIndex = 0;
     private Characters characters = new Characters();
 
-    // Initialize the game controller
-    @FXML
-    private void initialize() {
+    //Method that contains the common initialization logic
+    private void initializeGameState() {
         gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
 
-        // Initialize game time to 7:00 AM
+        //Set default values
+        days = 0;
         gameTime = INITIAL_GAME_TIME;
-        updateGameTimeDisplay();
+        hpLabel.setText("HP: " + HEALTH_POINTS);
+        goldLabel.setText("Gold: " + GOLD);
+        damageLabel.setText("Damage: " + DAMAGE);
+        daysLabel.setText("Days: " + days);
 
-        // Set initial background and main character
+        // Set wallpaper and characters
         gameBackground.setImage(dayBackground);
         characterLeft.setImage(mainCharacter);
 
@@ -119,11 +130,21 @@ public class GameController {
             Logger.error("No characters available to display.");
         }
 
-        // Start game clock for simulation
-        startGameClock();
+        updateGameTimeDisplay();
 
-        Logger.info("GameController initialized");
+        Logger.info("Game state initialized");
     }
+
+    @FXML
+    private void initialize() {
+        initializeGameState();
+        startGameClock(); // Only required during initialize
+    }
+
+    public void resetGame() {
+        initializeGameState();
+    }
+
 
     // Start the game clock
     private void startGameClock() {
@@ -201,22 +222,22 @@ public class GameController {
     private void showMenu() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Menu.fxml"));
-            VBox settingsPane = fxmlLoader.load();
+            VBox menuPane = fxmlLoader.load();
 
-            // Create a new Stage for the Settings window
-            Stage settingsStage = new Stage();
-            settingsStage.setTitle("Settings");
+            // Accessing the MenuController instance
+            MenuController menuController = fxmlLoader.getController();
+            menuController.setGameController(this); //Transferring an existing controller to MenuController
 
-            settingsStage.initModality(Modality.APPLICATION_MODAL); // Makes it a modal (popup) window
-            settingsStage.setResizable(false);
+            // Create a new Stage for the menu
+            Stage menuStage = new Stage();
+            menuStage.setTitle("Menü");
+            menuStage.initModality(Modality.APPLICATION_MODAL);
+            menuStage.setScene(new Scene(menuPane));
+            menuStage.show();
 
-            Scene scene = new Scene(settingsPane);
-            settingsStage.setScene(scene);
-
-            // Show the settings window
-            settingsStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
