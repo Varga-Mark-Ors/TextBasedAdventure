@@ -3,54 +3,34 @@ package me.felakalandra.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.tinylog.Logger;
 
-import java.io.IOException;
 
 public class MenuController {
 
     @FXML
     public Button continueGame;
+    private GameController gameController;
 
-    // Continue the current game
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
     @FXML
     public void continueCurrentGame(ActionEvent actionEvent) {
         Stage stage = (Stage) continueGame.getScene().getWindow();
         stage.close();
     }
 
-    // Start a new game
-
     @FXML
     public void startNewGame(ActionEvent actionEvent) {
-        // Close the current menu
-        Stage currentStage = (Stage) continueGame.getScene().getWindow();
-        currentStage.close();
-
-        // Creates the main game window again
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/GameView.fxml"));
-            AnchorPane root = fxmlLoader.load();
-
-
-            GameController gameController = fxmlLoader.getController();
+        if (gameController != null) {
             gameController.resetGame();
-
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("New Game");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        Logger.info("New game started");
+
+        Logger.info("Új játék indítása");
     }
 
     // Toggle sound on or off

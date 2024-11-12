@@ -52,10 +52,7 @@ public class GameController {
 
     @FXML
     private Label timeDay;
-
-    @FXML
-    private Button menuButton;
-
+    
     @FXML
     public ImageView characterLeft;
 
@@ -179,20 +176,19 @@ public class GameController {
     private void showMenu() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Menu.fxml"));
-            VBox settingsPane = fxmlLoader.load();
+            VBox menuPane = fxmlLoader.load();
 
-            // Create a new Stage for the Settings window
-            Stage settingsStage = new Stage();
-            settingsStage.setTitle("Settings");
+            // Accessing the MenuController instance
+            MenuController menuController = fxmlLoader.getController();
+            menuController.setGameController(this); //Transferring an existing controller to MenuController
 
-            settingsStage.initModality(Modality.APPLICATION_MODAL); // Makes it a modal (popup) window
-            settingsStage.setResizable(false);
+            // Create a new Stage for the menu
+            Stage menuStage = new Stage();
+            menuStage.setTitle("Menü");
+            menuStage.initModality(Modality.APPLICATION_MODAL);
+            menuStage.setScene(new Scene(menuPane));
+            menuStage.show();
 
-            Scene scene = new Scene(settingsPane);
-            settingsStage.setScene(scene);
-
-            // Show the settings window
-            settingsStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -205,7 +201,7 @@ public class GameController {
         // Update UI elements
         daysLabel.setText("Days: " + days);
         timeCurrent.setText("Time: " + gameTime.format(TIME_FORMATTER));
-        timeDay.setText("Daytime");
+        // TODO: Make it for the HP bar and any other values
 
         // Set the default background and characters
         gameBackground.setImage(dayBackground);
