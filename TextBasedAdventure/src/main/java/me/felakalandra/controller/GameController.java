@@ -91,9 +91,9 @@ public class GameController {
         //Set default values
         days = 0;
         gameTime = INITIAL_GAME_TIME;
-        hpLabel.setText(String.valueOf(HEALTH_POINTS));
-        goldLabel.setText(String.valueOf(GOLD));
-        damageLabel.setText(String.valueOf(DAMAGE));
+        hpLabel.setText("HP: " + HEALTH_POINTS);
+        goldLabel.setText("Gold: " + GOLD);
+        damageLabel.setText("Damage: " + DAMAGE);
         daysLabel.setText("Days: " + days);
 
         // Set wallpaper and characters
