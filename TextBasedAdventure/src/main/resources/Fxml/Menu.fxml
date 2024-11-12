@@ -5,12 +5,13 @@
 
 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="500.0" spacing="10.0"
       style="-fx-background-image: url('/Images/menu/menu_background.jpg'); -fx-background-size: cover;"
-      xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@../Styles/game.css"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="me.felakalandra.controller.MenuController">
 
-    <Button fx:id="continueGame" onAction="#continueCurrentGame" text="Continue"/>
-    <Button onAction="#startNewGame" text="New Game"/>
-    <Button onAction="#showOptions" text="Options"/>
-    <Button onAction="#handleToggleSound" text="Toggle Sound"/>
-    <Button onAction="#exitGame" text="Exit"/>
+    <Button fx:id="continueGame" onAction="#continueCurrentGame" text="Continue" />
+    <Button onAction="#startNewGame" text="New Game" />
+    <Button onAction="#showOptions" text="Options" />
+    <Button onAction="#handleToggleSound" text="Toggle Sound" />
+    <Button onAction="#exitGame" text="Exit" />
 </VBox>
