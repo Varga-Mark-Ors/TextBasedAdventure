@@ -1,14 +1,26 @@
 [
   {
     "name": "Skeleton",
-    "picture": "Images/sideCharacters/character1.png"
+    "picture": "Images/sideCharacters/Skeleton.png"
   },
   {
-    "name": "Drunk Wizard",
-    "picture": "Images/sideCharacters/character2.png"
+    "name": "Wizard",
+    "picture": "Images/sideCharacters/Wizard.png"
   },
   {
     "name": "Villager",
-    "picture": "Images/sideCharacters/character3.png"
+    "picture": "Images/sideCharacters/Villager.png"
+  },
+  {
+    "name": "Orc",
+    "picture": "Images/sideCharacters/Orc.png"
+  },
+  {
+    "name": "Heavy knight",
+    "picture": "Images/sideCharacters/Heavy knight.png"
+  },
+  {
+    "name": "Assassin",
+    "picture": "Images/sideCharacters/Assassin.png"
   }
 ]
