@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import lombok.Setter;
 import org.tinylog.Logger;
 
 
@@ -12,11 +13,9 @@ public class MenuController {
 
     @FXML
     public Button continueGame;
-    private GameController gameController;
 
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
+    @Setter
+    private GameController gameController;
 
     @FXML
     public void continueCurrentGame(ActionEvent actionEvent) {
