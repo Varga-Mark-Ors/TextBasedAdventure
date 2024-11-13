@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import me.felakalandra.model.Npcs;
+import me.felakalandra.model.Npc;
 import me.felakalandra.model.Protagonist;
 import org.tinylog.Logger;
 
@@ -29,7 +29,7 @@ public class GameController {
     private static final String DAY_BACKGROUND_PATH = "Images/Background/daytime.jpg";
     private static final String NIGHT_BACKGROUND_PATH = "Images/Background/night.jpg";
     private static final String DAWN_BACKGROUND_PATH = "Images/Background/dawn.jpg";
-    private static final String MAIN_CHARACTER_PATH = "Images/Protagonist/Main1.png";
+    private static final String PROTAGONIST_PATH = "Images/Protagonist/Main1.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     @FXML
@@ -57,10 +57,10 @@ public class GameController {
     private Label damageLabel;
 
     @FXML
-    public ImageView characterLeft;
+    public ImageView protagonistLeft;
 
     @FXML
-    public ImageView characterRight;
+    public ImageView npcsRight;
 
     private LocalTime gameTime;
     private int days = 0;
@@ -71,18 +71,17 @@ public class GameController {
     private final Image dawnBackground = new Image(DAWN_BACKGROUND_PATH);
 
     // Main character image (always displayed on the left)
-    private final Image mainCharacter = new Image(MAIN_CHARACTER_PATH);
+    private final Image protagonistImage = new Image(PROTAGONIST_PATH);
 
     // Initializing the main and side characters
-    private Npcs npcs = new Npcs();
-    private Protagonist protagonist = new Protagonist();
+    private Npc npc = new Npc();
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
         gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
 
         //Player values reset
-        protagonist = new Protagonist();
+        Protagonist protagonist = new Protagonist();
 
         //Set default values
         days = 0;
@@ -94,30 +93,30 @@ public class GameController {
 
         // Set wallpaper and characters
         gameBackground.setImage(dayBackground);
-        characterLeft.setImage(mainCharacter);
+        protagonistLeft.setImage(protagonistImage);
 
         // Load characters from JSON
-        Npcs.loadCharacters();
+        Npc.loadNpcs();
 
-        if (!Npcs.getCharacters().isEmpty()) {
+        if (!Npc.getNpcs().isEmpty()) {
             // Create a Random object to generate a random index
             Random random = new Random();
 
             // Get a random index between 0 and Characters.getCharacters().size() - 1
-            int randomIndex = random.nextInt(Npcs.getCharacters().size());
+            int randomIndex = random.nextInt(Npc.getNpcs().size());
 
             // Get the character at the random index
-            Npcs randomCharacter = Npcs.getCharacters().get(randomIndex);
+            Npc randomChoiceOfNpc = Npc.getNpcs().get(randomIndex);
 
             // Get the image path from the random character
-            String imagePath = randomCharacter.getPath();
+            String imagePath = randomChoiceOfNpc.getPath();
 
             // Use the getImage method to load the image from the path
-            Image characterImage = Npcs.getImage(imagePath);
+            Image characterImage = Npc.getImage(imagePath);
 
             // Assuming characterRight is an ImageView
             if (characterImage != null) {
-                characterRight.setImage(characterImage);  // Set the image in the ImageView
+                npcsRight.setImage(characterImage);  // Set the image in the ImageView
             }
         } else {
             Logger.error("No characters available to display.");

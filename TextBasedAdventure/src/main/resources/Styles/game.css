@@ -5,12 +5,12 @@
     -fx-opacity: 0.9;
 }
 
-#characterLeft, #characterRight {
+#protagonistLeft, #npcsRight {
     -fx-fit-width: 250px;
     -fx-fit-height: 250px;
 }
 
-#characterLeftBg, #characterRightBg {
+#protagonistLeftBg, #npcsRightBg {
     -fx-background-color: #0d1b2a;
     -fx-padding: 10;
     -fx-border-radius: 10;

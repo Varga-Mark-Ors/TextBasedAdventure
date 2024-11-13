@@ -1,5 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import me.felakalandra.model.Npcs;
+import me.felakalandra.model.Npc;
 
 import java.io.InputStream;
 import java.util.List;
@@ -10,9 +10,9 @@ public class TestJsonLoading {
         try {
             InputStream inputStream = TestJsonLoading.class.getClassLoader().getResourceAsStream("data/Characters.Json");
             if (inputStream != null) {
-                List<Npcs> characters = objectMapper.readValue(
+                List<Npc> characters = objectMapper.readValue(
                         inputStream,
-                        objectMapper.getTypeFactory().constructCollectionType(List.class, Npcs.class)
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Npc.class)
                 );
                 System.out.println("Characters loaded successfully: " + characters);
             } else {

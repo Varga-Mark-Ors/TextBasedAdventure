@@ -20,6 +20,9 @@ public class MenuController {
     @FXML
     public void continueCurrentGame(ActionEvent actionEvent) {
         Stage stage = (Stage) continueGame.getScene().getWindow();
+
+        Logger.info("Game continued");
+
         stage.close();
     }
 
@@ -29,7 +32,7 @@ public class MenuController {
             gameController.resetGame();
         }
 
-        Logger.info("Új játék indítása");
+        Logger.info("New game started");
     }
 
     // Toggle sound on or off

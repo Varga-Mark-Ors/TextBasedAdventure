@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Npcs {
+public class Npc {
 
     @FXML
     @JsonProperty("name")  // JSON key mapping
@@ -28,19 +28,19 @@ public class Npcs {
     // A static list to hold all `Characters` objects that have been read
     @Getter
     @FXML
-    private static List<Npcs> characters = new ArrayList<>();
+    private static List<Npc> npcs = new ArrayList<>();
 
     // Static method to load characters from JSON
-    public static void loadCharacters() {
+    public static void loadNpcs() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // Load the file as a resource from the classpath
-            InputStream inputStream = Npcs.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
+            InputStream inputStream = Npc.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
             if (inputStream != null) {
                 Logger.info("JSON file found and loading.");
-                characters = objectMapper.readValue(
+                npcs = objectMapper.readValue(
                         inputStream,
-                        objectMapper.getTypeFactory().constructCollectionType(List.class, Npcs.class)
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Npc.class)
                 );
                 Logger.info("Characters loaded successfully.");
             } else {
@@ -55,7 +55,7 @@ public class Npcs {
     public static Image getImage(String path) {
         try {
             // Load image as a resource from the classpath
-            InputStream imageStream = Npcs.class.getClassLoader().getResourceAsStream(path);
+            InputStream imageStream = Npc.class.getClassLoader().getResourceAsStream(path);
             if (imageStream != null) {
                 //Logger.info("Image file found at the given path: " + path);
                 return new Image(imageStream); // Create a JavaFX Image object from InputStream
