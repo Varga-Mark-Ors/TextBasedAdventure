@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import me.felakalandra.model.Characters;
+import me.felakalandra.model.Player;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -36,11 +37,7 @@ public class GameController {
     private static final String DAY_BACKGROUND_PATH = "/Images/day_background.jpg";
     private static final String NIGHT_BACKGROUND_PATH = "/Images/night_background.jpg";
     private static final String MAIN_CHARACTER_PATH = "Images/maincharachter/charachter1.png";
-    private static final String SIDE_CHARACTERS_DIR = "/Images/sideCharacters";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-    private static final Integer HEALTH_POINTS = 100;
-    private static final Integer GOLD = 50;
-    private static final Integer DAMAGE = 20;
 
     @FXML
     private AnchorPane gameBase;
@@ -82,21 +79,23 @@ public class GameController {
     // Main character image (always displayed on the left)
     private final Image mainCharacter = new Image(MAIN_CHARACTER_PATH);
 
-    // List of side character images to cycle through on the right
-    private List<Image> sideCharacters = new ArrayList<>();
-    private int currentSideCharacterIndex = 0;
+    // Initializing the main and side characters
     private Characters characters = new Characters();
+    private Player player = new Player();
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
         gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
 
+        //Player values reset
+        player = new Player();
+
         //Set default values
         days = 0;
         gameTime = INITIAL_GAME_TIME;
-        hpLabel.setText("HP: " + HEALTH_POINTS);
-        goldLabel.setText("Gold: " + GOLD);
-        damageLabel.setText("Damage: " + DAMAGE);
+        hpLabel.setText("HP: " + player.getHeartPoints());
+        goldLabel.setText("Gold: " + player.getGold());
+        damageLabel.setText("Damage: " + player.getDamagePoints());
         daysLabel.setText("Days: " + days);
 
         // Set wallpaper and characters
@@ -154,35 +153,6 @@ public class GameController {
         clock.play();
     }
 
-    // Load side characters from the directory
-    private void loadSideCharacters() {
-        try {
-            Path sideCharacterDir = Paths.get(Objects.requireNonNull(getClass().getResource(SIDE_CHARACTERS_DIR)).toURI());
-            if (Files.isDirectory(sideCharacterDir)) {
-                sideCharacters = Files.list(sideCharacterDir)
-                        .filter(path -> path.toString().toLowerCase().endsWith(".png"))
-                        .map(path -> new Image(path.toUri().toString()))
-                        .collect(Collectors.toList());
-            } else {
-                Logger.error("Side character directory not found" + sideCharacterDir);
-            }
-        } catch (IOException | URISyntaxException e) {
-            Logger.error("Error loading side characters: " + e.getMessage());
-        }
-    }
-
-    // Cycle to the next side character
-    private void cycleSideCharacter() {
-        if (sideCharacters.isEmpty()) {
-            Logger.error("No side characters available to cycle.");
-            return;
-        }
-
-        // Cycle to the next character in the list
-        currentSideCharacterIndex = (currentSideCharacterIndex + 1) % sideCharacters.size();
-        characterRight.setImage(sideCharacters.get(currentSideCharacterIndex));
-    }
-
     private void advanceTime() {
         // Increase game time by 1 minute
         gameTime = gameTime.plusMinutes(1);
@@ -205,10 +175,6 @@ public class GameController {
             timeDay.setText("Daytime");
         }
 
-        // Change side character at 7 AM
-        if (gameTime.equals(LocalTime.of(7, 0))) {
-            cycleSideCharacter();
-        }
     }
 
     private void updateGameTimeDisplay() {

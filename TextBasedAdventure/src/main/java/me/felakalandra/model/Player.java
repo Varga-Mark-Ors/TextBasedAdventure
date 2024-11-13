@@ -22,8 +22,8 @@ public class Player {
 
     public Player() {
         this.heartPoints = 100;
-        this.gold = 50;
-        this.damagePoints = 30;
+        this.gold = 30;
+        this.damagePoints = 20;
         this.alive = true;
     }
 }
