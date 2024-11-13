@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.tinylog.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Characters {
+public class Npcs {
 
     @FXML
     @JsonProperty("name")  // JSON key mapping
@@ -29,19 +28,19 @@ public class Characters {
     // A static list to hold all `Characters` objects that have been read
     @Getter
     @FXML
-    private static List<Characters> characters = new ArrayList<>();
+    private static List<Npcs> characters = new ArrayList<>();
 
     // Static method to load characters from JSON
     public static void loadCharacters() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // Load the file as a resource from the classpath
-            InputStream inputStream = Characters.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
+            InputStream inputStream = Npcs.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
             if (inputStream != null) {
                 Logger.info("JSON file found and loading.");
                 characters = objectMapper.readValue(
                         inputStream,
-                        objectMapper.getTypeFactory().constructCollectionType(List.class, Characters.class)
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Npcs.class)
                 );
                 Logger.info("Characters loaded successfully.");
             } else {
@@ -56,7 +55,7 @@ public class Characters {
     public static Image getImage(String path) {
         try {
             // Load image as a resource from the classpath
-            InputStream imageStream = Characters.class.getClassLoader().getResourceAsStream(path);
+            InputStream imageStream = Npcs.class.getClassLoader().getResourceAsStream(path);
             if (imageStream != null) {
                 //Logger.info("Image file found at the given path: " + path);
                 return new Image(imageStream); // Create a JavaFX Image object from InputStream

@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import me.felakalandra.model.Characters;
-import me.felakalandra.model.Player;
+import me.felakalandra.model.Npcs;
+import me.felakalandra.model.Protagonist;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -74,22 +74,22 @@ public class GameController {
     private final Image mainCharacter = new Image(MAIN_CHARACTER_PATH);
 
     // Initializing the main and side characters
-    private Characters characters = new Characters();
-    private Player player = new Player();
+    private Npcs npcs = new Npcs();
+    private Protagonist protagonist = new Protagonist();
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
         gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
 
         //Player values reset
-        player = new Player();
+        protagonist = new Protagonist();
 
         //Set default values
         days = 0;
         gameTime = INITIAL_GAME_TIME;
-        hpLabel.setText("HP: " + player.getHeartPoints());
-        goldLabel.setText("Gold: " + player.getGold());
-        damageLabel.setText("Damage: " + player.getDamagePoints());
+        hpLabel.setText("HP: " + protagonist.getHeartPoints());
+        goldLabel.setText("Gold: " + protagonist.getGold());
+        damageLabel.setText("Damage: " + protagonist.getDamagePoints());
         daysLabel.setText("Days: " + days);
 
         // Set wallpaper and characters
@@ -97,23 +97,23 @@ public class GameController {
         characterLeft.setImage(mainCharacter);
 
         // Load characters from JSON
-        Characters.loadCharacters();
+        Npcs.loadCharacters();
 
-        if (!Characters.getCharacters().isEmpty()) {
+        if (!Npcs.getCharacters().isEmpty()) {
             // Create a Random object to generate a random index
             Random random = new Random();
 
             // Get a random index between 0 and Characters.getCharacters().size() - 1
-            int randomIndex = random.nextInt(Characters.getCharacters().size());
+            int randomIndex = random.nextInt(Npcs.getCharacters().size());
 
             // Get the character at the random index
-            Characters randomCharacter = Characters.getCharacters().get(randomIndex);
+            Npcs randomCharacter = Npcs.getCharacters().get(randomIndex);
 
             // Get the image path from the random character
             String imagePath = randomCharacter.getPath();
 
             // Use the getImage method to load the image from the path
-            Image characterImage = Characters.getImage(imagePath);
+            Image characterImage = Npcs.getImage(imagePath);
 
             // Assuming characterRight is an ImageView
             if (characterImage != null) {
@@ -147,6 +147,9 @@ public class GameController {
         clock.play();
     }
 
+    /*
+    TODO: When opening the menu, time supposed to stop
+     */
     private void advanceTime() {
         // Increase game time by 1 minute
         gameTime = gameTime.plusMinutes(1);
