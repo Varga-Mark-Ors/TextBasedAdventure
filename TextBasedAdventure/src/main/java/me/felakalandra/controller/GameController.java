@@ -20,23 +20,15 @@ import me.felakalandra.model.Player;
 import org.tinylog.Logger;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class GameController {
     private static final LocalTime INITIAL_GAME_TIME = LocalTime.of(7, 0);
-    private static final String DAY_BACKGROUND_PATH = "/Images/day_background.jpg";
-    private static final String NIGHT_BACKGROUND_PATH = "/Images/night_background.jpg";
-    private static final String MAIN_CHARACTER_PATH = "Images/maincharachter/charachter1.png";
+    private static final String DAY_BACKGROUND_PATH = "Images/Background/daytime.jpg";
+    private static final String NIGHT_BACKGROUND_PATH = "Images/Background/night.jpg";
+    private static final String MAIN_CHARACTER_PATH = "Images/Protagonist/Main1.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     @FXML
