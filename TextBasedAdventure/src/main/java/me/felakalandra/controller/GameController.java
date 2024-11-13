@@ -28,6 +28,7 @@ public class GameController {
     private static final LocalTime INITIAL_GAME_TIME = LocalTime.of(7, 0);
     private static final String DAY_BACKGROUND_PATH = "Images/Background/daytime.jpg";
     private static final String NIGHT_BACKGROUND_PATH = "Images/Background/night.jpg";
+    private static final String DAWN_BACKGROUND_PATH = "Images/Background/dawn.jpg";
     private static final String MAIN_CHARACTER_PATH = "Images/Protagonist/Main1.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -67,6 +68,7 @@ public class GameController {
     // Background images
     private final Image dayBackground = new Image(DAY_BACKGROUND_PATH);
     private final Image nightBackground = new Image(NIGHT_BACKGROUND_PATH);
+    private final Image dawnBackground = new Image(DAWN_BACKGROUND_PATH);
 
     // Main character image (always displayed on the left)
     private final Image mainCharacter = new Image(MAIN_CHARACTER_PATH);
@@ -159,14 +161,19 @@ public class GameController {
         updateGameTimeDisplay();
 
         // Change background and time of day at 8 PM and 7 AM
-        if (gameTime.isAfter(LocalTime.of(20, 0)) || gameTime.isBefore(LocalTime.of(7, 0))) {
+        if (gameTime.isAfter(LocalTime.of(20, 0)) || gameTime.isBefore(LocalTime.of(4, 0))) {
+            // Night: from 20:00 to 4:00
             gameBackground.setImage(nightBackground);
             timeDay.setText("Nighttime");
+        } else if (gameTime.isAfter(LocalTime.of(4, 0)) && gameTime.isBefore(LocalTime.of(8, 0))) {
+            // Dawn: from 4:00 to 8:00
+            gameBackground.setImage(dawnBackground);
+            timeDay.setText("Dawn");
         } else {
+            // Daytime: from 8:00 to 20:00
             gameBackground.setImage(dayBackground);
             timeDay.setText("Daytime");
         }
-
     }
 
     private void updateGameTimeDisplay() {
