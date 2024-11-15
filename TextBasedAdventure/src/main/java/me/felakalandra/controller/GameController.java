@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +40,12 @@ public class GameController {
     private ImageView gameBackground;
 
     @FXML
+    private Button acceptButton;
+
+    @FXML
+    private Button declineButton;
+
+    @FXML
     private Label daysLabel;
 
     @FXML
@@ -55,6 +62,9 @@ public class GameController {
 
     @FXML
     private Label damageLabel;
+
+    @FXML
+    private Label mainText;
 
     @FXML
     public ImageView protagonistLeft;
@@ -74,22 +84,21 @@ public class GameController {
     private final Image protagonistImage = new Image(PROTAGONIST_PATH);
 
     // Initializing the main and side characters
+    private Protagonist protagonist = new Protagonist();
     private Npc npc = new Npc();
+    Npc currentNpc;
+
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
         gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
 
         //Player values reset
-        Protagonist protagonist = new Protagonist();
+        protagonist = new Protagonist();
 
         //Set default values
         days = 0;
-        gameTime = INITIAL_GAME_TIME;
-        hpLabel.setText("HP: " + protagonist.getHeartPoints());
-        goldLabel.setText("Gold: " + protagonist.getGold());
-        damageLabel.setText("Damage: " + protagonist.getDamagePoints());
-        daysLabel.setText("Days: " + days);
+        setUpperRow();
 
         // Set wallpaper and characters
         gameBackground.setImage(dayBackground);
@@ -98,33 +107,43 @@ public class GameController {
         // Load characters from JSON
         Npc.loadNpcs();
 
-        if (!Npc.getNpcs().isEmpty()) {
-            // Create a Random object to generate a random index
-            Random random = new Random();
-
-            // Get a random index between 0 and Characters.getCharacters().size() - 1
-            int randomIndex = random.nextInt(Npc.getNpcs().size());
-
-            // Get the character at the random index
-            Npc randomChoiceOfNpc = Npc.getNpcs().get(randomIndex);
-
-            // Get the image path from the random character
-            String imagePath = randomChoiceOfNpc.getPath();
-
-            // Use the getImage method to load the image from the path
-            Image characterImage = Npc.getImage(imagePath);
-
-            // Assuming characterRight is an ImageView
-            if (characterImage != null) {
-                npcsRight.setImage(characterImage);  // Set the image in the ImageView
-            }
-        } else {
-            Logger.error("No characters available to display.");
-        }
-
         updateGameTimeDisplay();
 
         Logger.info("Game state initialized");
+
+        advanceGameState();
+    }
+
+    @FXML
+    private void advanceGameState() {
+        // Set's Npc image in JavaFx
+        setNpc();
+
+        mainText.setText("Szia, uram! Egy aranyért dzsigoló kard?");
+
+        // Check if the buttons are not null before setting their actions
+        if (acceptButton != null) {
+            acceptButton.setOnAction(event -> {
+                mainText.setText("You have chosen to accept the offer!");
+                Logger.info("Accept button was clicked");
+                protagonist.setGold(protagonist.getGold() - 1);
+                protagonist.setDamagePoints(protagonist.getDamagePoints() + 10);
+            });
+        }
+
+        if (declineButton != null) {
+            declineButton.setOnAction(event -> {
+                mainText.setText("You have chosen to decline the offer.");
+                Logger.info("Decline button was clicked");
+            });
+        }
+
+        if (protagonist.isAlive()){
+            Logger.info("Protagonist is alive");
+            days = days + 1;
+            setUpperRow();
+            updateGameTimeDisplay();
+        }
     }
 
     @FXML
@@ -207,4 +226,48 @@ public class GameController {
         }
     }
 
+    // Set's Npc-s up for the JavaFx
+    @FXML
+    public void setNpc(){
+        if (!Npc.getNpcs().isEmpty()) {
+            boolean correspondingLevel = false;
+
+            // Create a Random object to generate a random index
+            Random random = new Random();
+
+            while (!correspondingLevel) {
+                // Get a random index between 0 and Characters.getCharacters().size() - 1
+                int randomIndex = random.nextInt(Npc.getNpcs().size());
+
+                // Get the character at the random index
+                currentNpc = Npc.getNpcs().get(randomIndex);
+
+                if (currentNpc.getLevel() <= protagonist.getLevel()){
+                    correspondingLevel = true;
+                }
+            }
+
+            // Get the image path from the random character
+            String imagePath = currentNpc.getPath();
+
+            // Use the getImage method to load the image from the path
+            Image characterImage = Npc.getImage(imagePath);
+
+            // Assuming characterRight is an ImageView
+            if (characterImage != null) {
+                npcsRight.setImage(characterImage);  // Set the image in the ImageView
+            }
+        } else {
+            Logger.error("No characters available to display.");
+        }
+    }
+
+
+    public void setUpperRow(){
+        gameTime = INITIAL_GAME_TIME;
+        hpLabel.setText("HP: " + protagonist.getHeartPoints());
+        goldLabel.setText("Gold: " + protagonist.getGold());
+        damageLabel.setText("Damage: " + protagonist.getDamagePoints());
+        daysLabel.setText("Days: " + days);
+    }
 }

@@ -82,12 +82,5 @@
     "level": 2,
     "type": "friendly",
     "reliability": 90
-  },
-  {
-    "name": "Sister",
-    "picture": "Images/NPCs/Sister.png",
-    "level": 1,
-    "type": "friendly",
-    "reliability": 100
   }
 ]
