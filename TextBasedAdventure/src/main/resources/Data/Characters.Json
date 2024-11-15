@@ -1,26 +1,93 @@
 [
   {
     "name": "Skeleton",
-    "picture": "Images/NPCs/Skeleton.png"
+    "picture": "Images/NPCs/Skeleton.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 60
   },
   {
     "name": "Wizard",
-    "picture": "Images/NPCs/Wizard.png"
+    "picture": "Images/NPCs/Wizard.png",
+    "level": 2,
+    "type": "friendly",
+    "reliability": 90
   },
   {
     "name": "Villager",
-    "picture": "Images/NPCs/Villager.png"
+    "picture": "Images/NPCs/Villager.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 99
   },
   {
     "name": "Orc",
-    "picture": "Images/NPCs/Orc.png"
+    "picture": "Images/NPCs/Orc.png",
+    "level": 2,
+    "type": "hostile",
+    "reliability": 100
   },
   {
     "name": "Heavy knight",
-    "picture": "Images/NPCs/HeavyKnight.png"
+    "picture": "Images/NPCs/HeavyKnight.png",
+    "level": 3,
+    "type": "hostile",
+    "reliability": 100
   },
   {
     "name": "Assassin",
-    "picture": "Images/NPCs/Assassin.png"
+    "picture": "Images/NPCs/Assassin.png",
+    "level": 3,
+    "type": "hostile",
+    "reliability": 100
+  },
+  {
+    "name": "Beggar",
+    "picture": "Images/NPCs/Beggar.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 90
+  },
+  {
+    "name": "Miner",
+    "picture": "Images/NPCs/Miner.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 95
+  },
+  {
+    "name": "King",
+    "picture": "Images/NPCs/King.png",
+    "level": 3,
+    "type": "friendly",
+    "reliability": 90
+  },
+  {
+    "name": "Queen",
+      "picture": "Images/NPCs/Queen.png",
+    "level": 2,
+    "type": "friendly",
+    "reliability": 95
+  },
+  {
+    "name": "Innkeeper",
+    "picture": "Images/NPCs/Innkeeper.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 85
+  },
+  {
+    "name": "Blacksmith",
+    "picture": "Images/NPCs/Blacksmith.png",
+    "level": 2,
+    "type": "friendly",
+    "reliability": 90
+  },
+  {
+    "name": "Sister",
+    "picture": "Images/NPCs/Sister.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 100
   }
 ]

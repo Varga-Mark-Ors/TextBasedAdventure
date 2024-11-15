@@ -1,5 +1,6 @@
 package me.felakalandra.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
@@ -18,19 +19,30 @@ import java.util.List;
 public class Npc {
 
     @FXML
-    @JsonProperty("name")  // JSON key mapping
+    @JsonProperty("name")
     private String name;
 
     @FXML
-    @JsonProperty("picture") // JSON key mapping
+    @JsonProperty("picture")
     private String path;
 
-    // A static list to hold all `Characters` objects that have been read
+    @FXML
+    @JsonProperty("level")
+    private int level;
+
+    @FXML
+    @JsonProperty("type")
+    private NpcType type;
+
+    @FXML
+    @JsonProperty("reliability")
+    private int reliability;
+
     @Getter
     @FXML
     private static List<Npc> npcs = new ArrayList<>();
 
-    // Static method to load characters from JSON
+    // Static method to load NPCs from JSON
     public static void loadNpcs() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -38,11 +50,21 @@ public class Npc {
             InputStream inputStream = Npc.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
             if (inputStream != null) {
                 Logger.info("JSON file found and loading.");
-                npcs = objectMapper.readValue(
+                // Deserialize JSON into a list of Npc objects
+                List<Npc> loadedNpcs = objectMapper.readValue(
                         inputStream,
                         objectMapper.getTypeFactory().constructCollectionType(List.class, Npc.class)
                 );
-                Logger.info("Characters loaded successfully.");
+
+                // Log each NPC as it's loaded
+                for (Npc npc : loadedNpcs) {
+                    Logger.info("Loaded NPC: " + npc);
+                }
+
+                // Update the static list with the loaded NPCs
+                npcs.clear();
+                npcs.addAll(loadedNpcs);
+                Logger.info("NPCs loaded successfully.");
             } else {
                 Logger.error("JSON file not found in resources. Please check the path.");
             }
@@ -54,11 +76,9 @@ public class Npc {
     // Updated getImage method to return a JavaFX Image from a classpath resource
     public static Image getImage(String path) {
         try {
-            // Load image as a resource from the classpath
             InputStream imageStream = Npc.class.getClassLoader().getResourceAsStream(path);
             if (imageStream != null) {
-                //Logger.info("Image file found at the given path: " + path);
-                return new Image(imageStream); // Create a JavaFX Image object from InputStream
+                return new Image(imageStream);
             } else {
                 Logger.info("Image file not found at the given path: " + path);
                 return null;
@@ -67,5 +87,16 @@ public class Npc {
             Logger.error("Error loading image: " + e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Npc{" +
+                "name='" + name + '\'' +
+                ", path='" + path + '\'' +
+                ", level=" + level +
+                ", type=" + type +
+                ", reliability=" + reliability +
+                '}';
     }
 }
