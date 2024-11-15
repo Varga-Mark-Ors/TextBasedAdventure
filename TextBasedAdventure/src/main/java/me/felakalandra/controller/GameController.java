@@ -217,7 +217,10 @@ public class GameController {
             // Create a new Stage for the menu
             Stage menuStage = new Stage();
             menuStage.setTitle("Menü");
+
             menuStage.initModality(Modality.APPLICATION_MODAL);
+            menuStage.initStyle(StageStyle.UNDECORATED);
+
             menuStage.setScene(new Scene(menuPane));
             menuStage.show();
 

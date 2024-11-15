@@ -23,6 +23,8 @@ public class GameApplication extends Application {
         primaryStage.setTitle("Game");
         primaryStage.setResizable(false);
 
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
