@@ -1,7 +1,15 @@
+/*
+text: #ebede9
+bg: #090a14
+primary: #a4dddb
+accent: #e7d5b3
+*/
+
 /* Style for the Background ImageView */
 #gameBackground {
-    -fx-fit-width: 1280px;
-    -fx-fit-height: 800px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     -fx-opacity: 0.9;
 }
 
@@ -11,34 +19,61 @@
 }
 
 #protagonistLeftBg, #npcsRightBg {
-    -fx-background-color: #0d1b2a;
+    -fx-background-color: #090a14;
     -fx-padding: 10;
     -fx-border-radius: 10;
     -fx-background-radius: 15;
 }
 
+#midContainer {
+    -fx-spacing: 30;
+    -fx-alignment: center;
+}
+
+#objectivesContainer {
+    -fx-spacing: 30;
+    -fx-alignment: center_left;
+}
+
+#objectiveRow1, #objectiveRow2, #objectiveRow3 {
+    -fx-spacing: 5;
+    -fx-alignment: center_left;
+}
+
 /* Label texts */
-#hpLabel, #damageLabel, #goldLabel, #timeCurrent, #timeDay, #daysLabel, #scoreLabel {
+#timeCurrent, #timeDay, #daysLabel, #scoreLabel {
+    -fx-font-size: 28px;
+    -fx-text-fill: #ebede9;
+}
+
+#hpLabel, #damageLabel, #goldLabel {
+    -fx-font-size: 18px;
+    -fx-text-fill: #ebede9;
+}
+
+#objectiveLabel1, #objectiveLabel2, #objectiveLabel3 {
     -fx-font-size: 20px;
-    -fx-text-fill: white;
-    -fx-background-color: #778da9;
-    -fx-padding: 3;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-text-fill: #ebede9;
 }
 
 /* Style for the mid region of the game */
 
+#midSection {
+    -fx-spacing: 4;
+    -fx-alignment: center;
+}
+
 /* HP, DMG, GOLD background */
 #upperSection {
-    -fx-spacing: 20;
+    -fx-spacing: 50;
     -fx-alignment: center;
-    -fx-background-color: #778da9;
+    -fx-background-color: #151d28;
+    -fx-padding: 10 10;
 }
 
 /* Mid section */
 #gameplayText {
-    -fx-background-color: #0d1b2a;
+    -fx-background-color: #090a14;
     -fx-padding: 20;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
@@ -53,20 +88,23 @@
 
 /* Bottom, buttons region where the choices shall be made */
 #choices {
-    -fx-background-color: #778da9;
-    -fx-spacing: 10;
+    -fx-background-color: #151d28;
+    -fx-spacing: 50;
+    -fx-padding: 10 10;
 }
 
 /* Button styling */
 .button {
-    -fx-background-color: #0d1b2a;
+    -fx-background-color: #394a50;
+    -fx-text-fill: #ebede9;
     -fx-font-size: 18px;
-    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 10 10;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
 }
+
 .button:hover {
-    -fx-background-color: #e0e1dd;
+    -fx-background-color: #e7d5b3;
+    -fx-text-fill: #151d28;
 }

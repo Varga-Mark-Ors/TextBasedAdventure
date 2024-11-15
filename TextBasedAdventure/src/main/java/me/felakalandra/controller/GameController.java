@@ -10,11 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import me.felakalandra.model.Npc;
 import me.felakalandra.model.Protagonist;
@@ -91,7 +90,8 @@ public class GameController {
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
-        gameBase.setBackground(Background.fill(Color.LIGHTBLUE));
+        gameBackground.fitWidthProperty().bind(gameBase.widthProperty());
+        gameBackground.fitHeightProperty().bind(gameBase.heightProperty());
 
         //Player values reset
         protagonist = new Protagonist();
@@ -119,7 +119,7 @@ public class GameController {
         // Set's Npc image in JavaFx
         setNpc();
 
-        mainText.setText("Szia, uram! Egy aranyért dzsigoló kard?");
+        mainText.setText("Szia, uram! Egy aranyért dzsigoló kard?   dfhkjhhhhhhhh dskjsjkd jsdkjksdf fjkhsdj ksdfks jdfoie owhoihkjsbfhjk noe nfoad ndahgsdibsdb aiwouash fakj dkvjadk");
 
         // Check if the buttons are not null before setting their actions
         if (acceptButton != null) {
@@ -138,7 +138,7 @@ public class GameController {
             });
         }
 
-        if (protagonist.isAlive()){
+        if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
             days = days + 1;
             setUpperRow();
@@ -228,7 +228,7 @@ public class GameController {
 
     // Set's Npc-s up for the JavaFx
     @FXML
-    public void setNpc(){
+    public void setNpc() {
         if (!Npc.getNpcs().isEmpty()) {
             boolean correspondingLevel = false;
 
@@ -242,7 +242,7 @@ public class GameController {
                 // Get the character at the random index
                 currentNpc = Npc.getNpcs().get(randomIndex);
 
-                if (currentNpc.getLevel() <= protagonist.getLevel()){
+                if (currentNpc.getLevel() <= protagonist.getLevel()) {
                     correspondingLevel = true;
                 }
             }
@@ -263,7 +263,7 @@ public class GameController {
     }
 
 
-    public void setUpperRow(){
+    public void setUpperRow() {
         gameTime = INITIAL_GAME_TIME;
         hpLabel.setText("HP: " + protagonist.getHeartPoints());
         goldLabel.setText("Gold: " + protagonist.getGold());
