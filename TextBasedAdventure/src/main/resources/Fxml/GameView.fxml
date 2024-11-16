@@ -8,18 +8,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="gameBase" prefHeight="800" prefWidth="1280" stylesheets="@../Styles/game.css"
-            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="me.felakalandra.controller.GameController">
+<AnchorPane fx:id="gameBase" prefHeight="800" prefWidth="1280" stylesheets="@../Styles/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.felakalandra.controller.GameController">
 
-    <ImageView fx:id="gameBackground" pickOnBounds="true"/>
-    <HBox fx:id="midContainer" alignment="CENTER" layoutX="130.0" AnchorPane.bottomAnchor="0.0"
-          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <ImageView fx:id="gameBackground" pickOnBounds="true" />
+    <HBox fx:id="midContainer" alignment="CENTER" layoutX="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
 
             <VBox fx:id="protagonistLeftBg" alignment="CENTER" maxHeight="300.0">
                 <children>
-                    <ImageView fx:id="protagonistLeft" fitHeight="260.0" fitWidth="260.0"/>
+                    <ImageView fx:id="protagonistLeft" fitHeight="260.0" fitWidth="260.0" />
                 </children>
             </VBox>
 
@@ -28,106 +25,99 @@
                 <HBox fx:id="upperSection" alignment="CENTER" prefHeight="80.0">
                     <HBox alignment="CENTER">
                         <children>
-                            <ImageView fx:id="hpIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
-                                       preserveRatio="true">
+                            <ImageView fx:id="hpIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../Styles/Icons/heart.png"/>
+                                    <Image url="@../Styles/Icons/heart.png" />
                                 </image>
                             </ImageView>
-                            <Label fx:id="hpLabel"/>
+                            <Label fx:id="hpLabel" />
                         </children>
                     </HBox>
                     <HBox alignment="CENTER">
                         <children>
-                            <ImageView fx:id="damageIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
-                                       preserveRatio="true">
+                            <ImageView fx:id="damageIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../Styles/Icons/sword.png"/>
+                                    <Image url="@../Styles/Icons/sword.png" />
                                 </image>
                             </ImageView>
-                            <Label fx:id="damageLabel"/>
+                            <Label fx:id="damageLabel" />
                         </children>
                     </HBox>
                     <HBox alignment="CENTER">
                         <children>
-                            <ImageView fx:id="goldIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
-                                       preserveRatio="true">
+                            <ImageView fx:id="goldIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../Styles/Icons/coin-bag.png"/>
+                                    <Image url="@../Styles/Icons/coin-bag.png" />
                                 </image>
                             </ImageView>
-                            <Label fx:id="goldLabel"/>
+                            <Label fx:id="goldLabel" />
                         </children>
                     </HBox>
                 </HBox>
 
                 <VBox fx:id="gameplayText" prefHeight="550.0" VBox.vgrow="ALWAYS">
-                    <Label fx:id="mainText" text="Characters yapping here..." wrapText="true"/>
+               <Label fx:id="questType" text="Label" />
+                    <Label fx:id="questText" text="Characters yapping here..." wrapText="true" />
+               <Label fx:id="questReward" text="Label" />
+               <Label text="Label" />
+               <Label text="Label" />
                 </VBox>
 
                 <HBox fx:id="choices" alignment="CENTER" prefHeight="80.0" spacing="10.0">
-                    <Button fx:id="acceptButton" text="Accept"/>
-                    <Button fx:id="rejectButton" text="Reject"/>
+                    <Button fx:id="acceptButton" text="Accept" />
+                    <Button fx:id="rejectButton" text="Reject" />
                 </HBox>
             </VBox>
 
             <VBox fx:id="npcsRightBg" alignment="CENTER" maxHeight="300.0">
                 <children>
-                    <ImageView fx:id="npcsRight" fitHeight="260.0" fitWidth="260.0"/>
+                    <ImageView fx:id="npcsRight" fitHeight="260.0" fitWidth="260.0" />
                 </children>
             </VBox>
         </children>
     </HBox>
-    <VBox fx:id="objectivesContainer" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="350.0"
-          AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <VBox fx:id="objectivesContainer" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <children>
             <HBox fx:id="objectiveRow1" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                 <children>
-                    <ImageView fx:id="objectiveImage1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
-                               preserveRatio="true">
+                    <ImageView fx:id="objectiveImage1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../Styles/Icons/unchecked-checkbox.png"/>
+                            <Image url="@../Styles/Icons/unchecked-checkbox.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="objectiveLabel1" text="Achieve 200 HP!" wrapText="true"/>
+                    <Label fx:id="objectiveLabel1" text="Achieve 200 HP!" wrapText="true" />
                 </children>
             </HBox>
             <HBox fx:id="objectiveRow2" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                 <children>
-                    <ImageView fx:id="objectiveImage2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
-                               preserveRatio="true">
+                    <ImageView fx:id="objectiveImage2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../Styles/Icons/unchecked-checkbox.png"/>
+                            <Image url="@../Styles/Icons/unchecked-checkbox.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="objectiveLabel2" text="Interact with 5 different NPC!" wrapText="true"/>
+                    <Label fx:id="objectiveLabel2" text="Interact with 5 different NPC!" wrapText="true" />
                 </children>
             </HBox>
             <HBox fx:id="objectiveRow3" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                 <children>
-                    <ImageView fx:id="objectiveImage3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
-                               preserveRatio="true">
+                    <ImageView fx:id="objectiveImage3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../Styles/Icons/unchecked-checkbox.png"/>
+                            <Image url="@../Styles/Icons/unchecked-checkbox.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="objectiveLabel3" text="Hunt the Dragon!" wrapText="true"/>
+                    <Label fx:id="objectiveLabel3" text="Hunt the Dragon!" wrapText="true" />
                 </children>
             </HBox>
         </children>
     </VBox>
 
-    <Label fx:id="daysLabel" text="Days: 0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0"/>
+    <Label fx:id="daysLabel" text="Days: 0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
 
-    <Label fx:id="timeCurrent" styleClass="time-label" text="Time: 07:00" AnchorPane.leftAnchor="10.0"
-           AnchorPane.topAnchor="50.0"/>
-    <Label fx:id="timeDay" layoutX="614.0" layoutY="50.0" text="Daytime" AnchorPane.leftAnchor="10.0"
-           AnchorPane.topAnchor="90.0"/>
+    <Label fx:id="timeCurrent" styleClass="time-label" text="Time: 07:00" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+    <Label fx:id="timeDay" layoutX="614.0" layoutY="50.0" text="Daytime" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
 
-    <Label fx:id="scoreLabel" text="Score: 0" textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="50.0"
-           AnchorPane.topAnchor="10.0"/>
+    <Label fx:id="scoreLabel" text="Score: 0" textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
 
-    <Button fx:id="menuButton" onAction="#showMenu" text="Menu" AnchorPane.bottomAnchor="10.0"
-            AnchorPane.leftAnchor="10.0"/>
+    <Button fx:id="menuButton" onAction="#showMenu" text="Menu" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
 
 </AnchorPane>

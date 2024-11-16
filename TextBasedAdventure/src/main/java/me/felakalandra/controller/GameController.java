@@ -63,7 +63,7 @@ public class GameController {
     private Label damageLabel;
 
     @FXML
-    private Label mainText;
+    private Label questText;
 
     @FXML
     public ImageView protagonistLeft;
@@ -120,12 +120,12 @@ public class GameController {
         // Set's Npc image in JavaFx
         setNpc();
 
-        mainText.setText("Szia, uram! Egy aranyért dzsigoló kard? dfhkjhhhhhhhh dskjsjkd jsdkjksdf fjkhsdj ksdfks jdfoie owhoihkjsbfhjk noe nfoad ndahgsdibsdb aiwouash fakj dkvjadk");
+        questText.setText("Szia, uram! Egy aranyért dzsigoló kard? dfhkjhhhhhhhh dskjsjkd jsdkjksdf fjkhsdj ksdfks jdfoie owhoihkjsbfhjk noe nfoad ndahgsdibsdb aiwouash fakj dkvjadk");
 
         // Check if the buttons are not null before setting their actions
         if (acceptButton != null) {
             acceptButton.setOnAction(event -> {
-                mainText.setText("You have chosen to accept the offer!");
+                questText.setText("You have chosen to accept the offer!");
                 Logger.info("Accept button was clicked");
                 protagonist.setGold(protagonist.getGold() - 1);
                 protagonist.setDamagePoints(protagonist.getDamagePoints() + 10);
@@ -134,7 +134,7 @@ public class GameController {
 
         if (declineButton != null) {
             declineButton.setOnAction(event -> {
-                mainText.setText("You have chosen to decline the offer.");
+                questText.setText("You have chosen to decline the offer.");
                 Logger.info("Decline button was clicked");
             });
         }
