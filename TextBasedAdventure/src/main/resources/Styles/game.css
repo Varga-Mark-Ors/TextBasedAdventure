@@ -1,10 +1,3 @@
-/*
-text: #ebede9
-bg: #090a14
-primary: #a4dddb
-accent: #e7d5b3
-*/
-
 /* Style for the Background ImageView */
 #gameBackground {
     background-size: cover;
@@ -57,7 +50,6 @@ accent: #e7d5b3
 }
 
 /* Style for the mid region of the game */
-
 #midSection {
     -fx-spacing: 4;
     -fx-alignment: center;
@@ -105,6 +97,6 @@ accent: #e7d5b3
 }
 
 .button:hover {
-    -fx-background-color: #e7d5b3;
+    -fx-background-color: #a4dddb;
     -fx-text-fill: #151d28;
 }

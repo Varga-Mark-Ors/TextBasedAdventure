@@ -90,6 +90,7 @@ public class GameController {
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
+        // Set the background image to the AnchorPane
         gameBackground.fitWidthProperty().bind(gameBase.widthProperty());
         gameBackground.fitHeightProperty().bind(gameBase.heightProperty());
 
@@ -119,7 +120,7 @@ public class GameController {
         // Set's Npc image in JavaFx
         setNpc();
 
-        mainText.setText("Szia, uram! Egy aranyért dzsigoló kard?   dfhkjhhhhhhhh dskjsjkd jsdkjksdf fjkhsdj ksdfks jdfoie owhoihkjsbfhjk noe nfoad ndahgsdibsdb aiwouash fakj dkvjadk");
+        mainText.setText("Szia, uram! Egy aranyért dzsigoló kard? dfhkjhhhhhhhh dskjsjkd jsdkjksdf fjkhsdj ksdfks jdfoie owhoihkjsbfhjk noe nfoad ndahgsdibsdb aiwouash fakj dkvjadk");
 
         // Check if the buttons are not null before setting their actions
         if (acceptButton != null) {
@@ -155,7 +156,6 @@ public class GameController {
     public void resetGame() {
         initializeGameState();
     }
-
 
     // Start the game clock
     private void startGameClock() {
@@ -201,34 +201,6 @@ public class GameController {
         timeCurrent.setText("Time: " + gameTime.format(TIME_FORMATTER));
     }
 
-    /*
-     * TODO: Supposed to be in the View package
-     * */
-    @FXML
-    private void showMenu() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Menu.fxml"));
-            VBox menuPane = fxmlLoader.load();
-
-            // Accessing the MenuController instance
-            MenuController menuController = fxmlLoader.getController();
-            menuController.setGameController(this); //Transferring an existing controller to MenuController
-
-            // Create a new Stage for the menu
-            Stage menuStage = new Stage();
-            menuStage.setTitle("Menü");
-
-            menuStage.initModality(Modality.APPLICATION_MODAL);
-            menuStage.initStyle(StageStyle.UNDECORATED);
-
-            menuStage.setScene(new Scene(menuPane));
-            menuStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     // Set's Npc-s up for the JavaFx
     @FXML
     public void setNpc() {
@@ -265,12 +237,45 @@ public class GameController {
         }
     }
 
+    public void updateProtagonistStats() {
+        hpLabel.setText("HP: " + protagonist.getHealth());
+        goldLabel.setText("Gold: " + protagonist.getGold());
+        damageLabel.setText("Damage: " + protagonist.getDamagePoints());
+    }
 
     public void setUpperRow() {
         gameTime = INITIAL_GAME_TIME;
-        hpLabel.setText("HP: " + protagonist.getHeartPoints());
+        hpLabel.setText("HP: " + protagonist.getHealth());
         goldLabel.setText("Gold: " + protagonist.getGold());
         damageLabel.setText("Damage: " + protagonist.getDamagePoints());
         daysLabel.setText("Days: " + days);
+    }
+
+    /*
+     * TODO: Supposed to be in the View package
+     * */
+    @FXML
+    private void showMenu() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Menu.fxml"));
+            VBox menuPane = fxmlLoader.load();
+
+            // Accessing the MenuController instance
+            MenuController menuController = fxmlLoader.getController();
+            menuController.setGameController(this); //Transferring an existing controller to MenuController
+
+            // Create a new Stage for the menu
+            Stage menuStage = new Stage();
+            menuStage.setTitle("Menü");
+
+            menuStage.initModality(Modality.APPLICATION_MODAL);
+            menuStage.initStyle(StageStyle.UNDECORATED);
+
+            menuStage.setScene(new Scene(menuPane));
+            menuStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
