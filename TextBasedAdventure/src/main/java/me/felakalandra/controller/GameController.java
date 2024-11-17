@@ -2,6 +2,7 @@ package me.felakalandra.controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import me.felakalandra.model.Dialogue;
 import me.felakalandra.model.Npc;
 import me.felakalandra.model.Protagonist;
 import org.tinylog.Logger;
@@ -31,7 +33,6 @@ public class GameController {
     private static final String DAWN_BACKGROUND_PATH = "Images/Background/dawn.jpg";
     private static final String PROTAGONIST_PATH = "Images/Protagonist/Main1.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-
     @FXML
     private AnchorPane gameBase;
 
@@ -66,6 +67,33 @@ public class GameController {
     private Label questText;
 
     @FXML
+    private Label questType;
+
+    @FXML
+    private Label questInfo;
+
+    @FXML
+    private Label questReward;
+
+    @FXML
+    public Label questInfoInfo;
+
+    @FXML
+    public Label questTextInfo;
+
+    @FXML
+    public Label questRewardInfo;
+
+    @FXML
+    public Button option1;
+
+    @FXML
+    public Button option2;
+
+    @FXML
+    public Button option3;
+
+    @FXML
     public ImageView protagonistLeft;
 
     @FXML
@@ -87,12 +115,14 @@ public class GameController {
     private Npc npc = new Npc();
     Npc currentNpc;
 
-
     //Method that contains the common initialization logic
     private void initializeGameState() {
         // Set the background image to the AnchorPane
         gameBackground.fitWidthProperty().bind(gameBase.widthProperty());
         gameBackground.fitHeightProperty().bind(gameBase.heightProperty());
+
+        questInfoInfo.setText("What to do:");
+        questRewardInfo.setText("Rewards:");
 
         //Player values reset
         protagonist = new Protagonist();
@@ -117,27 +147,8 @@ public class GameController {
 
     @FXML
     private void advanceGameState() {
-        // Set's Npc image in JavaFx
+        // Set NPC image in JavaFx
         setNpc();
-
-        questText.setText("Szia, uram! Egy aranyért dzsigoló kard? dfhkjhhhhhhhh dskjsjkd jsdkjksdf fjkhsdj ksdfks jdfoie owhoihkjsbfhjk noe nfoad ndahgsdibsdb aiwouash fakj dkvjadk");
-
-        // Check if the buttons are not null before setting their actions
-        if (acceptButton != null) {
-            acceptButton.setOnAction(event -> {
-                questText.setText("You have chosen to accept the offer!");
-                Logger.info("Accept button was clicked");
-                protagonist.setGold(protagonist.getGold() - 1);
-                protagonist.setDamagePoints(protagonist.getDamagePoints() + 10);
-            });
-        }
-
-        if (declineButton != null) {
-            declineButton.setOnAction(event -> {
-                questText.setText("You have chosen to decline the offer.");
-                Logger.info("Decline button was clicked");
-            });
-        }
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
@@ -222,6 +233,9 @@ public class GameController {
                 }
             }
 
+            // Log NPC name and dialogue count for debugging
+            Logger.info("Selected NPC: " + currentNpc.getName() + " with " + currentNpc.getDialogues().size() + " dialogues");
+
             // Get the image path from the random character
             String imagePath = currentNpc.getPath();
 
@@ -236,6 +250,7 @@ public class GameController {
             Logger.error("No characters available to display.");
         }
     }
+
 
     public void updateProtagonistStats() {
         hpLabel.setText("HP: " + protagonist.getHealth());

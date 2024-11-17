@@ -56,16 +56,31 @@
                 </HBox>
 
                 <VBox fx:id="gameplayText" prefHeight="550.0" VBox.vgrow="ALWAYS">
-               <Label fx:id="questType" text="Label" />
-                    <Label fx:id="questText" text="Characters yapping here..." wrapText="true" />
-               <Label fx:id="questReward" text="Label" />
-               <Label text="Label" />
-               <Label text="Label" />
+               <Label fx:id="questType" text="Label" wrapText="true" />
+               <VBox fx:id="questInfoRow">
+                  <children>
+                     <Label fx:id="questInfoInfo" text="Label" />
+                     <Label fx:id="questInfo" text="Label" wrapText="true" />
+                  </children>
+               </VBox>
+               <VBox fx:id="questTextRow">
+                  <children>
+                     <Label fx:id="questTextInfo" text="Label" />
+                          <Label fx:id="questText" text="Characters yapping here..." wrapText="true" />
+                  </children>
+               </VBox>
+               <VBox fx:id="questRewardRow">
+                  <children>
+                     <Label fx:id="questRewardInfo" text="Label" />
+                     <Label fx:id="questReward" text="Label" wrapText="true" />
+                  </children>
+               </VBox>
                 </VBox>
 
                 <HBox fx:id="choices" alignment="CENTER" prefHeight="80.0" spacing="10.0">
-                    <Button fx:id="acceptButton" text="Accept" />
-                    <Button fx:id="rejectButton" text="Reject" />
+                    <Button fx:id="option1" text="option1" wrapText="true" />
+                    <Button fx:id="option2" text="option2" wrapText="true" />
+               <Button fx:id="option3" text="option3" wrapText="true" />
                 </HBox>
             </VBox>
 

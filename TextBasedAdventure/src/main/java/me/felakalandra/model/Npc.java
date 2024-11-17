@@ -38,6 +38,10 @@ public class Npc {
     @JsonProperty("reliability")
     private int reliability;
 
+    @FXML
+    @JsonProperty("dialogues")
+    private List<Dialogue> dialogues; // New field to store the dialogues
+
     @Getter
     @FXML
     private static List<Npc> npcs = new ArrayList<>();
@@ -56,10 +60,10 @@ public class Npc {
                         objectMapper.getTypeFactory().constructCollectionType(List.class, Npc.class)
                 );
 
-                // Log each NPC as it's loaded
-                for (Npc npc : loadedNpcs) {
-                    Logger.info("Loaded NPC: " + npc);
-                }
+//                // Log each NPC as it's loaded
+//                for (Npc npc : loadedNpcs) {
+//                    Logger.info("Loaded NPC: " + npc);
+//                }
 
                 // Update the static list with the loaded NPCs
                 npcs.clear();
@@ -97,6 +101,7 @@ public class Npc {
                 ", level=" + level +
                 ", type=" + type +
                 ", reliability=" + reliability +
+                ", dialogues=" + dialogues +
                 '}';
     }
 }

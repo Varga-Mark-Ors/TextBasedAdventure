@@ -67,16 +67,27 @@
 #gameplayText {
     -fx-background-color: #090a14;
     -fx-padding: 20;
-    -fx-spacing: 100;
+    -fx-spacing: 40;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
 }
 
 /* Mid section's text */
-#questText {
+#questText, #questInfo, #questReward, #questType {
     -fx-font-size: 20px;
     -fx-text-fill: #e0e1dd;
     -fx-wrap-text: true;
+}
+
+#questInfoInfo, #questTextInfo, #questRewardInfo {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0e1dd;
+    -fx-wrap-text: true;
+}
+
+#questInfoRow, #questRewardRow, #questTextRow {
+    -fx-spacing: 20;
 }
 
 /* Bottom, buttons region where the choices shall be made */
