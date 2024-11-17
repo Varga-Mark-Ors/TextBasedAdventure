@@ -145,6 +145,18 @@ public class GameController {
         advanceGameState();
     }
 
+    public void option1Button(ActionEvent actionEvent) {
+        questText.setText("Option 1 selected");
+    }
+
+    public void option2Button(ActionEvent actionEvent) {
+        questText.setText("Option 2 selected");
+    }
+
+    public void option3Button(ActionEvent actionEvent) {
+        questText.setText("Option 3 selected");
+    }
+
     @FXML
     private void advanceGameState() {
         // Set NPC image in JavaFx
@@ -163,6 +175,24 @@ public class GameController {
             questType.setText(randomDialogue.getType().substring(0, 1).toUpperCase() + randomDialogue.getType().substring(1));
             questInfo.setText(randomDialogue.getInfo());
             questReward.setText(randomDialogue.getReward().toString());
+
+            // Now, set the options for buttons based on the options map
+            if (randomDialogue.getOptions() != null) {
+                // Option 1
+                if (randomDialogue.getOptions().containsKey("option1")) {
+                    option1.setText(randomDialogue.getOptions().get("option1").getText());
+                }
+
+                // Option 2
+                if (randomDialogue.getOptions().containsKey("option2")) {
+                    option2.setText(randomDialogue.getOptions().get("option2").getText());
+                }
+
+                // Option 3
+                if (randomDialogue.getOptions().containsKey("option3")) {
+                    option3.setText(randomDialogue.getOptions().get("option3").getText());
+                }
+            }
 
             Logger.info("Random dialogue selected: " + randomDialogue.getText());
         } else {
