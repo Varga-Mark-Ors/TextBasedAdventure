@@ -173,31 +173,31 @@ public class GameController {
             int randomIndex = (int) (Math.random() * currentNpc.getDialogues().size());
             Dialogue randomDialogue = currentNpc.getDialogues().get(randomIndex);
 
-            // Set the text of the dialogue
+            // Set the dialogue text
             questText.setText(randomDialogue.getText());
             questTextInfo.setText("What the " + currentNpc.getName() + " says:");
 
             // Set the quest type and reward details
             questType.setText(randomDialogue.getType().substring(0, 1).toUpperCase() + randomDialogue.getType().substring(1));
             questInfo.setText(randomDialogue.getInfo());
-            questReward.setText(randomDialogue.getReward().toString());
 
+            // Set the reward details
+            questReward.setText(randomDialogue.getFormattedReward());
+
+            // Set the reliability info
             questReliabilityInfo.setText("Should you trust the " + currentNpc.getName() + "?");
             questReliability.setText(currentNpc.getName() + "'s reliability is " + currentNpc.getReliability() + "%");
 
-            // Now, set the options for buttons based on the options map
+            // Set the dialogue options for the buttons
             if (randomDialogue.getOptions() != null) {
-                // Option 1
                 if (randomDialogue.getOptions().containsKey("option1")) {
                     option1.setText(randomDialogue.getOptions().get("option1").getText());
                 }
 
-                // Option 2
                 if (randomDialogue.getOptions().containsKey("option2")) {
                     option2.setText(randomDialogue.getOptions().get("option2").getText());
                 }
 
-                // Option 3
                 if (randomDialogue.getOptions().containsKey("option3")) {
                     option3.setText(randomDialogue.getOptions().get("option3").getText());
                 }
@@ -292,7 +292,6 @@ public class GameController {
                 }
             }
 
-            // Log NPC name and dialogue count for debugging
             Logger.info("Selected NPC: " + currentNpc.getName() + " with " + currentNpc.getDialogues().size() + " dialogues");
 
             // Get the image path from the random character
