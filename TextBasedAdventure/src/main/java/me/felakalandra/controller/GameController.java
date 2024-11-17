@@ -76,6 +76,9 @@ public class GameController {
     private Label questReward;
 
     @FXML
+    private Label questReliability;
+
+    @FXML
     public Label questInfoInfo;
 
     @FXML
@@ -83,6 +86,9 @@ public class GameController {
 
     @FXML
     public Label questRewardInfo;
+
+    @FXML
+    private Label questReliabilityInfo;
 
     @FXML
     public Button option1;
@@ -175,6 +181,9 @@ public class GameController {
             questType.setText(randomDialogue.getType().substring(0, 1).toUpperCase() + randomDialogue.getType().substring(1));
             questInfo.setText(randomDialogue.getInfo());
             questReward.setText(randomDialogue.getReward().toString());
+
+            questReliabilityInfo.setText("Should you trust the " + currentNpc.getName() + "?");
+            questReliability.setText(currentNpc.getName() + "'s reliability is " + currentNpc.getReliability() + "%");
 
             // Now, set the options for buttons based on the options map
             if (randomDialogue.getOptions() != null) {

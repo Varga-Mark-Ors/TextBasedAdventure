@@ -75,6 +75,12 @@
                      <Label fx:id="questReward" text="Label" wrapText="true" />
                   </children>
                </VBox>
+               <VBox fx:id="questReliabilityRow">
+                  <children>
+                     <Label fx:id="questReliabilityInfo" text="Label" />
+                     <Label fx:id="questReliability" text="Label" wrapText="true" />
+                  </children>
+               </VBox>
                 </VBox>
 
                 <HBox fx:id="choices" alignment="CENTER" prefHeight="80.0" spacing="10.0">

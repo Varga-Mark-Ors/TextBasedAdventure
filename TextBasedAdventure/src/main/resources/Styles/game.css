@@ -73,7 +73,7 @@
 }
 
 /* Mid section's text */
-#questText, #questInfo, #questReward {
+#questText, #questInfo, #questReward, #questReliability {
     -fx-font-size: 20px;
     -fx-text-fill: #e0e1dd;
     -fx-wrap-text: true;
@@ -84,14 +84,14 @@
     -fx-text-fill: #e7d5b3;
 }
 
-#questInfoInfo, #questTextInfo, #questRewardInfo {
+#questInfoInfo, #questTextInfo, #questRewardInfo, #questReliabilityInfo {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #a8b5b2;
     -fx-wrap-text: true;
 }
 
-#questInfoRow, #questRewardRow, #questTextRow {
+#questInfoRow, #questRewardRow, #questTextRow, #questReliabilityRow {
     -fx-spacing: 10;
 }
 
