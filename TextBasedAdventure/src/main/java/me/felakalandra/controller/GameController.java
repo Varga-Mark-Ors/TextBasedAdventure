@@ -150,6 +150,26 @@ public class GameController {
         // Set NPC image in JavaFx
         setNpc();
 
+        if (currentNpc != null && currentNpc.getDialogues() != null && !currentNpc.getDialogues().isEmpty()) {
+            // Pick a random dialogue from the current NPC's dialogues
+            int randomIndex = (int) (Math.random() * currentNpc.getDialogues().size());
+            Dialogue randomDialogue = currentNpc.getDialogues().get(randomIndex);
+
+            // Set the text of the dialogue
+            questText.setText(randomDialogue.getText());
+            questTextInfo.setText("What the " + currentNpc.getName() + " says:");
+
+            // Set the quest type and reward details
+            questType.setText(randomDialogue.getType().substring(0, 1).toUpperCase() + randomDialogue.getType().substring(1));
+            questInfo.setText(randomDialogue.getInfo());
+            questReward.setText(randomDialogue.getReward().toString());
+
+            Logger.info("Random dialogue selected: " + randomDialogue.getText());
+        } else {
+            questText.setText("No dialogue available.");
+            Logger.warn("No dialogues available for NPC: " + currentNpc);
+        }
+
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
             days = days + 1;
