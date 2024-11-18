@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Getter
 @Setter
@@ -103,5 +104,11 @@ public class Npc {
                 ", reliability=" + reliability +
                 ", dialogues=" + dialogues +
                 '}';
+    }
+
+    public static boolean reliable(Npc npc) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(100);
+        return randomIndex <= npc.getReliability();
     }
 }
