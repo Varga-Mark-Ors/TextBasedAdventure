@@ -114,7 +114,7 @@ public class GameController {
     private final Image dawnBackground = new Image(DAWN_BACKGROUND_PATH);
 
     // Main character image (always displayed on the left)
-    private final Image protagonistImage = new Image(PROTAGONIST_PATH);
+    private Image protagonistImage = new Image(PROTAGONIST_PATH);
 
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
@@ -212,6 +212,7 @@ public class GameController {
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
             days = days + 1;
+            levelUp();
             setUpperRow();
             updateGameTimeDisplay();
         }
@@ -349,6 +350,17 @@ public class GameController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void levelUp() {
+        if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 200) && (protagonist.getLevel() < 2)) {
+            protagonistImage = new Image("Images/Protagonist/Main2.png");
+            protagonist.setLevel(2);
+        } else if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 300) && (protagonist.getLevel() < 3)) {
+            protagonistImage = new Image("Images/Protagonist/Main3.png");
+            protagonist.setLevel(3);
         }
     }
 }
