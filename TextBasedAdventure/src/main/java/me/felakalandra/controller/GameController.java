@@ -31,7 +31,9 @@ public class GameController {
     private static final String DAY_BACKGROUND_PATH = "Images/Background/daytime.jpg";
     private static final String NIGHT_BACKGROUND_PATH = "Images/Background/night.jpg";
     private static final String DAWN_BACKGROUND_PATH = "Images/Background/dawn.jpg";
-    private static final String PROTAGONIST_PATH = "Images/Protagonist/Main1.png";
+    private static final String PROTAGONIST_PATH_LEVEL1 = "Images/Protagonist/Main1.png";
+    private static final String PROTAGONIST_PATH_LEVEL2 = "Images/Protagonist/Main2.png";
+    private static final String PROTAGONIST_PATH_LEVEL3 = "Images/Protagonist/Main3.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     @FXML
@@ -117,8 +119,14 @@ public class GameController {
     private final Image nightBackground = new Image(NIGHT_BACKGROUND_PATH);
     private final Image dawnBackground = new Image(DAWN_BACKGROUND_PATH);
 
-    // Main character image (always displayed on the left)
-    private Image protagonistImage = new Image(PROTAGONIST_PATH);
+    // Main character image (always displayed on the left) at level 1
+    private Image protagonistImageLevel1 = new Image(PROTAGONIST_PATH_LEVEL1);
+
+    // level 2
+    private Image protagonistImageLevel2 = new Image(PROTAGONIST_PATH_LEVEL2);
+
+    // level 3
+    private Image protagonistImageLevel3 = new Image(PROTAGONIST_PATH_LEVEL3);
 
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
@@ -143,7 +151,7 @@ public class GameController {
 
         // Set wallpaper and characters
         gameBackground.setImage(dayBackground);
-        protagonistLeft.setImage(protagonistImage);
+        protagonistLeft.setImage(protagonistImageLevel1);
 
         // Load characters from JSON
         Npc.loadNpcs();
@@ -358,13 +366,14 @@ public class GameController {
         }
     }
 
-    @FXML
     private void levelUp() {
         if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 200) && (protagonist.getLevel() < 2)) {
-            protagonistImage = new Image("Images/Protagonist/Main2.png");
+            protagonistLeft.setImage(protagonistImageLevel2);
             protagonist.setLevel(2);
-        } else if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 300) && (protagonist.getLevel() < 3)) {
-            protagonistImage = new Image("Images/Protagonist/Main3.png");
+        }
+
+        if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 300) && (protagonist.getLevel() < 3)) {
+            protagonistLeft.setImage(protagonistImageLevel3);
             protagonist.setLevel(3);
         }
     }
