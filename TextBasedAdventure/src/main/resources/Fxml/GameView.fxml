@@ -17,6 +17,7 @@
             <VBox fx:id="protagonistLeftBg" alignment="CENTER" maxHeight="300.0">
                 <children>
                     <ImageView fx:id="protagonistLeft" fitHeight="260.0" fitWidth="260.0" />
+               <Label fx:id="levelLabel" text="Label" />
                 </children>
             </VBox>
 

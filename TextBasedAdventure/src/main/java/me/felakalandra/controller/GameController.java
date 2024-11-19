@@ -33,6 +33,7 @@ public class GameController {
     private static final String DAWN_BACKGROUND_PATH = "Images/Background/dawn.jpg";
     private static final String PROTAGONIST_PATH = "Images/Protagonist/Main1.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+
     @FXML
     private AnchorPane gameBase;
 
@@ -62,6 +63,9 @@ public class GameController {
 
     @FXML
     private Label damageLabel;
+
+    @FXML
+    public Label levelLabel;
 
     @FXML
     private Label questText;
@@ -323,6 +327,7 @@ public class GameController {
         goldLabel.setText("Gold: " + protagonist.getGold());
         damageLabel.setText("Damage: " + protagonist.getDamagePoints());
         daysLabel.setText("Days: " + days);
+        levelLabel.setText("Level: " + protagonist.getLevel());
     }
 
     /*
