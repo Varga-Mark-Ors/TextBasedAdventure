@@ -215,8 +215,10 @@ public class GameController {
             if (randomDialogue.getOptions() != null) {
                 if (randomDialogue.getOptions().containsKey("option1")) {
                     option1.setText(randomDialogue.getOptions().get("option1").getText());
-                    if (Objects.equals(randomDialogue.getType(), "quest")){
+                    if (!Objects.equals(rewardType1, "none")){
                         statSetter(rewardType1, number1 * - 1);
+                    }
+                    if (Npc.reliable(currentNpc)){
                         statSetter(rewardType2, number2);
                     }
                 }
@@ -394,18 +396,19 @@ public class GameController {
     }
 
     /*
-     * TODO: Make
+     * TODO: Management for items
      * */
-    private void statSetter(String stat, int number){
+    private void statSetter(String stat, int number) {
+        System.out.println("Stat: " + stat + ", Number: " + number); // Debug üzenet
+
         switch (stat) {
             case "gold" -> protagonist.setGold(protagonist.getGold() + number);
             case "damage" -> protagonist.setDamagePoints(protagonist.getDamagePoints() + number);
             case "hp" -> protagonist.setHealth(protagonist.getHealth() + number);
             default -> {
+                // Ha nem találja a statot, ide írhatunk hibaüzenetet
+                System.out.println("Unrecognized stat: " + stat);
             }
-            /*
-             * TODO: Management of items
-             * */
         }
     }
 
