@@ -216,7 +216,8 @@ public class GameController {
                 if (randomDialogue.getOptions().containsKey("option1")) {
                     option1.setText(randomDialogue.getOptions().get("option1").getText());
                     if (Objects.equals(randomDialogue.getType(), "quest")){
-                        statSetter(rewardType1, number1);
+                        statSetter(rewardType1, number1 * - 1);
+                        statSetter(rewardType2, number2);
                     }
                 }
 
@@ -411,18 +412,18 @@ public class GameController {
     private int numberGenerator(String stat){
         switch (stat) {
             case "gold" -> {
-                int min = (int) (protagonist.getGold() * 0.3);
-                int max = (int) (protagonist.getGold() * 0.9);
+                int min = (int) (protagonist.getGold() * 0.1);
+                int max = (int) (protagonist.getGold() * 0.3);
                 return min + (int) (Math.random() * (max - min + 1));
             }
             case "damage" -> {
-                int min = (int) (protagonist.getDamagePoints() * 0.3);
-                int max = (int) (protagonist.getDamagePoints() * 0.9);
+                int min = (int) (protagonist.getDamagePoints() * 0.1);
+                int max = (int) (protagonist.getDamagePoints() * 0.3);
                 return min + (int) (Math.random() * (max - min + 1));
             }
             case "hp" -> {
-                int min = (int) (protagonist.getHealth() * 0.3);
-                int max = (int) (protagonist.getHealth() * 0.9);
+                int min = (int) (protagonist.getHealth() * 0.1);
+                int max = (int) (protagonist.getHealth() * 0.3);
                 return min + (int) (Math.random() * (max - min + 1));
             }
         }
@@ -436,8 +437,8 @@ public class GameController {
 
 
     private String formattedReward() {
-        if (Objects.equals(rewardType2, "none")){
-            return "You will get: " + number1 + " " + rewardType1;
+        if (Objects.equals(rewardType1, "none")){
+            return "You will get: " + number2 + " " + rewardType2;
         }
         return "You will give: "+ number1 + " " + rewardType1 + ". You will get: " + number2 + " " + rewardType2;
     }
