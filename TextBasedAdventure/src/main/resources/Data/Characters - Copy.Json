@@ -1,0 +1,1403 @@
+[
+  {
+    "name": "Wizard",
+    "picture": "Images/NPCs/Wizard.png",
+    "level": 2,
+    "type": "friendly",
+    "reliability": 90,
+    "dialogues": [
+      {
+        "text": "Ah, a brave soul! I need rare herbs for a potion. Can you retrieve them?",
+        "type": "quest",
+        "info": "Gather rare herbs for the Wizard. Reward: +{number} HP.",
+        "reward": {
+          "type": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Gather herbs",
+            "response": "The Wizard nods. 'Excellent! They grow deep in the forest.'"
+          },
+          "option2": {
+            "text": "Not now",
+            "response": "The Wizard frowns. 'Time waits for no one, adventurer.'"
+          },
+          "option3": {
+            "text": "Ask why",
+            "response": "The Wizard explains, 'This potion can heal even the gravest wounds.'"
+          }
+        }
+      },
+      {
+        "text": "I’ve crafted this scroll. Care to trade {number} gold for it?",
+        "type": "trade",
+        "info": "Buy a scroll that grants +{number2} damage.",
+        "reward": {
+          "type1": "gold",
+          "type2": "damage"
+        },
+        "options": {
+          "option1": {
+            "text": "Buy scroll",
+            "response": "You hand over the gold. 'Use it wisely,' says the Wizard."
+          },
+          "option2": {
+            "text": "Too pricey",
+            "response": "The Wizard smirks. 'Knowledge is never cheap.'"
+          },
+          "option3": {
+            "text": "No gold",
+            "response": "The Wizard sighs. 'A pity. Perhaps another time.'"
+          }
+        }
+      },
+      {
+        "text": "Beware! A cursed tome has appeared. Destroy it before it corrupts anyone else.",
+        "type": "quest",
+        "info": "Destroy the cursed tome. Reward: +{number} gold.",
+        "reward": {
+          "type": "gold"
+        },
+        "options": {
+          "option1": {
+            "text": "Destroy it",
+            "response": "The Wizard looks relieved. 'Thank you, brave one!'"
+          },
+          "option2": {
+            "text": "Ignore it",
+            "response": "The Wizard warns, 'You risk the curse spreading.'"
+          },
+          "option3": {
+            "text": "Ask danger",
+            "response": "The Wizard explains, 'It spreads madness to anyone nearby.'"
+          }
+        }
+      },
+      {
+        "text": "You’ve come far! Let me enchant your weapon—for a price, of course.",
+        "type": "trade",
+        "info": "Pay {number} gold to enchant your weapon (+{number2} damage).",
+        "reward": {
+          "type1": "gold",
+          "type2": "damage"
+        },
+        "options": {
+          "option1": {
+            "text": "Enchant it",
+            "response": "The Wizard casts a spell. 'Now it gleams with power!'"
+          },
+          "option2": {
+            "text": "Too expensive",
+            "response": "The Wizard chuckles. 'Power isn’t cheap.'"
+          },
+          "option3": {
+            "text": "Ask effects",
+            "response": "The Wizard explains, 'It will strike with unmatched force!'"
+          }
+        }
+      },
+      {
+        "text": "A dragon stirs in the east. Shall I scry its location for you?",
+        "type": "quest",
+        "info": "Accept the Wizard's vision. Reward: Unlock dragon’s location.",
+        "reward": {
+          "type": "location",
+          "name": "Dragon's Lair"
+        },
+        "options": {
+          "option1": {
+            "text": "Yes, scry",
+            "response": "The Wizard chants. 'The dragon waits in the volcanic mountains.'"
+          },
+          "option2": {
+            "text": "Not now",
+            "response": "The Wizard nods. 'The dragon will not rest forever.'"
+          },
+          "option3": {
+            "text": "Why scry?",
+            "response": "The Wizard states, 'Preparation is the key to victory.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Villager",
+    "picture": "Images/NPCs/Villager.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 99,
+    "dialogues": [
+      {
+        "text": "My crops were trampled by bandits. Can you teach them a lesson?",
+        "type": "quest",
+        "info": "Defeat the bandits. Reward: +{number} HP.",
+        "reward": {
+          "type": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Help him",
+            "response": "The Villager smiles. 'Thank you! They’re camped nearby.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Villager sighs. 'I guess no one will stand up to them...'"
+          },
+          "option3": {
+            "text": "Ask why",
+            "response": "The Villager explains, 'Without crops, my family will starve.'"
+          }
+        }
+      },
+      {
+        "text": "We’ve gathered some gold to offer as a reward. Will you protect our village from wolves?",
+        "type": "quest",
+        "info": "Defeat the wolves attacking the village. Reward: +{number} gold.",
+        "reward": {
+          "type": "gold"
+        },
+        "options": {
+          "option1": {
+            "text": "Accept",
+            "response": "The Villager thanks you. 'Please hurry!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Villager frowns. 'We’ll have to fend for ourselves.'"
+          },
+          "option3": {
+            "text": "Ask reward",
+            "response": "The Villager promises, 'We’ll give you everything we have.'"
+          }
+        }
+      },
+      {
+        "text": "The local well has dried up. Could you search for a new water source?",
+        "type": "quest",
+        "info": "Find a new water source. Reward: +{number} HP.",
+        "reward": {
+          "type": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Help them",
+            "response": "The Villager beams. 'We’re counting on you!'"
+          },
+          "option2": {
+            "text": "Ignore",
+            "response": "The Villager pleads, 'Without water, we’re doomed!'"
+          },
+          "option3": {
+            "text": "Ask more",
+            "response": "The Villager says, 'There’s an old spring east of here.'"
+          }
+        }
+      },
+      {
+        "text": "I found this strange trinket. Care to buy it for {number} gold?",
+        "type": "trade",
+        "info": "Pay {number} gold for a trinket that grants +{number2} HP.",
+        "reward": {
+          "type1": "gold",
+          "type2": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Buy it",
+            "response": "You pay the Villager, who hands you the trinket."
+          },
+          "option2": {
+            "text": "Too much",
+            "response": "The Villager shrugs. 'Suit yourself.'"
+          },
+          "option3": {
+            "text": "Ask use",
+            "response": "The Villager says, 'I hear it protects against harm.'"
+          }
+        }
+      },
+      {
+        "text": "The bandits have stolen my tools. If you recover them, I’ll share my profits with you!",
+        "type": "quest",
+        "info": "Recover the Villager's tools. Reward: +{number} gold.",
+        "reward": {
+          "type": "gold"
+        },
+        "options": {
+          "option1": {
+            "text": "Recover tools",
+            "response": "The Villager smiles. 'Thank you! You’re our only hope.'"
+          },
+          "option2": {
+            "text": "Can’t help",
+            "response": "The Villager nods sadly. 'I understand.'"
+          },
+          "option3": {
+            "text": "Ask reward",
+            "response": "The Villager promises, 'You’ll get a fair share of my earnings.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Beggar",
+    "picture": "Images/NPCs/Beggar.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 75,
+    "dialogues": [
+      {
+        "text": "Spare some gold, noble one? I’ll trade you this dusty map I found!",
+        "type": "trade",
+        "info": "Pay 5 gold. Reward: Map reveals hidden treasure location.",
+        "reward": {
+          "type": "map",
+          "location": "hidden treasure"
+        },
+        "options": {
+          "option1": {
+            "text": "Give gold",
+            "response": "The Beggar hands you the map with a grin. 'Good luck, friend!'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Beggar shrugs. 'Your loss, noble one.'"
+          },
+          "option3": {
+            "text": "Ask about the map",
+            "response": "The Beggar says, 'It’s just a scrap, but I think it leads to something valuable.'"
+          }
+        }
+      },
+      {
+        "text": "I saw a strange creature by the river. If you slay it, I’ll share my findings!",
+        "type": "quest",
+        "info": "Kill the creature by the river. Reward: Potion (+10 damage).",
+        "reward": {
+          "type": "potion",
+          "effect": "+10 damage"
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Beggar nods eagerly. 'Return to me once the creature is slain!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Beggar looks disappointed. 'Ah, well. It was worth asking.'"
+          },
+          "option3": {
+            "text": "Ask about the creature",
+            "response": "The Beggar says, 'It’s a big, ugly thing—green scales, sharp teeth!'"
+          }
+        }
+      },
+      {
+        "text": "The dragon destroyed my home… if you have extra wood, I’ll pay you for it.",
+        "type": "quest",
+        "info": "Provide wood to the Beggar. Reward: +{number} gold.",
+        "reward": {
+          "type": "gold"
+        },
+        "options": {
+          "option1": {
+            "text": "Give wood",
+            "response": "The Beggar beams. 'You’re a true noble!'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Beggar sighs. 'Guess I’ll have to make do without.'"
+          },
+          "option3": {
+            "text": "Ask why",
+            "response": "The Beggar explains, 'The dragon left me with nothing but ruins and smoke.'"
+          }
+        }
+      },
+      {
+        "text": "This old charm saved my life once. For 15 gold, it’s yours.",
+        "type": "trade",
+        "info": "Purchase the charm for 15 gold. Reward: +5 HP.",
+        "reward": {
+          "type1": "gold",
+          "type2": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Buy the charm",
+            "response": "You hand over 15 gold, and the Beggar gives you the charm with a grateful smile."
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Beggar frowns. 'I understand. Not everyone appreciates a good charm.'"
+          },
+          "option3": {
+            "text": "Ask about the charm",
+            "response": "The Beggar says, 'It saved me from a nasty bandit attack. I never leave home without it.'"
+          }
+        }
+      },
+      {
+        "text": "Don’t trust everyone you meet out here. Some folks are not as they seem!",
+        "type": "hint",
+        "info": "Provides a clue about a deceitful NPC.",
+        "reward": {
+          "type": "hint",
+          "details": "Watch out for the merchant in the next town—he’s not as honest as he seems."
+        },
+        "options": {
+          "option1": {
+            "text": "Thank him",
+            "response": "The Beggar nods. 'It’s dangerous out here. Better safe than sorry.'"
+          },
+          "option2": {
+            "text": "Ignore",
+            "response": "The Beggar looks at you knowingly. 'Don’t say I didn’t warn you.'"
+          },
+          "option3": {
+            "text": "Ask more",
+            "response": "The Beggar whispers, 'There’s a merchant up ahead, but his wares are cursed.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Miner",
+    "picture": "Images/NPCs/Miner.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 80,
+    "dialogues": [
+      {
+        "text": "My pickaxe broke! If you bring me another, I’ll share a treasure I dug up.",
+        "type": "quest",
+        "info": "Deliver a pickaxe to the Miner. Reward: +{number} gold.",
+        "reward": {
+          "type": "gold"
+        },
+        "options": {
+          "option1": {
+            "text": "Bring a pickaxe",
+            "response": "The Miner grins. 'You’re a lifesaver! Here’s your reward.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Miner sighs. 'I guess I’ll have to wait a bit longer.'"
+          },
+          "option3": {
+            "text": "Ask why",
+            "response": "The Miner explains, 'I can't keep working without one. I’ve got precious finds to dig up!'"
+          }
+        }
+      },
+      {
+        "text": "The caves are dangerous, but they hold rich veins. Care to explore with me?",
+        "type": "quest",
+        "info": "Escort the Miner through dangerous caves. Reward: Gemstone (+5 HP or sellable for 20 gold).",
+        "reward": {
+          "type": "gemstone",
+          "effect": "+5 HP",
+          "sellable": 20
+        },
+        "options": {
+          "option1": {
+            "text": "Escort the Miner",
+            "response": "The Miner thanks you. 'Stick close, and we’ll find something valuable!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Miner nods. 'I understand. It’s not safe out there.'"
+          },
+          "option3": {
+            "text": "Ask about the caves",
+            "response": "The Miner warns, 'It’s not just the rocks that are dangerous—there are creatures down there too.'"
+          }
+        }
+      },
+      {
+        "text": "I’ll trade this helmet for your old sword. Deal?",
+        "type": "trade",
+        "info": "Exchange your sword for a helmet. Reward: Helmet (+{number} HP).",
+        "reward": {
+          "type1": "damage",
+          "type2": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Make the trade",
+            "response": "You exchange your sword for the helmet. The Miner nods. 'Good choice!'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Miner shrugs. 'Your sword, your decision.'"
+          },
+          "option3": {
+            "text": "Ask about the helmet",
+            "response": "The Miner says, 'It’s a sturdy one, perfect for cave exploring. I’m sure it’ll keep you safe.'"
+          }
+        }
+      },
+      {
+        "text": "Goblins have invaded my mine. If you clear them out, I’ll give you my best find.",
+        "type": "quest",
+        "info": "Kill 5 goblins in the mine. Reward: +{number} damage crystal.",
+        "reward": {
+          "type": "damage"
+        },
+        "options": {
+          "option1": {
+            "text": "Clear the goblins",
+            "response": "The Miner cheers. 'You’ve got a deal! I’ll be waiting for you!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Miner frowns. 'I guess I’ll just have to deal with them myself.'"
+          },
+          "option3": {
+            "text": "Ask about the goblins",
+            "response": "The Miner explains, 'They’ve been making a mess of my tunnels, stealing my precious gems.'"
+          }
+        }
+      },
+      {
+        "text": "I need torches to keep working. Bring me some, and I’ll split the profits.",
+        "type": "quest",
+        "info": "Deliver torches to the Miner. Reward: +{number} gold.",
+        "reward": {
+          "type": "gold"
+        },
+        "options": {
+          "option1": {
+            "text": "Bring torches",
+            "response": "The Miner nods. 'Thank you! With these, I’ll be able to work in the dark.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Miner sighs. 'I’ll have to work in the dark then.'"
+          },
+          "option3": {
+            "text": "Ask about the torches",
+            "response": "The Miner explains, 'The light will keep the creatures at bay and help me find the richest veins.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "King",
+    "picture": "Images/NPCs/King.png",
+    "level": 5,
+    "type": "friendly",
+    "reliability": 95,
+    "dialogues": [
+      {
+        "text": "The dragon threatens my kingdom! Slay its minions, and I’ll make you a knight!",
+        "type": "quest",
+        "info": "Kill 3 dragon minions. Reward: Knight title (increas HP by {number}).",
+        "reward": {
+          "type": "hp"
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The King smiles. 'You have my blessing, brave warrior!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The King nods solemnly. 'I understand, but my kingdom will be in peril.'"
+          },
+          "option3": {
+            "text": "Ask about the dragon",
+            "response": "The King grimaces. 'The dragon’s minions are terrorizing my people. We need a hero like you.'"
+          }
+        }
+      },
+      {
+        "text": "This sword was forged for heroes. Prove your worth, and it’s yours.",
+        "type": "challenge",
+        "info": "Defeat a challenging foe. Reward: Hero’s Sword (+20 damage).",
+        "reward": {
+          "type": "weapon",
+          "name": "Hero’s Sword",
+          "effect": {
+            "damage": 20
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the challenge",
+            "response": "The King nods approvingly. 'Prove yourself, and this sword will be yours.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The King looks disappointed. 'Very well, but this sword will not be yours then.'"
+          },
+          "option3": {
+            "text": "Ask about the foe",
+            "response": "The King warns, 'It is a fierce beast, not easily slain. Do not take this lightly.'"
+          }
+        }
+      },
+      {
+        "text": "The kingdom is low on gold. Donate {number}, and I’ll reward you with my royal shield.",
+        "type": "trade",
+        "info": "Donate {number} gold. Reward: Shield (+{} HP).",
+        "reward": {
+          "type": "shield",
+          "name": "Royal Shield",
+          "effect": {
+            "hp": 15
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Donate 50 gold",
+            "response": "The King graciously accepts your gold. 'May this shield protect you, noble one.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The King sighs. 'Our kingdom suffers, but I understand.'"
+          },
+          "option3": {
+            "text": "Ask about the shield",
+            "response": "The King says, 'This shield has protected my ancestors for generations. It is a symbol of royalty.'"
+          }
+        }
+      },
+      {
+        "text": "The dragon’s lair lies to the east. Take this map—it’ll guide you.",
+        "type": "gift",
+        "info": "Free map. Effect: Unlocks new area.",
+        "reward": {
+          "type": "map",
+          "location": "dragon’s lair",
+          "effect": "unlocks new area"
+        },
+        "options": {
+          "option1": {
+            "text": "Take the map",
+            "response": "The King hands you the map. 'May it lead you to victory, brave adventurer.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The King looks at you, slightly puzzled. 'Are you not ready for the challenge?'"
+          },
+          "option3": {
+            "text": "Ask about the lair",
+            "response": "The King warns, 'The lair is guarded by fierce creatures and traps. Proceed with caution.'"
+          }
+        }
+      },
+      {
+        "text": "A spy lurks in my court. Root them out, and you’ll be richly rewarded.",
+        "type": "quest",
+        "info": "Investigate suspects in the court. Reward: +50 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 50
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The King gives you a stern look. 'Find the traitor, and bring them to justice!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The King sighs. 'Very well, but this threat could endanger the kingdom.'"
+          },
+          "option3": {
+            "text": "Ask about the spy",
+            "response": "The King explains, 'I have my suspicions, but no proof. I trust you’ll find the truth.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Queen",
+    "picture": "Images/NPCs/Queen.png",
+    "level": 4,
+    "type": "friendly",
+    "reliability": 90,
+    "dialogues": [
+      {
+        "text": "The dragon has cursed our land! Help my people, and I’ll reward you.",
+        "type": "quest",
+        "info": "Complete 2 villager quests. Reward: Royal Amulet (+10 HP).",
+        "reward": {
+          "type": "item",
+          "name": "Royal Amulet",
+          "effect": {
+            "hp": 10
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Queen smiles graciously. 'Your kindness will not go unnoticed.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Queen looks saddened. 'My people need help, but I understand.'"
+          },
+          "option3": {
+            "text": "Ask about the curse",
+            "response": "The Queen frowns. 'A terrible curse placed by the dragon himself. We need a hero to end it.'"
+          }
+        }
+      },
+      {
+        "text": "I have gold to spare. Bring me dragon scales, and I’ll pay you handsomely.",
+        "type": "trade",
+        "info": "Deliver dragon scales. Reward: +50 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 50
+        },
+        "options": {
+          "option1": {
+            "text": "Agree to deliver the scales",
+            "response": "The Queen nods. 'I will await your return with the scales.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Queen's expression hardens. 'I see. It seems the scales are too much to ask for.'"
+          },
+          "option3": {
+            "text": "Ask about the scales",
+            "response": "The Queen explains, 'Dragon scales are rare and valuable. They can be sold or crafted into powerful items.'"
+          }
+        }
+      },
+      {
+        "text": "Our soldiers need healing potions. Find them, and I’ll give you this ring.",
+        "type": "quest",
+        "info": "Deliver potions. Reward: Ring (+5 damage).",
+        "reward": {
+          "type": "item",
+          "name": "Ring of Strength",
+          "effect": {
+            "damage": 5
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Queen thanks you warmly. 'The soldiers will be grateful for your help.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Queen's face falls. 'Very well, but my soldiers remain vulnerable.'"
+          },
+          "option3": {
+            "text": "Ask about the potions",
+            "response": "The Queen explains, 'Our soldiers have been in constant battle. The potions will help them recover quickly.'"
+          }
+        }
+      },
+      {
+        "text": "A mysterious knight has offered aid, but I don’t trust him. Investigate for me.",
+        "type": "quest",
+        "info": "Investigate the mysterious knight. Reward: Clue about the dragon’s weakness.",
+        "reward": {
+          "type": "clue",
+          "clue": "The dragon is vulnerable to ice-based attacks."
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Queen sighs with relief. 'I knew I could count on you.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Queen looks worried. 'I fear we may not be ready for what he brings.'"
+          },
+          "option3": {
+            "text": "Ask about the knight",
+            "response": "The Queen explains, 'He has a noble air about him, but something about him feels off.'"
+          }
+        }
+      },
+      {
+        "text": "Take this potion of strength. It’s a gift for your bravery.",
+        "type": "gift",
+        "info": "Free potion. Effect: +10 damage for the next battle.",
+        "reward": {
+          "type": "potion",
+          "name": "Potion of Strength",
+          "effect": {
+            "damage": 10
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the potion",
+            "response": "The Queen hands you the potion. 'May it aid you in the battles ahead.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Queen looks disappointed. 'I understand, but this gift could have helped you.'"
+          },
+          "option3": {
+            "text": "Ask about the potion",
+            "response": "The Queen says, 'This potion will enhance your strength for a short while. Use it wisely.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Innkeeper",
+    "picture": "Images/NPCs/Innkeeper.png",
+    "level": 2,
+    "type": "friendly",
+    "reliability": 85,
+    "dialogues": [
+      {
+        "text": "Welcome, traveler! Rest here for 5 gold and restore your health.",
+        "type": "trade",
+        "info": "Pay 5 gold. Reward: Full HP restoration.",
+        "reward": {
+          "type": "hp",
+          "amount": 100
+        },
+        "options": {
+          "option1": {
+            "text": "Rest here",
+            "response": "The Innkeeper takes your gold and hands you a warm bed. 'Rest well, traveler.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Innkeeper nods. 'If you change your mind, the bed is ready.'"
+          },
+          "option3": {
+            "text": "Ask about the inn",
+            "response": "The Innkeeper smiles. 'This place has been serving travelers for years. A good place to rest your weary bones.'"
+          }
+        }
+      },
+      {
+        "text": "A merchant left this sword behind. It’s yours for 20 gold.",
+        "type": "trade",
+        "info": "Buy sword for 20 gold. Reward: Sword (+15 damage).",
+        "reward": {
+          "type": "weapon",
+          "name": "Merchant's Sword",
+          "effect": {
+            "damage": 15
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Buy the sword",
+            "response": "You hand over 20 gold, and the Innkeeper passes you the sword. 'A fine weapon for any adventurer.'"
+          },
+          "option2": {
+            "text": "Too expensive",
+            "response": "The Innkeeper shrugs. 'It’s a fair price for a good weapon.'"
+          },
+          "option3": {
+            "text": "Ask about the sword",
+            "response": "The Innkeeper says, 'It’s a solid blade, nothing fancy, but it’ll serve you well in a pinch.'"
+          }
+        }
+      },
+      {
+        "text": "I overheard someone talking about a hidden cave. Care to hear more?",
+        "type": "hint",
+        "info": "Pay 5 gold for a location clue.",
+        "reward": {
+          "type": "location",
+          "location": "hidden cave",
+          "effect": "reveals a hidden area"
+        },
+        "options": {
+          "option1": {
+            "text": "Pay for the clue",
+            "response": "The Innkeeper takes your 5 gold and whispers, 'Follow the river to the east, you’ll find the entrance there.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Innkeeper nods understandingly. 'Suit yourself, traveler.'"
+          },
+          "option3": {
+            "text": "Ask more about the cave",
+            "response": "The Innkeeper looks around and leans in. 'Not many know about it, but there’s treasure in that cave... if you’re brave enough.'"
+          }
+        }
+      },
+      {
+        "text": "Bandits have been robbing my guests. Can you deal with them?",
+        "type": "quest",
+        "info": "Kill 3 bandits. Reward: +15 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 15
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Innkeeper looks relieved. 'Thank you! My guests will sleep easier with those bandits gone.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Innkeeper sighs. 'I understand, but these bandits are causing a lot of trouble.'"
+          },
+          "option3": {
+            "text": "Ask about the bandits",
+            "response": "The Innkeeper explains, 'They’ve been hiding out in the woods nearby. They strike at night and steal from anyone they can.'"
+          }
+        }
+      },
+      {
+        "text": "Try this ale—it’ll make you feel invincible!",
+        "type": "trade",
+        "info": "Buy ale for 10 gold. Effect: +5 damage for the next battle.",
+        "reward": {
+          "type": "potion",
+          "name": "Ale of Invincibility",
+          "effect": {
+            "damage": 5
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Buy the ale",
+            "response": "You hand over 10 gold, and the Innkeeper passes you a tankard. 'Drink up! You’ll feel unstoppable!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Innkeeper shrugs. 'It’s a good drink, but suit yourself.'"
+          },
+          "option3": {
+            "text": "Ask about the ale",
+            "response": "The Innkeeper grins. 'A special brew I’ve been working on. It’ll give you a bit more strength for your next fight!'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Blacksmith",
+    "picture": "Images/NPCs/Blacksmith.png",
+    "level": 3,
+    "type": "friendly",
+    "reliability": 88,
+    "dialogues": [
+      {
+        "text": "My forge is cold. Bring me coal, and I’ll craft you a weapon.",
+        "type": "quest",
+        "info": "Deliver coal. Reward: Weapon (+15 damage).",
+        "reward": {
+          "type": "weapon",
+          "name": "Crafted Weapon",
+          "effect": {
+            "damage": 15
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Blacksmith nods. 'Good, I’ll need a lot of coal to get my forge working again.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Blacksmith looks disappointed. 'A cold forge is no good to anyone, but I understand.'"
+          },
+          "option3": {
+            "text": "Ask about the coal",
+            "response": "The Blacksmith grunts. 'I need a large amount of coal to heat up the forge and start working. Can you gather it for me?'"
+          }
+        }
+      },
+      {
+        "text": "Care for an upgrade? 30 gold, and I’ll sharpen your blade.",
+        "type": "trade",
+        "info": "Pay 30 gold. Reward: Permanent +10 damage.",
+        "reward": {
+          "type": "damage",
+          "amount": 10
+        },
+        "options": {
+          "option1": {
+            "text": "Pay the 30 gold",
+            "response": "The Blacksmith takes your gold and sharpens your blade. 'This will cut through anything now!'"
+          },
+          "option2": {
+            "text": "Decline the offer",
+            "response": "The Blacksmith nods. 'Your loss. This upgrade could’ve made you a lot stronger.'"
+          },
+          "option3": {
+            "text": "Ask about the upgrade",
+            "response": "The Blacksmith explains, 'This will sharpen your weapon to perfection, making every strike more deadly.'"
+          }
+        }
+      },
+      {
+        "text": "My apprentice is missing. Find them, and I’ll repay you.",
+        "type": "quest",
+        "info": "Rescue apprentice. Reward: +15 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 15
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Blacksmith seems relieved. 'Thank you! My apprentice has been gone too long. Please bring them back safely.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Blacksmith looks worried. 'I understand... but please, if you change your mind, I’ll be here.'"
+          },
+          "option3": {
+            "text": "Ask about the apprentice",
+            "response": "The Blacksmith says, 'My apprentice is a young, eager smith. They went to gather materials for me and never came back.'"
+          }
+        }
+      },
+      {
+        "text": "This dragon’s fire has ruined my forge. Help me rebuild, and I’ll craft you armor.",
+        "type": "quest",
+        "info": "Deliver materials. Reward: Armor (+20 HP).",
+        "reward": {
+          "type": "armor",
+          "name": "Reinforced Armor",
+          "effect": {
+            "hp": 20
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Blacksmith’s eyes brighten. 'Thank you! With your help, I can rebuild and forge armor that will keep you safe.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Blacksmith sighs. 'I suppose I’ll have to manage without the materials. But it’s hard to forge with a ruined forge.'"
+          },
+          "option3": {
+            "text": "Ask about the damage",
+            "response": "The Blacksmith grumbles. 'A dragon’s fire burned my forge to the ground. I need stone, wood, and steel to rebuild it.'"
+          }
+        }
+      },
+      {
+        "text": "I have a fine shield for sale. Only 25 gold!",
+        "type": "trade",
+        "info": "Buy shield for 25 gold. Reward: Shield (+15 HP).",
+        "reward": {
+          "type": "item",
+          "name": "Shield of the Blacksmith",
+          "effect": {
+            "hp": 15
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Buy the shield",
+            "response": "You hand over 25 gold, and the Blacksmith hands you the shield. 'It’s sturdy and will keep you safe in battle.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Blacksmith shrugs. 'Suit yourself, but a shield like this could save your life.'"
+          },
+          "option3": {
+            "text": "Ask about the shield",
+            "response": "The Blacksmith says, 'It’s made from the finest steel. Tough enough to withstand most blows.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Orc",
+    "picture": "Images/NPCs/Orc.png",
+    "level": 5,
+    "type": "hostile",
+    "reliability": 50,
+    "dialogues": [
+      {
+        "text": "You look weak! Prove yourself worthy of my treasure!",
+        "type": "challenge",
+        "info": "Defeat Orc. Reward: +10 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 10
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Orc",
+            "response": "The Orc roars in anger. 'You’ll regret this!'"
+          },
+          "option2": {
+            "text": "Run away",
+            "response": "The Orc laughs cruelly. 'Fleeing now? Pathetic!'"
+          },
+          "option3": {
+            "text": "Ask about the treasure",
+            "response": "The Orc grins wickedly. 'If you survive, you’ll find it among my spoils.'"
+          }
+        }
+      },
+      {
+        "text": "Fight me, or flee. Your choice!",
+        "type": "challenge",
+        "info": "Optional battle. Reward: Axe (+10 damage).",
+        "reward": {
+          "type": "weapon",
+          "name": "Orc's Axe",
+          "effect": {
+            "damage": 10
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Orc",
+            "response": "The Orc swings its axe. 'You chose poorly!'"
+          },
+          "option2": {
+            "text": "Flee",
+            "response": "The Orc grumbles. 'Coward.'"
+          },
+          "option3": {
+            "text": "Challenge him verbally",
+            "response": "The Orc sneers. 'Words won’t save you from my blade!'"
+          }
+        }
+      },
+      {
+        "text": "I’ll let you pass… for 20 gold.",
+        "type": "deal",
+        "info": "Pay toll. Reward: Progress without combat.",
+        "reward": {
+          "type": "progress",
+          "effect": "advances the player without combat"
+        },
+        "options": {
+          "option1": {
+            "text": "Pay the toll",
+            "response": "The Orc nods and steps aside. 'Smart choice, weakling.'"
+          },
+          "option2": {
+            "text": "Refuse to pay",
+            "response": "The Orc growls. 'Then you’ll face my wrath!'"
+          },
+          "option3": {
+            "text": "Threaten the Orc",
+            "response": "The Orc laughs. 'I fear no threats from the likes of you!'"
+          }
+        }
+      },
+      {
+        "text": "The dragon fears no one, least of all you!",
+        "type": "hint",
+        "info": "No reward; builds tension.",
+        "reward": {
+          "type": "tension",
+          "effect": "increases the tension between the player and the dragon"
+        },
+        "options": {
+          "option1": {
+            "text": "Ask more about the dragon",
+            "response": "The Orc grins. 'The dragon’s power is unmatched, even by me!'"
+          },
+          "option2": {
+            "text": "Ignore the Orc",
+            "response": "The Orc shrugs. 'You’ll learn soon enough.'"
+          },
+          "option3": {
+            "text": "Challenge the Orc again",
+            "response": "The Orc snarls. 'You’ve got guts, I’ll give you that.'"
+          }
+        }
+      },
+      {
+        "text": "Prepare to be crushed, little one!",
+        "type": "challenge",
+        "info": "Defeat Orc. Reward: +20 HP potion.",
+        "reward": {
+          "type": "hp",
+          "amount": 20
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Orc",
+            "response": "The Orc swings its large club, eager for battle. 'I’ll enjoy this!'"
+          },
+          "option2": {
+            "text": "Run from the fight",
+            "response": "The Orc growls, 'Coward!' and charges after you."
+          },
+          "option3": {
+            "text": "Try to negotiate",
+            "response": "The Orc grins. 'Negotiation? You’ll need more than words to survive me!'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Heavy Knight",
+    "picture": "Images/NPCs/HeavyKnight.png",
+    "level": 7,
+    "type": "hostile",
+    "reliability": 60,
+    "dialogues": [
+      {
+        "text": "The dragon sent me to stop you. Prepare to fight!",
+        "type": "challenge",
+        "info": "Defeat Knight. Reward: Shield (+15 HP).",
+        "reward": {
+          "type": "armor",
+          "name": "Knight’s Shield",
+          "effect": {
+            "hp": 15
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Knight",
+            "response": "The Knight raises his sword. 'This will be your final battle!'"
+          },
+          "option2": {
+            "text": "Try to talk your way out",
+            "response": "The Knight laughs. 'Words won't save you, fool!'"
+          },
+          "option3": {
+            "text": "Run away",
+            "response": "The Knight grins. 'Coward. You’ll regret running.'"
+          }
+        }
+      },
+      {
+        "text": "Pay me 50 gold, and I’ll walk away.",
+        "type": "deal",
+        "info": "Pay gold. Reward: Avoid battle.",
+        "reward": {
+          "type": "progress",
+          "effect": "advances the player without combat"
+        },
+        "options": {
+          "option1": {
+            "text": "Pay the 50 gold",
+            "response": "The Knight nods and steps aside. 'Smart choice, traveler.'"
+          },
+          "option2": {
+            "text": "Refuse to pay",
+            "response": "The Knight scowls. 'Then prepare to fight!'"
+          },
+          "option3": {
+            "text": "Challenge him",
+            "response": "The Knight laughs. 'You have no idea what you’re getting into.'"
+          }
+        }
+      },
+      {
+        "text": "Your courage is amusing. Let’s see how long it lasts.",
+        "type": "challenge",
+        "info": "Defeat Knight. Reward: Sword (+20 damage).",
+        "reward": {
+          "type": "weapon",
+          "name": "Knight’s Sword",
+          "effect": {
+            "damage": 20
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Knight",
+            "response": "The Knight swings his sword with precision. 'Your bravery will be your downfall.'"
+          },
+          "option2": {
+            "text": "Try to flee",
+            "response": "The Knight smirks. 'You’ll be running soon enough, but not yet.'"
+          },
+          "option3": {
+            "text": "Taunt him",
+            "response": "The Knight’s eyes narrow. 'I’ll teach you respect with my blade!'"
+          }
+        }
+      },
+      {
+        "text": "Leave now, or face my wrath!",
+        "type": "hint",
+        "info": "Intimidation, no combat.",
+        "reward": {
+          "type": "tension",
+          "effect": "increases tension with the Knight, leading to potential future combat"
+        },
+        "options": {
+          "option1": {
+            "text": "Leave quietly",
+            "response": "The Knight sneers. 'That’s what I thought. Stay out of my way.'"
+          },
+          "option2": {
+            "text": "Stay and fight",
+            "response": "The Knight grins. 'You should have listened!'"
+          },
+          "option3": {
+            "text": "Try to negotiate",
+            "response": "The Knight laughs. 'You’re not getting away without a fight, no matter how much you beg.'"
+          }
+        }
+      },
+      {
+        "text": "You’ll never reach the dragon alive!",
+        "type": "challenge",
+        "info": "Defeat Knight. Reward: +25 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 25
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Knight",
+            "response": "The Knight charges forward, weapon raised. 'Let’s see if you can back up that bravado!'"
+          },
+          "option2": {
+            "text": "Try to flee",
+            "response": "The Knight laughs. 'You won’t get far before I catch you.'"
+          },
+          "option3": {
+            "text": "Ask him to explain",
+            "response": "The Knight growls. 'You think you can defeat the dragon? You’re nothing but a pest!'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Assassin",
+    "picture": "Images/NPCs/Assassin.png",
+    "level": 8,
+    "type": "hostile",
+    "reliability": 40,
+    "dialogues": [
+      {
+        "text": "The dragon has a bounty on your head. Time to collect!",
+        "type": "challenge",
+        "info": "Defeat Assassin. Reward: Dagger (+15 damage).",
+        "reward": {
+          "type": "weapon",
+          "name": "Assassin’s Dagger",
+          "effect": {
+            "damage": 15
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Assassin",
+            "response": "The Assassin moves swiftly. 'You won’t last long.'"
+          },
+          "option2": {
+            "text": "Try to run",
+            "response": "The Assassin laughs. 'You think you can escape me?'"
+          },
+          "option3": {
+            "text": "Ask about the bounty",
+            "response": "The Assassin smirks. 'The dragon’s always watching. Your death is inevitable.'"
+          }
+        }
+      },
+      {
+        "text": "I have poison… care to buy some for your enemies?",
+        "type": "trade",
+        "info": "Pay 15 gold. Reward: Poison (+10 damage over time).",
+        "reward": {
+          "type": "item",
+          "name": "Poison",
+          "effect": {
+            "damage_over_time": 10
+          }
+        },
+        "options": {
+          "option1": {
+            "text": "Buy the poison",
+            "response": "The Assassin hands you a vial of poison. 'Use it wisely.'"
+          },
+          "option2": {
+            "text": "Refuse the offer",
+            "response": "The Assassin nods. 'More poison for me, then.'"
+          },
+          "option3": {
+            "text": "Ask how it works",
+            "response": "The Assassin grins. 'It’ll slowly weaken your target… nothing personal.'"
+          }
+        }
+      },
+      {
+        "text": "You’re not worth my time… unless you pay me 20 gold.",
+        "type": "deal",
+        "info": "Pay gold. Reward: Avoid combat.",
+        "reward": {
+          "type": "progress",
+          "effect": "advances the player without combat"
+        },
+        "options": {
+          "option1": {
+            "text": "Pay the 20 gold",
+            "response": "The Assassin nods curtly. 'Smart move, traveler.'"
+          },
+          "option2": {
+            "text": "Refuse to pay",
+            "response": "The Assassin sneers. 'Then prepare to face the consequences.'"
+          },
+          "option3": {
+            "text": "Challenge the Assassin",
+            "response": "The Assassin grins. 'You’ll regret this.'"
+          }
+        }
+      },
+      {
+        "text": "My blades are faster than your wit. Let’s test that theory!",
+        "type": "challenge",
+        "info": "Defeat Assassin. Reward: +20 gold.",
+        "reward": {
+          "type": "gold",
+          "amount": 20
+        },
+        "options": {
+          "option1": {
+            "text": "Fight the Assassin",
+            "response": "The Assassin strikes quickly. 'Let’s see how well you handle this!'"
+          },
+          "option2": {
+            "text": "Try to talk your way out",
+            "response": "The Assassin grins. 'I don’t care about your words.'"
+          },
+          "option3": {
+            "text": "Attempt to flee",
+            "response": "The Assassin’s blades flash. 'You won’t get far!'"
+          }
+        }
+      },
+      {
+        "text": "The dragon watches you… and so do I.",
+        "type": "hint",
+        "info": "Builds tension.",
+        "reward": {
+          "type": "tension",
+          "effect": "increases tension with the dragon and the Assassin, hinting at future danger"
+        },
+        "options": {
+          "option1": {
+            "text": "Ask about the dragon",
+            "response": "The Assassin’s eyes narrow. 'The dragon is always watching. You cannot escape it.'"
+          },
+          "option2": {
+            "text": "Ignore the Assassin",
+            "response": "The Assassin shrugs. 'Do as you wish. The dragon will have its way.'"
+          },
+          "option3": {
+            "text": "Threaten the Assassin",
+            "response": "The Assassin chuckles. 'You should focus on surviving me first.'"
+          }
+        }
+      }
+    ]
+  }
+]
