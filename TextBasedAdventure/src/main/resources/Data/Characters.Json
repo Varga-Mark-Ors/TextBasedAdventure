@@ -34,7 +34,7 @@
     "picture": "Images/NPCs/Villager.png",
     "level": 1,
     "type": "friendly",
-    "reliability": 99,
+    "reliability": 95,
     "dialogues": [
       {
         "text": "I found this strange trinket. Care to buy it for {number1} gold?",
@@ -64,7 +64,7 @@
     "picture": "Images/NPCs/Beggar.png",
     "level": 1,
     "type": "friendly",
-    "reliability": 75,
+    "reliability": 85,
     "dialogues": [
       {
         "text": "I saw a strange creature by the river. If you slay it, I’ll share my findings!",
@@ -94,7 +94,7 @@
     "picture": "Images/NPCs/Miner.png",
     "level": 1,
     "type": "friendly",
-    "reliability": 80,
+    "reliability": 90,
     "dialogues": [
       {
         "text": "My pickaxe broke! If you bring me another, I’ll share a treasure I dug up.",

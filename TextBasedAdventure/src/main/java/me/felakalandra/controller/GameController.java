@@ -427,24 +427,27 @@ public class GameController {
         switch (stat) {
             case "gold" -> {
                 // Calculate the range as 10% to 30% of the protagonist's current gold.
-                int min = (int) (protagonist.getGold() * 0.1);
+                int min = (int) (protagonist.getGold() * 0.2);
                 int max = (int) (protagonist.getGold() * 0.3);
-                // Return a random value within the range.
-                return min + (int) (Math.random() * (max - min + 1));
+                // Returns a random value within the range and weighted by the reliability of the character
+                return (int) ((min + (int) (Math.random() * (max - min + 1)))
+                        * ((100 - currentNpc.getReliability()) * 0.1));
             }
             case "damage" -> {
                 // Calculate the range as 10% to 30% of the protagonist's current damage points.
-                int min = (int) (protagonist.getDamagePoints() * 0.1);
+                int min = (int) (protagonist.getDamagePoints() * 0.2);
                 int max = (int) (protagonist.getDamagePoints() * 0.3);
-                // Return a random value within the range.
-                return min + (int) (Math.random() * (max - min + 1));
+                // Returns a random value within the range and weighted by the reliability of the character
+                return (int) ((min + (int) (Math.random() * (max - min + 1)))
+                        * ((100 - currentNpc.getReliability()) * 0.1));
             }
             case "hp" -> {
                 // Calculate the range as 10% to 30% of the protagonist's current health.
-                int min = (int) (protagonist.getHealth() * 0.1);
+                int min = (int) (protagonist.getHealth() * 0.2);
                 int max = (int) (protagonist.getHealth() * 0.3);
-                // Return a random value within the range.
-                return min + (int) (Math.random() * (max - min + 1));
+                // Returns a random value within the range and weighted by the reliability of the character
+                return (int) ((min + (int) (Math.random() * (max - min + 1)))
+                        * ((100 - currentNpc.getReliability()) * 0.1));
             }
         }
         // Default return value if the stat does not match any case.
