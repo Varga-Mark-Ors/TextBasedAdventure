@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -20,8 +21,11 @@ public class Dialogue {
     @JsonProperty("info")
     private String info;
 
-    @JsonProperty("reward")
-    private Map<String, Object> reward;  // Store reward as a map, since it can be different types (e.g., gold, hp, items)
+    @JsonProperty("rewardType1")
+    private String rewardType1;  // Store reward as a map, since it can be different types (e.g., gold, hp, items)
+
+    @JsonProperty("rewardType2")
+    private String rewardType2;
 
     @JsonProperty("options")
     private Map<String, DialogueOption> options;  // Store options as a map (option1, option2, etc.)
@@ -33,12 +37,7 @@ public class Dialogue {
         this.text = text;
         this.type = type;
         this.info = info;
-        this.reward = reward;
         this.options = options;
-    }
-
-    public String getFormattedReward() {
-        return formatReward(reward);
     }
 
     private String formatReward(Map<String, Object> reward) {
@@ -66,7 +65,6 @@ public class Dialogue {
                 "text='" + text + '\'' +
                 ", type='" + type + '\'' +
                 ", info='" + info + '\'' +
-                ", reward=" + reward +
                 ", options=" + options +
                 '}';
     }

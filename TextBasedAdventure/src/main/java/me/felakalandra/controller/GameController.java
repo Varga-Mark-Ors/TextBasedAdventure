@@ -24,6 +24,7 @@ import org.tinylog.Logger;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameController {
@@ -120,18 +121,23 @@ public class GameController {
     private final Image dawnBackground = new Image(DAWN_BACKGROUND_PATH);
 
     // Main character image (always displayed on the left) at level 1
-    private Image protagonistImageLevel1 = new Image(PROTAGONIST_PATH_LEVEL1);
+    private final Image protagonistImageLevel1 = new Image(PROTAGONIST_PATH_LEVEL1);
 
     // level 2
-    private Image protagonistImageLevel2 = new Image(PROTAGONIST_PATH_LEVEL2);
+    private final Image protagonistImageLevel2 = new Image(PROTAGONIST_PATH_LEVEL2);
 
     // level 3
-    private Image protagonistImageLevel3 = new Image(PROTAGONIST_PATH_LEVEL3);
+    private final Image protagonistImageLevel3 = new Image(PROTAGONIST_PATH_LEVEL3);
 
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
     private Npc npc = new Npc();
     Npc currentNpc;
+
+    private int number1;
+    private int number2;
+    private String rewardType1;
+    private String rewardType2;
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
@@ -185,16 +191,21 @@ public class GameController {
             int randomIndex = (int) (Math.random() * currentNpc.getDialogues().size());
             Dialogue randomDialogue = currentNpc.getDialogues().get(randomIndex);
 
+            // Set the reward details
+            rewardType1 = randomDialogue.getRewardType1();
+            rewardType2 = randomDialogue.getRewardType2();
+            number1 = numberGenerator(rewardType1);
+            number2 = numberGenerator(rewardType2);
+            questReward.setText(rewardType1 + rewardType2);
+            questReward.setText(formattedReward());
+
             // Set the dialogue text
-            questText.setText(randomDialogue.getText());
+            questText.setText(replacePlaceholders(randomDialogue.getText(), number1, number2));
             questTextInfo.setText("What the " + currentNpc.getName() + " says:");
 
             // Set the quest type and reward details
             questType.setText(randomDialogue.getType().substring(0, 1).toUpperCase() + randomDialogue.getType().substring(1));
-            questInfo.setText(randomDialogue.getInfo());
-
-            // Set the reward details
-            questReward.setText(randomDialogue.getFormattedReward());
+            questInfo.setText(replacePlaceholders(randomDialogue.getInfo(), number1, number2));
 
             // Set the reliability info
             questReliabilityInfo.setText("Should you trust the " + currentNpc.getName() + "?");
@@ -204,6 +215,9 @@ public class GameController {
             if (randomDialogue.getOptions() != null) {
                 if (randomDialogue.getOptions().containsKey("option1")) {
                     option1.setText(randomDialogue.getOptions().get("option1").getText());
+                    if (Objects.equals(randomDialogue.getType(), "quest")){
+                        statSetter(rewardType1, number1);
+                    }
                 }
 
                 if (randomDialogue.getOptions().containsKey("option2")) {
@@ -376,5 +390,55 @@ public class GameController {
             protagonistLeft.setImage(protagonistImageLevel3);
             protagonist.setLevel(3);
         }
+    }
+
+    /*
+     * TODO: Make
+     * */
+    private void statSetter(String stat, int number){
+        switch (stat) {
+            case "gold" -> protagonist.setGold(protagonist.getGold() + number);
+            case "damage" -> protagonist.setDamagePoints(protagonist.getDamagePoints() + number);
+            case "hp" -> protagonist.setHealth(protagonist.getHealth() + number);
+            default -> {
+            }
+            /*
+             * TODO: Management of items
+             * */
+        }
+    }
+
+    private int numberGenerator(String stat){
+        switch (stat) {
+            case "gold" -> {
+                int min = (int) (protagonist.getGold() * 0.3);
+                int max = (int) (protagonist.getGold() * 0.9);
+                return min + (int) (Math.random() * (max - min + 1));
+            }
+            case "damage" -> {
+                int min = (int) (protagonist.getDamagePoints() * 0.3);
+                int max = (int) (protagonist.getDamagePoints() * 0.9);
+                return min + (int) (Math.random() * (max - min + 1));
+            }
+            case "hp" -> {
+                int min = (int) (protagonist.getHealth() * 0.3);
+                int max = (int) (protagonist.getHealth() * 0.9);
+                return min + (int) (Math.random() * (max - min + 1));
+            }
+        }
+        return 0;
+    }
+
+    public static String replacePlaceholders(String dialogue, int price1, int price2) {
+        return dialogue.replace("{number1}", String.valueOf(price1))
+                .replace("{number2}", String.valueOf(price2));
+    }
+
+
+    private String formattedReward() {
+        if (Objects.equals(rewardType2, "none")){
+            return "You will get: " + number1 + " " + rewardType1;
+        }
+        return "You will give: "+ number1 + " " + rewardType1 + ". You will get: " + number2 + " " + rewardType2;
     }
 }

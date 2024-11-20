@@ -9,7 +9,7 @@
       {
         "text": "Ah, a brave soul! I need rare herbs for a potion. Can you retrieve them?",
         "type": "quest",
-        "info": "Gather rare herbs for the Wizard. Reward: +{number} HP.",
+        "info": "Gather rare herbs for the Wizard. Reward: + {number1} HP.",
         "rewardType1": "hp",
         "rewardType2": "none",
         "options": {
@@ -39,7 +39,7 @@
       {
         "text": "I found this strange trinket. Care to buy it for {number1} gold?",
         "type": "trade",
-        "info": "Pay {number1} gold for a trinket that grants +{number2} HP.",
+        "info": "Pay {number1} gold for a trinket that grants + {number2} HP.",
         "rewardType1": "gold",
         "rewardType2": "hp",
         "options": {
@@ -69,7 +69,7 @@
       {
         "text": "I saw a strange creature by the river. If you slay it, I’ll share my findings!",
         "type": "quest",
-        "info": "Kill the creature by the river. Reward: Potion (+{number} damage).",
+        "info": "Kill the creature by the river. Reward: Potion (+ {number1} damage).",
         "rewardType1": "damage",
         "rewardType2": "none",
         "options": {
@@ -99,7 +99,7 @@
       {
         "text": "My pickaxe broke! If you bring me another, I’ll share a treasure I dug up.",
         "type": "quest",
-        "info": "Deliver a pickaxe to the Miner. Reward: +{number} gold.",
+        "info": "Deliver a pickaxe to the Miner. Reward: + {number1} gold.",
         "rewardType1": "gold",
         "rewardType2": "none",
         "options": {
@@ -129,7 +129,7 @@
       {
         "text": "The dragon threatens my kingdom! Slay its minions, and I’ll make you a knight!",
         "type": "quest",
-        "info": "Kill 3 dragon minions. Reward: Knight title (increas HP by {number}).",
+        "info": "Kill 3 dragon minions. Reward: Knight title (increase HP by {number1} ).",
         "rewardType1": "hp",
         "rewardType2": "none",
         "options": {
@@ -159,7 +159,7 @@
       {
         "text": "I have gold to spare. Bring me dragon scales, and I’ll pay you handsomely.",
         "type": "quest",
-        "info": "Deliver dragon scales. Reward: +{number} gold.",
+        "info": "Deliver dragon scales. Reward: + {number1} gold.",
         "rewardType1": "gold",
         "rewardType2": "none",
         "options": {
@@ -219,7 +219,7 @@
       {
         "text": "My forge is cold. Bring me coal, and I’ll craft you a weapon.",
         "type": "quest",
-        "info": "Deliver coal. Reward: Weapon (+{number} damage).",
+        "info": "Deliver coal. Reward: Weapon (+ {number1} damage).",
         "rewardType1": "damage",
         "rewardType2": "none",
         "options": {
@@ -249,7 +249,7 @@
       {
         "text": "You look weak! Prove yourself worthy of my treasure!",
         "type": "challenge",
-        "info": "Defeat Orc. Reward: +{number} gold.",
+        "info": "Defeat Orc. Reward: + {number1} gold.",
         "rewardType1": "gold",
         "rewardType2": "none",
         "options": {
@@ -279,7 +279,7 @@
       {
         "text": "The dragon sent me to stop you. Prepare to fight!",
         "type": "challenge",
-        "info": "Defeat Knight. Reward: Shield (+15 HP).",
+        "info": "Defeat Knight. Reward: Shield (+ {number1} HP).",
         "rewardType1": "hp",
         "rewardType2": "none",
         "options": {
@@ -309,7 +309,7 @@
       {
         "text": "The dragon has a bounty on your head. Time to collect!",
         "type": "challenge",
-        "info": "Defeat Assassin. Reward: Dagger (+{number} damage).",
+        "info": "Defeat Assassin. Reward: Dagger (+ {number1} damage).",
         "rewardType1": "damage",
         "rewardType2": "none",
         "options": {
