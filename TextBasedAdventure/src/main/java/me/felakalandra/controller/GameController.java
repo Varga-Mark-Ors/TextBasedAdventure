@@ -134,6 +134,7 @@ public class GameController {
     private Npc npc = new Npc();
     Npc currentNpc;
 
+    //Initializing the values needed for the character process
     private int number1;
     private int number2;
     private String rewardType1;
@@ -398,51 +399,73 @@ public class GameController {
     /*
      * TODO: Management for items
      * */
+    // Method to modify a specific stat (e.g., gold, damage, or health) by a given value.
     private void statSetter(String stat, int number) {
-        System.out.println("Stat: " + stat + ", Number: " + number); // Debug üzenet
+        // Debug message to print the stat being modified and the value used for the modification.
+        System.out.println("Stat: " + stat + ", Number: " + number);
 
+        // Switch statement to handle different stats.
         switch (stat) {
-            case "gold" -> protagonist.setGold(protagonist.getGold() + number);
-            case "damage" -> protagonist.setDamagePoints(protagonist.getDamagePoints() + number);
-            case "hp" -> protagonist.setHealth(protagonist.getHealth() + number);
+            case "gold" ->
+                // Adjust the protagonist's gold by the specified value.
+                    protagonist.setGold(protagonist.getGold() + number);
+            case "damage" ->
+                // Adjust the protagonist's damage points by the specified value.
+                    protagonist.setDamagePoints(protagonist.getDamagePoints() + number);
+            case "hp" ->
+                // Adjust the protagonist's health by the specified value.
+                    protagonist.setHealth(protagonist.getHealth() + number);
             default -> {
-                // Ha nem találja a statot, ide írhatunk hibaüzenetet
+                // If the provided stat is unrecognized, print an error message.
                 System.out.println("Unrecognized stat: " + stat);
             }
         }
     }
 
-    private int numberGenerator(String stat){
+    // Method to generate a random number within a range based on the specified stat.
+    private int numberGenerator(String stat) {
         switch (stat) {
             case "gold" -> {
+                // Calculate the range as 10% to 30% of the protagonist's current gold.
                 int min = (int) (protagonist.getGold() * 0.1);
                 int max = (int) (protagonist.getGold() * 0.3);
+                // Return a random value within the range.
                 return min + (int) (Math.random() * (max - min + 1));
             }
             case "damage" -> {
+                // Calculate the range as 10% to 30% of the protagonist's current damage points.
                 int min = (int) (protagonist.getDamagePoints() * 0.1);
                 int max = (int) (protagonist.getDamagePoints() * 0.3);
+                // Return a random value within the range.
                 return min + (int) (Math.random() * (max - min + 1));
             }
             case "hp" -> {
+                // Calculate the range as 10% to 30% of the protagonist's current health.
                 int min = (int) (protagonist.getHealth() * 0.1);
                 int max = (int) (protagonist.getHealth() * 0.3);
+                // Return a random value within the range.
                 return min + (int) (Math.random() * (max - min + 1));
             }
         }
+        // Default return value if the stat does not match any case.
         return 0;
     }
 
+    // Method to replace placeholders in a dialogue string with specific numeric values.
     public static String replacePlaceholders(String dialogue, int price1, int price2) {
+        // Replace the placeholders {number1} and {number2} with the provided price1 and price2 values.
         return dialogue.replace("{number1}", String.valueOf(price1))
                 .replace("{number2}", String.valueOf(price2));
     }
 
-
+    // Method to generate a formatted string describing the rewards and costs.
     private String formattedReward() {
-        if (Objects.equals(rewardType1, "none")){
+        // If the first reward type is "none", return a simplified message about the second reward.
+        if (Objects.equals(rewardType1, "none")) {
             return "You will get: " + number2 + " " + rewardType2;
         }
-        return "You will give: "+ number1 + " " + rewardType1 + ". You will get: " + number2 + " " + rewardType2;
+        // Otherwise, include both the cost and the reward in the message.
+        return "You will give: " + number1 + " " + rewardType1 + ". You will get: " + number2 + " " + rewardType2;
     }
+
 }
