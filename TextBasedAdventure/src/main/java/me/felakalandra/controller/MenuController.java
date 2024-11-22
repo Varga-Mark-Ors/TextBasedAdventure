@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import lombok.Setter;
 import me.felakalandra.util.GameApplication;
@@ -58,6 +59,9 @@ public class MenuController {
     @FXML
     public void returnToMainMenu(ActionEvent actionEvent) {
         try {
+            if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+                gameController.stopGameMusic();
+            }
             // Bezárjuk a játékot
             GameApplication app = (GameApplication) GameApplication.getInstance();
             app.getPrimaryStage().close();  // Bezárjuk az aktuális ablakot

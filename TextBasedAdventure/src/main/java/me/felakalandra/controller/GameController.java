@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import lombok.Getter;
 import me.felakalandra.model.Dialogue;
 import me.felakalandra.model.Npc;
 import me.felakalandra.model.Protagonist;
@@ -115,7 +116,7 @@ public class GameController {
 
     @FXML
     public ImageView npcsRight;
-
+    @Getter
     private MediaPlayer mediaPlayer;
     private LocalTime gameTime;
     private int days = 0;
