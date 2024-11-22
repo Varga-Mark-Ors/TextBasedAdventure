@@ -16,6 +16,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import me.felakalandra.model.Dialogue;
 import me.felakalandra.model.Npc;
 import me.felakalandra.model.Protagonist;
@@ -111,8 +114,11 @@ public class GameController {
 
     @FXML
     public ImageView npcsRight;
-    
 
+    private MediaPlayer mainMenuMusicPlayer;
+    private MediaPlayer gameMusicPlayer;
+
+    private Stage primaryStage;
     private LocalTime gameTime;
     private int days = 0;
 
