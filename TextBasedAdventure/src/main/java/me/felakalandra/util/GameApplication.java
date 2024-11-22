@@ -50,5 +50,7 @@ public class GameApplication extends Application {
 
         primaryStage.setTitle("Game");
         primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+        primaryStage.show();
     }
 }
