@@ -27,7 +27,14 @@ public class MainMenuController {
         Platform.exit();
         Logger.info("Exiting game");
     }
-
-    public void leaderboard(ActionEvent actionEvent) {
+    @FXML
+    public void loadGame(ActionEvent actionEvent) {
+        Logger.info("Load game");
     }
+    @FXML
+    public void leaderboard(ActionEvent actionEvent) {
+        Logger.info("Open leaderboard");
+    }
+
+
 }
