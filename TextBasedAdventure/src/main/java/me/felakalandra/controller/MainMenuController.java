@@ -7,23 +7,22 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import me.felakalandra.util.GameApplication;
 import org.tinylog.Logger;
-
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.util.Objects;
 
 
 public class MainMenuController {
 
-    private MediaPlayer mediaPlayer;
+    private final MediaPlayer mediaPlayer;
     public MainMenuController() {
-        // Beállítjuk a főmenü zenét
-        Media media = new Media(getClass().getResource("/Sounds/Main_Menu_Sound.mp3").toExternalForm());
+        // Set the main menu music.
+        Media media = new Media(Objects.requireNonNull(getClass().getResource("/Sounds/Main_Menu_Sound.mp3")).toExternalForm());
         mediaPlayer = new MediaPlayer(media);
     }
     public void startNewGame(ActionEvent actionEvent) {
         try {
             if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.stop();  // Leállítjuk a főmenü zenét, ha az éppen játszódik
+                mediaPlayer.stop();
             }
             GameApplication app = (GameApplication) GameApplication.getInstance();
             app.startGame(); // Change the scene from Main Menu into Game
@@ -35,8 +34,8 @@ public class MainMenuController {
 
     public void playMenuMusic() {
         if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Ismétlődő zene
-            mediaPlayer.play(); // Elindítjuk a zenét, ha nem játszódik
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // ooping music
+            mediaPlayer.play();
         }
     }
     @FXML
@@ -56,7 +55,7 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
-        playMenuMusic();  // Amikor betöltődik a főmenü, induljon a zene
+        playMenuMusic();  // When the main menu is loaded, the music should start playing
     }
 
 }

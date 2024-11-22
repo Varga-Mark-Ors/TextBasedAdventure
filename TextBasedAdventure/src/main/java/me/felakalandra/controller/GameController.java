@@ -147,7 +147,7 @@ public class GameController {
     private String rewardType2;
 
     public GameController() {
-        // Beállítjuk a játék zenét
+        // Set the game music
         Media media = new Media(getClass().getResource("/Sounds/Gameplay_Sound.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(media);
     }
@@ -269,15 +269,15 @@ public class GameController {
 
     public void startGameMusic() {
         if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Ismétlődő zene
-            mediaPlayer.play(); // Elindítjuk a játék zenét, ha nem játszódik
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Set the looping game music
+            mediaPlayer.play();
         }
     }
 
     @FXML
     public void stopGameMusic() {
         if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayer.stop(); // Leállítjuk a játék zenét
+            mediaPlayer.stop();
         }
     }
 

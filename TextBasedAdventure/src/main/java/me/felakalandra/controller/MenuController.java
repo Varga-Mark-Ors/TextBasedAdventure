@@ -62,12 +62,12 @@ public class MenuController {
             if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
                 gameController.stopGameMusic();
             }
-            // Bezárjuk a játékot
+            // Close the game
             GameApplication app = (GameApplication) GameApplication.getInstance();
-            app.getPrimaryStage().close();  // Bezárjuk az aktuális ablakot
+            app.getPrimaryStage().close();  // Close the current window.
 
-            // Betöltjük a főmenüt
-            app.showMainMenu();  // Újra megjelenítjük a főmenüt
+            // Load the main menu.
+            app.showMainMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
