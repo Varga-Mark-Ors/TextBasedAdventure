@@ -25,6 +25,7 @@ import me.felakalandra.model.Protagonist;
 import org.tinylog.Logger;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -115,10 +116,7 @@ public class GameController {
     @FXML
     public ImageView npcsRight;
 
-    private MediaPlayer mainMenuMusicPlayer;
-    private MediaPlayer gameMusicPlayer;
-
-    private Stage primaryStage;
+    private MediaPlayer mediaPlayer;
     private LocalTime gameTime;
     private int days = 0;
 
@@ -146,6 +144,12 @@ public class GameController {
     private int number2;
     private String rewardType1;
     private String rewardType2;
+
+    public GameController() {
+        // Beállítjuk a játék zenét
+        Media media = new Media(getClass().getResource("/Sounds/Gameplay_Sound.mp3").toExternalForm());
+        mediaPlayer = new MediaPlayer(media);
+    }
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
@@ -259,6 +263,21 @@ public class GameController {
     private void initialize() {
         initializeGameState();
         startGameClock(); // Only required during initialize
+        startGameMusic();
+    }
+
+    public void startGameMusic() {
+        if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Ismétlődő zene
+            mediaPlayer.play(); // Elindítjuk a játék zenét, ha nem játszódik
+        }
+    }
+
+    @FXML
+    public void stopGameMusic() {
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            mediaPlayer.stop(); // Leállítjuk a játék zenét
+        }
     }
 
     public void resetGame() {

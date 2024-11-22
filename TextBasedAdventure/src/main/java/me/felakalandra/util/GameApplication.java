@@ -41,6 +41,7 @@ public class GameApplication extends Application {
             primaryStage.setTitle("Main Menu");
             primaryStage.setResizable(false);
             primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.pla
         }
 
         primaryStage.setScene(scene);
