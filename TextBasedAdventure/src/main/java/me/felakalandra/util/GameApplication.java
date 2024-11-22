@@ -17,6 +17,8 @@ public class GameApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         Npc.loadNpcs();
 
+
+
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Fxml/GameView.fxml")));
         Scene scene = new Scene(root);
 
