@@ -35,16 +35,16 @@ public class GameApplication extends Application {
     public void showMainMenu() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Fxml/MainMenu.fxml")));
         Scene scene = new Scene(root);
-
+        //
         if (primaryStage.getScene() == null) {
-            // Csak akkor állítjuk be a stílust, ha még nem volt setScene hívás
+            // "Set the style only if setScene has not been called yet."
             primaryStage.setTitle("Main Menu");
             primaryStage.setResizable(false);
             primaryStage.initStyle(StageStyle.UNDECORATED);
         }
 
         primaryStage.setScene(scene);
-        primaryStage.centerOnScreen(); // Középre helyezés
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
