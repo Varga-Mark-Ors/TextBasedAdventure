@@ -111,6 +111,7 @@ public class GameController {
 
     @FXML
     public ImageView npcsRight;
+    
 
     private LocalTime gameTime;
     private int days = 0;
