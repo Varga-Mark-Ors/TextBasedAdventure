@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import lombok.Setter;
+import me.felakalandra.util.GameApplication;
 import org.tinylog.Logger;
+
+import java.io.IOException;
 
 
 public class MenuController {
@@ -51,5 +54,19 @@ public class MenuController {
     @FXML
     private void exitGame() {
         Platform.exit();
+    }
+    @FXML
+    public void returnToMainMenu(ActionEvent actionEvent) {
+        try {
+            // Bezárjuk a játékot
+            GameApplication app = (GameApplication) GameApplication.getInstance();
+            app.getPrimaryStage().close();  // Bezárjuk az aktuális ablakot
+
+            // Betöltjük a főmenüt
+            app.showMainMenu();  // Újra megjelenítjük a főmenüt
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Logger.info("Returning to Main Menu");
     }
 }

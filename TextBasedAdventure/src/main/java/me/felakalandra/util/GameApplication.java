@@ -14,6 +14,7 @@ import java.util.Objects;
 
 public class GameApplication extends Application {
 
+    @Getter
     private Stage primaryStage;
 
     //To get GameApplication instance in MainMenu controller.
@@ -31,17 +32,22 @@ public class GameApplication extends Application {
         // Load MainMenu on application startup
         showMainMenu();
     }
-    private void showMainMenu() throws IOException {
+    public void showMainMenu() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Fxml/MainMenu.fxml")));
         Scene scene = new Scene(root);
 
-        primaryStage.setTitle("Main Menu");
-        primaryStage.setResizable(false);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        if (primaryStage.getScene() == null) {
+            // Csak akkor állítjuk be a stílust, ha még nem volt setScene hívás
+            primaryStage.setTitle("Main Menu");
+            primaryStage.setResizable(false);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+        }
 
         primaryStage.setScene(scene);
+        primaryStage.centerOnScreen(); // Középre helyezés
         primaryStage.show();
     }
+
 
     // First game launch
     public void startGame() throws IOException {
