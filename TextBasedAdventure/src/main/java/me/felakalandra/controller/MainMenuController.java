@@ -34,7 +34,7 @@ public class MainMenuController {
 
     public void playMenuMusic() {
         if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // ooping music
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); //looping music
             mediaPlayer.play();
         }
     }
