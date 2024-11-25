@@ -55,6 +55,20 @@
     -fx-alignment: center;
 }
 
+#responseArea{
+    -fx-background-color: #090a14;
+    -fx-padding: 10;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-max-height: 110px;
+    -fx-max-width: 230px;
+}
+
+#npcResponseLabel {
+    -fx-font-size: 15px;
+    -fx-text-fill: #ebede9;
+}
+
 /* HP, DMG, GOLD background */
 #upperSection {
     -fx-spacing: 50;

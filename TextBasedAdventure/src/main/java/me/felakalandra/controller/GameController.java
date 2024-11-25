@@ -1,5 +1,6 @@
 package me.felakalandra.controller;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -11,12 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import me.felakalandra.model.Dialogue;
+import me.felakalandra.model.DialogueOption;
 import me.felakalandra.model.Npc;
 import me.felakalandra.model.Protagonist;
 import org.tinylog.Logger;
@@ -112,6 +115,12 @@ public class GameController {
     @FXML
     public ImageView npcsRight;
 
+    @FXML
+    private StackPane responseArea;
+
+    @FXML
+    private Label npcResponseLabel;
+
     private LocalTime gameTime;
     private int days = 0;
 
@@ -170,16 +179,87 @@ public class GameController {
         advanceGameState();
     }
 
+    private void hideOptionButtons() {
+        option1.setVisible(false);
+        option2.setVisible(false);
+        option3.setVisible(false);
+    }
+
     public void option1Button(ActionEvent actionEvent) {
-        questText.setText("Option 1 selected");
+        handleOptionSelection(currentNpc.getDialogues().get(0).getOptions().get("option1"));
+        hideOptionButtons();
     }
 
     public void option2Button(ActionEvent actionEvent) {
-        questText.setText("Option 2 selected");
+        handleOptionSelection(currentNpc.getDialogues().get(0).getOptions().get("option2"));
+        hideOptionButtons();
     }
 
     public void option3Button(ActionEvent actionEvent) {
-        questText.setText("Option 3 selected");
+        handleOptionSelection(currentNpc.getDialogues().get(0).getOptions().get("option3"));
+        hideOptionButtons();
+    }
+
+    private void handleOptionSelection(DialogueOption option) {
+        if (option != null) {
+            showResponse(option.getResponse());
+        } else {
+            npcResponseLabel.setText("No response available.");
+            resetResponseArea();
+        }
+    }
+
+    private void resetResponseArea() {
+        responseArea.setVisible(false);
+        responseArea.setManaged(false);
+        npcResponseLabel.setText(""); // Clear any previous response
+    }
+
+    private void showResponse(String response) {
+        // Set NPC's response
+        npcResponseLabel.setText(response);
+
+        // Ensure response area is visible
+        responseArea.setVisible(true);
+        responseArea.setManaged(true);
+
+        // Fade transition for npcResponseLabel
+        FadeTransition fadeLabel = new FadeTransition(Duration.seconds(1), npcResponseLabel);
+        fadeLabel.setFromValue(0);
+        fadeLabel.setToValue(1);
+
+        // Fade transition for responseArea
+        FadeTransition fadeArea = new FadeTransition(Duration.seconds(1), responseArea);
+        fadeArea.setFromValue(0);
+        fadeArea.setToValue(1);
+
+        // Play both transitions
+        fadeLabel.play();
+        fadeArea.play();
+    }
+
+    private void hideResponseArea() {
+        // Fade out transition for npcResponseLabel
+        FadeTransition fadeOutLabel = new FadeTransition(Duration.seconds(1), npcResponseLabel);
+        fadeOutLabel.setFromValue(1); // Start fully visible
+        fadeOutLabel.setToValue(0);   // Fade to fully transparent
+
+        // Fade out transition for responseArea
+        FadeTransition fadeOutArea = new FadeTransition(Duration.seconds(1), responseArea);
+        fadeOutArea.setFromValue(1); // Start fully visible
+        fadeOutArea.setToValue(0);   // Fade to fully transparent
+
+        // Set the onFinished event for fadeOutLabel
+        fadeOutLabel.setOnFinished(event -> {
+            // Hide the response area after fading out
+            responseArea.setVisible(false);
+            responseArea.setManaged(false);
+            npcResponseLabel.setText(""); // Clear text
+        });
+
+        // Play both fade-out transitions
+        fadeOutLabel.play();
+        fadeOutArea.play();
     }
 
     @FXML
@@ -271,7 +351,7 @@ public class GameController {
      */
     private void advanceTime() {
         // Increase game time by 1 minute
-        gameTime = gameTime.plusMinutes(1);
+        gameTime = gameTime.plusMinutes(5);
 
         // Check if a new day has begun
         if (gameTime.equals(LocalTime.of(0, 0))) {
@@ -296,6 +376,22 @@ public class GameController {
             gameBackground.setImage(dayBackground);
             timeDay.setText("Daytime");
         }
+
+        // Set the option buttons visible at 7:00 AM
+        if (gameTime.equals(LocalTime.of(7, 0))) {
+            showOptionButtons();
+        }
+
+        // Hide the response area at 5:00 AM
+        if (gameTime.equals(LocalTime.of(5, 0))) {
+            hideResponseArea();
+        }
+    }
+
+    private void showOptionButtons() {
+        option1.setVisible(true);
+        option2.setVisible(true);
+        option3.setVisible(true);
     }
 
     private void updateGameTimeDisplay() {
@@ -470,5 +566,4 @@ public class GameController {
         // Otherwise, include both the cost and the reward in the message.
         return "You will give: " + number1 + " " + rewardType1 + ". You will get: " + number2 + " " + rewardType2;
     }
-
 }
