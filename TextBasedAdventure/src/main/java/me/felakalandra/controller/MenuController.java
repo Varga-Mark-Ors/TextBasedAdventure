@@ -41,7 +41,9 @@ public class MenuController {
 
     // Toggle sound on or off
     @FXML
-    private void handleToggleSound() {
+    private void handleToggleSound()
+    {
+        gameController.toggleMute();
         Logger.info("Sound toggled");
     }
 

@@ -120,6 +120,7 @@ public class GameController {
     private MediaPlayer mediaPlayer;
     private LocalTime gameTime;
     private int days = 0;
+    private boolean isMuted = false;
 
     // Background images
     private final Image dayBackground = new Image(DAY_BACKGROUND_PATH);
@@ -280,6 +281,16 @@ public class GameController {
             mediaPlayer.stop();
         }
     }
+
+    public void toggleMute() {
+        if (isMuted) {
+            mediaPlayer.setVolume(0.5); // Restore to default volume
+        } else {
+            mediaPlayer.setVolume(0.0); // Mute
+        }
+        isMuted = !isMuted;
+    }
+
 
     public void resetGame() {
         initializeGameState();
