@@ -3,6 +3,7 @@ package me.felakalandra.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import me.felakalandra.util.GameApplication;
@@ -13,6 +14,8 @@ import java.util.Objects;
 
 public class MainMenuController {
 
+    @FXML
+    public Button handleToggleSoundButton;
     private final MediaPlayer mediaPlayer;
     private boolean isMuted = false;
     public MainMenuController() {
@@ -43,8 +46,10 @@ public class MainMenuController {
     public void handleToggleSound() {
         if (isMuted) {
             mediaPlayer.setVolume(0.5); // Restore to default volume
+            handleToggleSoundButton.setText("Toggle Sound: ON");
         } else {
             mediaPlayer.setVolume(0.0); // Mute
+            handleToggleSoundButton.setText("Toggle Sound: OFF");
         }
         isMuted = !isMuted;
     }

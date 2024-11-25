@@ -7,6 +7,6 @@
     <Button onAction="#startNewGame" text="New game" />
     <Button onAction="#loadGame" text="Load game" />
     <Button onAction="#leaderboard" text="Options" />
-    <Button onAction="#handleToggleSound" text="Toggle Sound" />
+    <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound" />
     <Button onAction="#exitGame" text="Exit" />
 </VBox>
