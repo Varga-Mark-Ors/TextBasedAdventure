@@ -14,6 +14,7 @@ import java.util.Objects;
 public class MainMenuController {
 
     private final MediaPlayer mediaPlayer;
+    private boolean isMuted = false;
     public MainMenuController() {
         // Set the main menu music.
         Media media = new Media(Objects.requireNonNull(getClass().getResource("/Sounds/Main_Menu_Sound.mp3")).toExternalForm());
@@ -38,6 +39,15 @@ public class MainMenuController {
             mediaPlayer.play();
         }
     }
+
+    public void handleToggleSound() {
+        if (isMuted) {
+            mediaPlayer.setVolume(0.5); // Restore to default volume
+        } else {
+            mediaPlayer.setVolume(0.0); // Mute
+        }
+        isMuted = !isMuted;
+    }
     @FXML
     private void exitGame() {
         Platform.exit();
@@ -52,7 +62,6 @@ public class MainMenuController {
     public void leaderboard(ActionEvent actionEvent) {
         Logger.info("Open leaderboard");
     }
-
     @FXML
     public void initialize() {
         playMenuMusic();  // When the main menu is loaded, the music should start playing
