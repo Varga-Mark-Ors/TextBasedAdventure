@@ -108,27 +108,49 @@ public class GameController {
     }
 
     public void option1Button(ActionEvent actionEvent) {
-        handleOptionSelection(currentNpc.getDialogues().get(0).getOptions().get("option1"));
+        DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option1");
+        if (option != null) {
+            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, true);
+        }
         hideOptionButtons();
     }
 
     public void option2Button(ActionEvent actionEvent) {
-        handleOptionSelection(currentNpc.getDialogues().get(0).getOptions().get("option2"));
+        DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option2");
+        if (option != null) {
+            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false);
+        }
         hideOptionButtons();
     }
 
     public void option3Button(ActionEvent actionEvent) {
-        handleOptionSelection(currentNpc.getDialogues().get(0).getOptions().get("option3"));
+        DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option3");
+        if (option != null) {
+            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false);
+        }
         hideOptionButtons();
     }
 
-    private void handleOptionSelection(DialogueOption option) {
+    // Updated handleOptionSelection to include rewards and penalties
+    private void handleOptionSelection(DialogueOption option, String type1, int value1, String type2, int value2, boolean questAccepted) {
         if (option != null) {
+            // Show NPC response
             showResponse(option.getResponse());
+
+            // If the player accepts a quest or trade
+            if (questAccepted) {
+                if (!Objects.equals(type1, "none")) {
+                    statSetter(type1, -value1); // Deduct cost (e.g., gold, HP)
+                }
+                statSetter(type2, value2); // Grant reward (e.g., gold, HP, damage)
+            }
         } else {
             npcResponseLabel.setText("No response available.");
             resetResponseArea();
         }
+
+        // Update the protagonist stats UI
+        updateProtagonistStats();
     }
 
     private void resetResponseArea() {
