@@ -314,12 +314,14 @@ public class GameController {
         // Set the option buttons visible at 7:00 AM
         if (gameTime.equals(LocalTime.of(7, 0))){
             showOptionButtons();
+            fadeIn(npcsRight, 1);
             setNpc();
         }
 
         // Recieve rewards at 1:00 AM
         if (gameTime.equals(LocalTime.of(1, 0))){
             hideOptionButtons();
+            fadeOut(npcsRight, 1);
             applyPendingRewards(); // Apply all pending rewards
         }
 
@@ -384,6 +386,28 @@ public class GameController {
         option1.setVisible(true);
         option2.setVisible(true);
         option3.setVisible(true);
+    }
+
+    // Fade-out NPCS
+    public static void fadeOut(ImageView imageView, double durationInSeconds) {
+        if (imageView == null) return;
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(durationInSeconds), imageView);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.setOnFinished(event -> imageView.setVisible(false)); // Hide after fading out
+        fadeOut.play();
+    }
+
+    // Fade-in NPCS
+    public static void fadeIn(ImageView imageView, double durationInSeconds) {
+        if (imageView == null) return;
+
+        imageView.setVisible(true); // Ensure the image is visible
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(durationInSeconds), imageView);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeIn.play();
     }
 
     // Set's Npc-s up for the JavaFx
