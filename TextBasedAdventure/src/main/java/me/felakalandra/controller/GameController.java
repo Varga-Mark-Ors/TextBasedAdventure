@@ -95,6 +95,7 @@ public class GameController {
 
         updateGameTimeDisplay();
         showOptionButtons();
+        hideResponseArea();
 
         Logger.info("Game state initialized");
 
