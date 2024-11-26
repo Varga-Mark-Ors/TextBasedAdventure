@@ -54,6 +54,10 @@ public class GameController {
     private int days = 0;
     private boolean isMuted = false;
 
+    // Game clock
+    private Timeline gameClock;
+    private boolean isGamePaused = false;
+
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
     private Npc currentNpc;
@@ -130,6 +134,11 @@ public class GameController {
     }
 
     private void advanceTime() {
+        // If the game is paused, do not advance the time or update the game state
+        if (isGamePaused) {
+            return;
+        }
+
         // Increase game time by X minute
         gameTime = gameTime.plusMinutes(60);
 
@@ -669,8 +678,29 @@ public class GameController {
             menuStage.setScene(new Scene(menuPane));
             menuStage.show();
 
+            // Pause the game clock when the menu is opened
+            pauseGameClock();
+
+            // Resume the game clock when the menu is closed
+            menuStage.setOnHidden(event -> resumeGameClock());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    private void pauseGameClock() {
+        if (gameClock != null) {
+            gameClock.stop();
+        }
+        isGamePaused = true;
+    }
+
+    private void resumeGameClock() {
+        if (gameClock != null) {
+            gameClock.play();
+        }
+        isGamePaused = false;
+    }
+
 }
