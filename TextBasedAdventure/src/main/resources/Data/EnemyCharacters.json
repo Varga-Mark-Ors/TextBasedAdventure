@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Orc",
+    "picture": "Images/NPCs/Orc.png",
+    "level": 2,
+    "type": "hostile",
+    "health": 40,
+    "dialogues": [
+      {
+        "text": "You look weak! Prove yourself worthy of my treasure!",
+        "type": "challenge",
+        "info": "Defeat Orc. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Fight the Orc",
+            "response": "The Orc roars in anger. 'You’ll regret this!'"
+          },
+          "option2": {
+            "text": "Run away",
+            "response": "The Orc laughs cruelly. 'Fleeing now? Pathetic!'"
+          },
+          "option3": {
+            "text": "Ask about the treasure",
+            "response": "The Orc grins wickedly. 'If you survive, you’ll find it among my spoils.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Heavy Knight",
+    "picture": "Images/NPCs/HeavyKnight.png",
+    "level": 3,
+    "type": "hostile",
+    "health": 90,
+    "dialogues": [
+      {
+        "text": "The dragon sent me to stop you. Prepare to fight!",
+        "type": "challenge",
+        "info": "Defeat Knight. Reward: Shield (+ {number2} HP).",
+        "rewardType1": "none",
+        "rewardType2": "hp",
+        "options": {
+          "option1": {
+            "text": "Fight the Knight",
+            "response": "The Knight raises his sword. 'This will be your final battle!'"
+          },
+          "option3": {
+            "text": "Try to talk your way out",
+            "response": "The Knight laughs. 'Words won't save you, fool!'"
+          },
+          "option2": {
+            "text": "Run away",
+            "response": "The Knight grins. 'Coward. You’ll regret running.'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Assassin",
+    "picture": "Images/NPCs/Assassin.png",
+    "level": 3,
+    "type": "hostile",
+    "health": 55,
+    "dialogues": [
+      {
+        "text": "The dragon has a bounty on your head. Time to collect!",
+        "type": "challenge",
+        "info": "Defeat Assassin. Reward: Dagger (+ {number2} damage).",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Fight the Assassin",
+            "response": "The Assassin moves swiftly. 'You won’t last long.'"
+          },
+          "option2": {
+            "text": "Try to run",
+            "response": "The Assassin laughs. 'You think you can escape me?'"
+          },
+          "option3": {
+            "text": "Ask about the bounty",
+            "response": "The Assassin smirks. 'The dragon’s always watching. Your death is inevitable.'"
+          }
+        }
+      }
+    ]
+  }
+]

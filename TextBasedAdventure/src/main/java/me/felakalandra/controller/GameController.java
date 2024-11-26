@@ -52,6 +52,7 @@ public class GameController {
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
     private Npc currentNpc;
+    private EnemyNpc currentEnemyNpc;
 
     // Background images
     private final Image dayBackground = new Image("Images/Background/daytime.jpg");
@@ -94,6 +95,7 @@ public class GameController {
 
         // Load characters from JSON
         Npc.loadNpcs();
+        EnemyNpc.loadEnemies();
 
         updateGameTimeDisplay();
         showOptionButtons();
@@ -219,7 +221,91 @@ public class GameController {
     @FXML
     private void advanceGameState() {
         // Set NPC image in JavaFx
-        setNpc();
+        if (days < 10) {
+            npcRound();
+        } else if (protagonist.getLevel() < 2) {
+            npcRound();
+        } else {
+            boolean nextIsNpc = new Random().nextDouble() < 0.8;
+
+            if (nextIsNpc) {
+                npcRound();
+            } else {
+                enemyRound();
+            }
+        }
+
+    }
+    private void enemyRound(){
+        setNpc(false);
+
+        if (currentEnemyNpc != null && currentEnemyNpc.getDialogues() != null && !currentEnemyNpc.getDialogues().isEmpty()) {
+            // Pick a random dialogue from the current NPC's dialogues
+            int randomIndex = (int) (Math.random() * currentEnemyNpc.getDialogues().size());
+            Dialogue randomDialogue = currentEnemyNpc.getDialogues().get(randomIndex);
+
+            // Set the reward details
+            rewardType1 = randomDialogue.getRewardType1();
+            rewardType2 = randomDialogue.getRewardType2();
+            number1 = numberGenerator(rewardType1);
+            number2 = numberGenerator(rewardType2);
+            questReward.setText(rewardType1 + rewardType2);
+            questReward.setText(formattedReward());
+
+            // Set the dialogue text
+            questText.setText(replacePlaceholders(randomDialogue.getText(), number1, number2));
+            questTextInfo.setText("What the " + currentEnemyNpc.getName() + " says:");
+
+            // Set the quest type and reward details
+            questType.setText(randomDialogue.getType().substring(0, 1).toUpperCase() + randomDialogue.getType().substring(1));
+            questInfo.setText(replacePlaceholders(randomDialogue.getInfo(), number1, number2));
+
+            // Set the reliability info
+            questReliabilityInfo.setText("Should you trust the " + currentEnemyNpc.getName() + "?");
+            questReliability.setText(currentEnemyNpc.getName() + "'s health is " + currentEnemyNpc.getHealth());
+
+            // Set the dialogue options for the buttons
+            if (randomDialogue.getOptions() != null) {
+                if (randomDialogue.getOptions().containsKey("option1")) {
+                    option1.setText(randomDialogue.getOptions().get("option1").getText());
+                    var result = currentEnemyNpc.fight(protagonist);
+                    if (result.equals("win")){
+                        addPendingReward("gold", number1, 100);
+                    }
+                    if (result.equals("lose")){
+                        if (!protagonist.isAlive())
+                            Logger.warn("Protagonist is dead");
+
+                    }
+                }
+
+                if (randomDialogue.getOptions().containsKey("option2")) {
+                    option2.setText(randomDialogue.getOptions().get("option2").getText());
+                    currentEnemyNpc.run(protagonist);
+                }
+
+                if (randomDialogue.getOptions().containsKey("option3")) {
+                    option3.setText(randomDialogue.getOptions().get("option3").getText());
+                }
+            }
+
+            Logger.info("Random dialogue selected: " + randomDialogue.getText());
+        } else {
+            questText.setText("No dialogue available.");
+            Logger.warn("No dialogues available for NPC: " + currentNpc);
+        }
+
+        if (protagonist.isAlive()) {
+            Logger.info("Protagonist is alive");
+            days = days + 1;
+            levelUp();
+            setUpperRow();
+            updateGameTimeDisplay();
+        }
+    }
+
+    private void npcRound(){
+        setNpc(true);
 
         if (currentNpc != null && currentNpc.getDialogues() != null && !currentNpc.getDialogues().isEmpty()) {
             // Pick a random dialogue from the current NPC's dialogues
@@ -412,39 +498,76 @@ public class GameController {
 
     // Set's Npc-s up for the JavaFx
     @FXML
-    public void setNpc() {
-        if (!Npc.getNpcs().isEmpty()) {
-            boolean correspondingLevel = false;
+    public void setNpc(boolean isNpc) {
+        if (isNpc) {
+            if (!Npc.getNpcs().isEmpty()) {
+                boolean correspondingLevel = false;
 
-            // Create a Random object to generate a random index
-            Random random = new Random();
+                // Create a Random object to generate a random index
+                Random random = new Random();
 
-            while (!correspondingLevel) {
-                // Get a random index between 0 and Characters.getCharacters().size() - 1
-                int randomIndex = random.nextInt(Npc.getNpcs().size());
+                while (!correspondingLevel) {
+                    // Get a random index between 0 and Characters.getCharacters().size() - 1
+                    int randomIndex = random.nextInt(Npc.getNpcs().size());
 
-                // Get the character at the random index
-                currentNpc = Npc.getNpcs().get(randomIndex);
+                    // Get the character at the random index
+                    currentNpc = Npc.getNpcs().get(randomIndex);
 
-                if (currentNpc.getLevel() <= protagonist.getLevel()) {
-                    correspondingLevel = true;
+                    if (currentNpc.getLevel() <= protagonist.getLevel()) {
+                        correspondingLevel = true;
+                    }
                 }
-            }
 
-            Logger.info("Selected NPC: " + currentNpc.getName() + " with " + currentNpc.getDialogues().size() + " dialogues");
+                Logger.info("Selected NPC: " + currentNpc.getName() + " with " + currentNpc.getDialogues().size() + " dialogues");
 
-            // Get the image path from the random character
-            String imagePath = currentNpc.getPath();
+                // Get the image path from the random character
+                String imagePath = currentNpc.getPath();
 
-            // Use the getImage method to load the image from the path
-            Image characterImage = Npc.getImage(imagePath);
+                // Use the getImage method to load the image from the path
+                Image characterImage = Npc.getImage(imagePath);
 
-            // Assuming characterRight is an ImageView
-            if (characterImage != null) {
-                npcsRight.setImage(characterImage);  // Set the image in the ImageView
+                // Assuming characterRight is an ImageView
+                if (characterImage != null) {
+                    npcsRight.setImage(characterImage);  // Set the image in the ImageView
+                }
+            } else {
+                Logger.error("No characters available to display.");
             }
         } else {
-            Logger.error("No characters available to display.");
+            if (!EnemyNpc.getEnemies().isEmpty()) {
+                boolean correspondingLevel = false;
+
+                // Create a Random object to generate a random index
+                Random random = new Random();
+
+                while (!correspondingLevel) {
+                    // Get a random index between 0 and Characters.getCharacters().size() - 1
+                    int randomIndex = random.nextInt(EnemyNpc.getEnemies().size());
+
+                    // Get the character at the random index
+                    //currentNpc = Npc.getNpcs().get(randomIndex);
+                    currentEnemyNpc = EnemyNpc.getEnemies().get(randomIndex);
+
+                    if (currentEnemyNpc.getLevel() <= protagonist.getLevel()) {
+                        correspondingLevel = true;
+                    }
+                }
+
+                Logger.info("Selected EnemyNpc: " + currentEnemyNpc.getName() + " with " + currentEnemyNpc.getDialogues().size() + " dialogues");
+
+                // Get the image path from the random character
+                String imagePath = currentEnemyNpc.getPath();
+
+                // Use the getImage method to load the image from the path
+                Image characterImage = EnemyNpc.getImage(imagePath);
+
+                // Assuming characterRight is an ImageView
+                if (characterImage != null) {
+                    npcsRight.setImage(characterImage);  // Set the image in the ImageView
+                }
+            } else {
+                Logger.error("No characters available to display.");
+            }
         }
     }
 
