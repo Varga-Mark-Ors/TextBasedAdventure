@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Map;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -38,25 +37,6 @@ public class Dialogue {
         this.type = type;
         this.info = info;
         this.options = options;
-    }
-
-    private String formatReward(Map<String, Object> reward) {
-        if (reward == null || reward.isEmpty()) {
-            return "No reward";
-        }
-
-        // Create a StringBuilder to store the formatted reward
-        StringBuilder formattedReward = new StringBuilder();
-        reward.forEach((key, value) -> {
-            formattedReward.append(key).append(": ").append(value).append(", ");
-        });
-
-        // Remove the last comma and space if it's the last string
-        if (formattedReward.length() > 0) {
-            formattedReward.setLength(formattedReward.length() - 2);
-        }
-
-        return formattedReward.toString();
     }
 
     @Override

@@ -2,8 +2,6 @@ package me.felakalandra.model;
 
 import javafx.fxml.FXML;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class Protagonist {
