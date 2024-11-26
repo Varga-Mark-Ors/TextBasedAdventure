@@ -32,116 +32,37 @@ import java.util.Random;
 
 public class GameController {
     private static final LocalTime INITIAL_GAME_TIME = LocalTime.of(7, 0);
-    private static final String DAY_BACKGROUND_PATH = "Images/Background/daytime.jpg";
-    private static final String NIGHT_BACKGROUND_PATH = "Images/Background/night.jpg";
-    private static final String DAWN_BACKGROUND_PATH = "Images/Background/dawn.jpg";
-    private static final String PROTAGONIST_PATH_LEVEL1 = "Images/Protagonist/Main1.png";
-    private static final String PROTAGONIST_PATH_LEVEL2 = "Images/Protagonist/Main2.png";
-    private static final String PROTAGONIST_PATH_LEVEL3 = "Images/Protagonist/Main3.png";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     @FXML
     private AnchorPane gameBase;
-
     @FXML
-    private ImageView gameBackground;
-
+    private ImageView gameBackground, protagonistLeft, npcsRight;
     @FXML
-    private Button acceptButton;
-
+    private Button option1, option2, option3;
     @FXML
-    private Button declineButton;
-
-    @FXML
-    private Label daysLabel;
-
-    @FXML
-    private Label timeCurrent;
-
-    @FXML
-    private Label timeDay;
-
-    @FXML
-    private Label hpLabel;
-
-    @FXML
-    private Label goldLabel;
-
-    @FXML
-    private Label damageLabel;
-
-    @FXML
-    public Label levelLabel;
-
-    @FXML
-    private Label questText;
-
-    @FXML
-    private Label questType;
-
-    @FXML
-    private Label questInfo;
-
-    @FXML
-    private Label questReward;
-
-    @FXML
-    private Label questReliability;
-
-    @FXML
-    public Label questInfoInfo;
-
-    @FXML
-    public Label questTextInfo;
-
-    @FXML
-    public Label questRewardInfo;
-
-    @FXML
-    private Label questReliabilityInfo;
-
-    @FXML
-    public Button option1;
-
-    @FXML
-    public Button option2;
-
-    @FXML
-    public Button option3;
-
-    @FXML
-    public ImageView protagonistLeft;
-
-    @FXML
-    public ImageView npcsRight;
-
+    private Label daysLabel, timeCurrent, timeDay, hpLabel, goldLabel, damageLabel, levelLabel, questText, questType, questInfo, questReward, questReliability, questInfoInfo, questTextInfo, questRewardInfo, questReliabilityInfo;
     @FXML
     private StackPane responseArea;
-
     @FXML
     private Label npcResponseLabel;
 
     private LocalTime gameTime;
     private int days = 0;
 
-    // Background images
-    private final Image dayBackground = new Image(DAY_BACKGROUND_PATH);
-    private final Image nightBackground = new Image(NIGHT_BACKGROUND_PATH);
-    private final Image dawnBackground = new Image(DAWN_BACKGROUND_PATH);
-
-    // Main character image (always displayed on the left) at level 1
-    private final Image protagonistImageLevel1 = new Image(PROTAGONIST_PATH_LEVEL1);
-
-    // level 2
-    private final Image protagonistImageLevel2 = new Image(PROTAGONIST_PATH_LEVEL2);
-
-    // level 3
-    private final Image protagonistImageLevel3 = new Image(PROTAGONIST_PATH_LEVEL3);
-
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
-    private Npc npc = new Npc();
-    Npc currentNpc;
+    private Npc currentNpc;
+
+    // Background images
+    private final Image dayBackground = new Image("Images/Background/daytime.jpg");
+    private final Image nightBackground = new Image("Images/Background/night.jpg");
+    private final Image dawnBackground = new Image("Images/Background/dawn.jpg");
+
+    // Main character's images (always displayed on the left) at level 1
+    private final Image protagonistImageLevel1 = new Image("Images/Protagonist/Main1.png");
+    private final Image protagonistImageLevel2 = new Image("Images/Protagonist/Main2.png");
+    private final Image protagonistImageLevel3 = new Image("Images/Protagonist/Main3.png");
 
     //Initializing the values needed for the character process
     private int number1;
@@ -173,6 +94,7 @@ public class GameController {
         Npc.loadNpcs();
 
         updateGameTimeDisplay();
+        showOptionButtons();
 
         Logger.info("Game state initialized");
 
