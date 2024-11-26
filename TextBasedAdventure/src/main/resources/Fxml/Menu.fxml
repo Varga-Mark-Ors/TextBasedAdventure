@@ -9,5 +9,6 @@
     <Button onAction="#startNewGame" text="New Game" />
     <Button onAction="#showOptions" text="Options" />
     <Button onAction="#handleToggleSound" text="Toggle Sound" />
+    <Button onAction="#returnToMainMenu" text="Return to main menu" />
     <Button onAction="#exitGame" text="Exit" />
 </VBox>

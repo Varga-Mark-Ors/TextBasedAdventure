@@ -18,10 +18,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import lombok.Getter;
+import me.felakalandra.model.Dialogue;
+import me.felakalandra.model.Npc;
+import me.felakalandra.model.Protagonist;
 import me.felakalandra.model.*;
 import org.tinylog.Logger;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -45,9 +53,11 @@ public class GameController {
     private StackPane responseArea;
     @FXML
     private Label npcResponseLabel;
-
+    @Getter
+    private MediaPlayer mediaPlayer;
     private LocalTime gameTime;
     private int days = 0;
+    private boolean isMuted = false;
 
     // Initializing the main and side characters
     private Protagonist protagonist = new Protagonist();
@@ -71,6 +81,12 @@ public class GameController {
 
     // List to store pending rewards
     private List<RewardTask> pendingRewards = new ArrayList<>();
+
+    public GameController() {
+        // Set the game music
+        Media media = new Media(getClass().getResource("/Sounds/Gameplay_Sound.mp3").toExternalForm());
+        mediaPlayer = new MediaPlayer(media);
+    }
 
     //Method that contains the common initialization logic
     private void initializeGameState() {
@@ -280,7 +296,32 @@ public class GameController {
     private void initialize() {
         initializeGameState();
         startGameClock(); // Only required during initialize
+        startGameMusic();
     }
+
+    public void startGameMusic() {
+        if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Set the looping game music
+            mediaPlayer.play();
+        }
+    }
+
+    @FXML
+    public void stopGameMusic() {
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            mediaPlayer.stop();
+        }
+    }
+
+    public void toggleMute() {
+        if (isMuted) {
+            mediaPlayer.setVolume(0.5); // Restore to default volume
+        } else {
+            mediaPlayer.setVolume(0.0); // Mute
+        }
+        isMuted = !isMuted;
+    }
+
 
     public void resetGame() {
         initializeGameState();

@@ -4,9 +4,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import lombok.Setter;
+import me.felakalandra.util.GameApplication;
 import org.tinylog.Logger;
+
+import java.io.IOException;
 
 
 public class MenuController {
@@ -37,7 +41,9 @@ public class MenuController {
 
     // Toggle sound on or off
     @FXML
-    private void handleToggleSound() {
+    private void handleToggleSound()
+    {
+        gameController.toggleMute();
         Logger.info("Sound toggled");
     }
 
@@ -51,5 +57,22 @@ public class MenuController {
     @FXML
     private void exitGame() {
         Platform.exit();
+    }
+    @FXML
+    public void returnToMainMenu(ActionEvent actionEvent) {
+        try {
+            if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+                gameController.stopGameMusic();
+            }
+            // Close the game
+            GameApplication app = (GameApplication) GameApplication.getInstance();
+            app.getPrimaryStage().close();  // Close the current window.
+
+            // Load the main menu.
+            app.showMainMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Logger.info("Returning to Main Menu");
     }
 }
