@@ -340,8 +340,8 @@ public class GameController {
 
     // Start the game clock
     private void startGameClock() {
-        // 10 IRL seconds for each in-game minute
-        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> advanceTime()));
+        // Update every 1 second instead of 0.1 seconds
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> advanceTime()));
         clock.setCycleCount(Timeline.INDEFINITE);
         clock.play();
     }
@@ -350,7 +350,7 @@ public class GameController {
     TODO: When opening the menu, time supposed to stop
      */
     private void advanceTime() {
-        // Increase game time by 1 minute
+        // Increase game time by X minute
         gameTime = gameTime.plusMinutes(5);
 
         // Check if a new day has begun
@@ -361,41 +361,39 @@ public class GameController {
 
         // Update the time display
         updateGameTimeDisplay();
+        updateBackgroundAndTimeOfDay();
 
-        // Change background and time of day at 8 PM and 7 AM
+        // Set the option buttons visible at 7:00 AM
+        if (gameTime.equals(LocalTime.of(7, 0))) showOptionButtons();
+        // Hide the response area at 5:00 AM
+        if (gameTime.equals(LocalTime.of(5, 0))) hideResponseArea();
+    }
+
+    // Change background and time of day at 8 PM and 7 AM
+    private void updateBackgroundAndTimeOfDay() {
+        // Night: from 20:00 to 4:00
         if (gameTime.isAfter(LocalTime.of(20, 0)) || gameTime.isBefore(LocalTime.of(4, 0))) {
-            // Night: from 20:00 to 4:00
             gameBackground.setImage(nightBackground);
             timeDay.setText("Nighttime");
-        } else if (gameTime.isAfter(LocalTime.of(4, 0)) && gameTime.isBefore(LocalTime.of(8, 0))) {
             // Dawn: from 4:00 to 8:00
+        } else if (gameTime.isAfter(LocalTime.of(4, 0)) && gameTime.isBefore(LocalTime.of(8, 0))) {
             gameBackground.setImage(dawnBackground);
             timeDay.setText("Dawn");
-        } else {
             // Daytime: from 8:00 to 20:00
+        } else {
             gameBackground.setImage(dayBackground);
             timeDay.setText("Daytime");
         }
+    }
 
-        // Set the option buttons visible at 7:00 AM
-        if (gameTime.equals(LocalTime.of(7, 0))) {
-            showOptionButtons();
-        }
-
-        // Hide the response area at 5:00 AM
-        if (gameTime.equals(LocalTime.of(5, 0))) {
-            hideResponseArea();
-        }
+    private void updateGameTimeDisplay() {
+        timeCurrent.setText("Time: " + gameTime.format(TIME_FORMATTER));
     }
 
     private void showOptionButtons() {
         option1.setVisible(true);
         option2.setVisible(true);
         option3.setVisible(true);
-    }
-
-    private void updateGameTimeDisplay() {
-        timeCurrent.setText("Time: " + gameTime.format(TIME_FORMATTER));
     }
 
     // Set's Npc-s up for the JavaFx
