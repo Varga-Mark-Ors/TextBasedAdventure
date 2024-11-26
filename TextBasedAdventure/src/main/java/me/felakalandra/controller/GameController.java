@@ -98,6 +98,7 @@ public class GameController {
         updateGameTimeDisplay();
         showOptionButtons();
         hideResponseArea();
+        pendingRewards.clear();
 
         Logger.info("Game state initialized");
 
