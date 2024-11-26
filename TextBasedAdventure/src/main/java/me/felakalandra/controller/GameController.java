@@ -128,7 +128,6 @@ public class GameController {
         if (option != null) {
             handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false);
         }
-        hideOptionButtons();
     }
 
     // Updated handleOptionSelection to include rewards and penalties
