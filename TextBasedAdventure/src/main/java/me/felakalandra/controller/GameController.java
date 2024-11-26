@@ -86,7 +86,7 @@ public class GameController {
         protagonist = new Protagonist();
 
         //Set default values
-        days = 0;
+        days = 1;
         setUpperRow();
 
         // Set wallpaper and characters
@@ -297,7 +297,6 @@ public class GameController {
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
-            days = days + 1;
             levelUp();
             setUpperRow();
             updateGameTimeDisplay();
@@ -355,7 +354,6 @@ public class GameController {
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
-            days = days + 1;
             levelUp();
             setUpperRow();
             updateGameTimeDisplay();
