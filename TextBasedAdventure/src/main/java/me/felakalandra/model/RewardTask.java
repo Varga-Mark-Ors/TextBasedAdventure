@@ -10,5 +10,6 @@ import java.util.Random;
 public class RewardTask {
     private final String type;
     private final int value;
+    private final boolean success;
 }
 

@@ -64,7 +64,7 @@
     "picture": "Images/NPCs/Beggar.png",
     "level": 1,
     "type": "friendly",
-    "reliability": 85,
+    "reliability": 80,
     "dialogues": [
       {
         "text": "I saw a strange creature by the river. If you slay it, I’ll share my findings!",

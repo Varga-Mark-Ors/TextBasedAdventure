@@ -114,7 +114,8 @@ public class GameController {
     public void option1Button(ActionEvent actionEvent) {
         DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option1");
         if (option != null) {
-            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, true);
+            double npcReliability = currentNpc.getReliability(); // Get NPC reliability
+            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, true, npcReliability);
         }
         hideOptionButtons();
     }
@@ -122,7 +123,8 @@ public class GameController {
     public void option2Button(ActionEvent actionEvent) {
         DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option2");
         if (option != null) {
-            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false);
+            double npcReliability = currentNpc.getReliability(); // Get NPC reliability
+            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false, npcReliability);
         }
         hideOptionButtons();
     }
@@ -130,29 +132,30 @@ public class GameController {
     public void option3Button(ActionEvent actionEvent) {
         DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option3");
         if (option != null) {
-            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false);
+            double npcReliability = currentNpc.getReliability(); // Get NPC reliability
+            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, false, npcReliability);
         }
     }
 
     // Updated handleOptionSelection to include rewards and penalties
-    private void handleOptionSelection(DialogueOption option, String type1, int value1, String type2, int value2, boolean questAccepted) {
+    private void handleOptionSelection(DialogueOption option, String type1, int value1, String type2, int value2, boolean questAccepted, double npcReliability) {
         if (option != null) {
             // Show NPC response
             showResponse(option.getResponse());
 
-            // If the player accepts a quest or trade
             if (questAccepted) {
+                // Check if reward/penalty is applied based on NPC reliability
                 if (!Objects.equals(type1, "none")) {
-                    // Add the penalty to pending rewards list
-                    pendingRewards.add(new RewardTask(type1, -value1));
+                    addPendingReward(type1, -value1, npcReliability);
                 }
-                // Add the reward to the pending rewards list
-                pendingRewards.add(new RewardTask(type2, value2));
+                addPendingReward(type2, value2, npcReliability);
             }
         } else {
             npcResponseLabel.setText("No response available.");
             resetResponseArea();
         }
+
+        // Do not update stats immediately
     }
 
     private void resetResponseArea() {
@@ -324,17 +327,28 @@ public class GameController {
     }
 
     private void addPendingReward(String type, int value, double npcReliability) {
-        pendingRewards.add(new RewardTask(type, value));
+        boolean success = (Math.floor(Math.random() * 100) + 1) <= npcReliability; // Determine success based on reliability
+        pendingRewards.add(new RewardTask(type, value, success));
     }
 
     private void applyPendingRewards() {
+        StringBuilder feedback = new StringBuilder(); // Collect feedback to show to the player
+
         for (RewardTask reward : pendingRewards) {
-            statSetter(reward.getType(), reward.getValue());
+            if (reward.isSuccess()) {
+                statSetter(reward.getType(), reward.getValue());
+                feedback.append("You received ").append(reward.getValue()).append(" ").append(reward.getType()).append(".\n");
+            } else {
+                feedback.append("The NPC failed to deliver ").append(reward.getValue()).append(" ").append(reward.getType()).append(".\n");
+            }
         }
         pendingRewards.clear(); // Clear the list after applying all rewards
 
         // Update protagonist stats in the UI
         updateProtagonistStats();
+
+        // Show feedback to the player
+        showResponse(feedback.toString());
     }
 
     // Change background and time of day at 8 PM and 7 AM
