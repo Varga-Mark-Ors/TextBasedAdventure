@@ -29,4 +29,12 @@ public class Protagonist {
         this.alive = true;
         this.level = 1;
     }
+
+    public void decreaseHealth(int damage) {
+        this.health -= damage;
+        if (this.health <= 0) {
+            this.alive = false;
+        }
+    }
+
 }

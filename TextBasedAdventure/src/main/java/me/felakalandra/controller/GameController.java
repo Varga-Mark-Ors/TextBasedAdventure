@@ -250,12 +250,6 @@ public class GameController {
             if (randomDialogue.getOptions() != null) {
                 if (randomDialogue.getOptions().containsKey("option1")) {
                     option1.setText(randomDialogue.getOptions().get("option1").getText());
-                    if (!Objects.equals(rewardType1, "none")) {
-                        statSetter(rewardType1, number1 * -1);
-                    }
-                    if (Npc.reliable(currentNpc)) {
-                        statSetter(rewardType2, number2);
-                    }
                 }
 
                 if (randomDialogue.getOptions().containsKey("option2")) {
@@ -300,9 +294,8 @@ public class GameController {
         clock.play();
     }
 
-    /*
-    TODO: When opening the menu, time supposed to stop
-     */
+    //TODO: When opening the menu, time supposed to stop
+
     private void advanceTime() {
         // Increase game time by X minute
         gameTime = gameTime.plusMinutes(60);
@@ -328,6 +321,7 @@ public class GameController {
         if (gameTime.equals(LocalTime.of(1, 0))){
             hideOptionButtons();
             fadeOut(npcsRight, 1);
+
             applyPendingRewards(); // Apply all pending rewards
         }
 
