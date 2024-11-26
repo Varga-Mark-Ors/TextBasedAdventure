@@ -18,15 +18,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import me.felakalandra.model.Dialogue;
-import me.felakalandra.model.DialogueOption;
-import me.felakalandra.model.Npc;
-import me.felakalandra.model.Protagonist;
+import me.felakalandra.model.*;
 import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -70,6 +69,9 @@ public class GameController {
     private String rewardType1;
     private String rewardType2;
 
+    // List to store pending rewards
+    private List<RewardTask> pendingRewards = new ArrayList<>();
+
     //Method that contains the common initialization logic
     private void initializeGameState() {
         // Set the background image to the AnchorPane
@@ -108,6 +110,7 @@ public class GameController {
         option3.setVisible(false);
     }
 
+
     public void option1Button(ActionEvent actionEvent) {
         DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get("option1");
         if (option != null) {
@@ -140,17 +143,16 @@ public class GameController {
             // If the player accepts a quest or trade
             if (questAccepted) {
                 if (!Objects.equals(type1, "none")) {
-                    statSetter(type1, -value1); // Deduct cost (e.g., gold, HP)
+                    // Add the penalty to pending rewards list
+                    pendingRewards.add(new RewardTask(type1, -value1));
                 }
-                statSetter(type2, value2); // Grant reward (e.g., gold, HP, damage)
+                // Add the reward to the pending rewards list
+                pendingRewards.add(new RewardTask(type2, value2));
             }
         } else {
             npcResponseLabel.setText("No response available.");
             resetResponseArea();
         }
-
-        // Update the protagonist stats UI
-        updateProtagonistStats();
     }
 
     private void resetResponseArea() {
@@ -240,10 +242,10 @@ public class GameController {
             if (randomDialogue.getOptions() != null) {
                 if (randomDialogue.getOptions().containsKey("option1")) {
                     option1.setText(randomDialogue.getOptions().get("option1").getText());
-                    if (!Objects.equals(rewardType1, "none")){
-                        statSetter(rewardType1, number1 * - 1);
+                    if (!Objects.equals(rewardType1, "none")) {
+                        statSetter(rewardType1, number1 * -1);
                     }
-                    if (Npc.reliable(currentNpc)){
+                    if (Npc.reliable(currentNpc)) {
                         statSetter(rewardType2, number2);
                     }
                 }
@@ -284,7 +286,7 @@ public class GameController {
 
     // Start the game clock
     private void startGameClock() {
-        // Update every 1 second instead of 0.1 seconds
+        // Update every 1 second
         Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> advanceTime()));
         clock.setCycleCount(Timeline.INDEFINITE);
         clock.play();
@@ -295,7 +297,7 @@ public class GameController {
      */
     private void advanceTime() {
         // Increase game time by X minute
-        gameTime = gameTime.plusMinutes(5);
+        gameTime = gameTime.plusMinutes(60);
 
         // Check if a new day has begun
         if (gameTime.equals(LocalTime.of(0, 0))) {
@@ -309,8 +311,30 @@ public class GameController {
 
         // Set the option buttons visible at 7:00 AM
         if (gameTime.equals(LocalTime.of(7, 0))) showOptionButtons();
+
+        // Recieve rewards at 1:00 AM
+        if (gameTime.equals(LocalTime.of(1, 0))){
+            applyPendingRewards(); // Apply all pending rewards
+        }
+
         // Hide the response area at 5:00 AM
-        if (gameTime.equals(LocalTime.of(5, 0))) hideResponseArea();
+        if (gameTime.equals(LocalTime.of(5, 0))) {
+            hideResponseArea(); // Hide the response area
+        }
+    }
+
+    private void addPendingReward(String type, int value, double npcReliability) {
+        pendingRewards.add(new RewardTask(type, value));
+    }
+
+    private void applyPendingRewards() {
+        for (RewardTask reward : pendingRewards) {
+            statSetter(reward.getType(), reward.getValue());
+        }
+        pendingRewards.clear(); // Clear the list after applying all rewards
+
+        // Update protagonist stats in the UI
+        updateProtagonistStats();
     }
 
     // Change background and time of day at 8 PM and 7 AM

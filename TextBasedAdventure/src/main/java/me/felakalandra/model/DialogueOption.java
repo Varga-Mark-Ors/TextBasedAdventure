@@ -10,7 +10,6 @@ import java.util.Map;
 @Getter
 @Setter
 public class DialogueOption {
-    @Getter
     private Map<String, Integer> statChanges;
 
     @JsonProperty("text")
