@@ -145,12 +145,18 @@ public class GameController {
             showResponse(option.getResponse());
 
             if (questAccepted) {
-                // Check if reward/penalty is applied based on NPC reliability
-                if (!Objects.equals(type1, "none")) {
+                // Check if type1 is not "none" and has enough resources.
+                if (!Objects.equals(type1, "none") && enoughResources(type1, value1)) {
+                    // Deduct the required amount (value1) from type1.
                     addPendingReward(type1, -value1, npcReliability);
+                    // Add the second reward/penalty (type2) as usual.
+                    addPendingReward(type2, value2, npcReliability);
+                } else if (Objects.equals(type1, "none")) {
+                    // If type1 is "none", add the second reward/penalty (type2).
+                    addPendingReward(type2, value2, npcReliability);
                 }
-                addPendingReward(type2, value2, npcReliability);
             }
+
         } else {
             npcResponseLabel.setText("No response available.");
             resetResponseArea();
@@ -578,4 +584,29 @@ public class GameController {
         // Otherwise, include both the cost and the reward in the message.
         return "You will give: " + number1 + " " + rewardType1 + ". You will get: " + number2 + " " + rewardType2;
     }
+
+    // Method to check if the protagonist has enough resources for a specific requirement.
+    private boolean enoughResources(String stat, int number) {
+        // Determine which stat to check based on the input string.
+        switch (stat) {
+            case "gold" -> {
+                // Check if the protagonist's gold is greater than or equal to the required amount.
+                return (protagonist.getGold() >= number);
+            }
+            case "damage" -> {
+                // Check if the protagonist's damage points are strictly greater than the required value.
+                return (protagonist.getDamagePoints() > number);
+            }
+            case "hp" -> {
+                // Check if the protagonist's health points are strictly greater than the required value.
+                return (protagonist.getHealth() > number);
+            }
+            default -> {
+                // If the input stat is not recognized, log an error message and return false.
+               Logger.info("Unrecognized stat: " + stat);
+                return false;
+            }
+        }
+    }
+
 }
