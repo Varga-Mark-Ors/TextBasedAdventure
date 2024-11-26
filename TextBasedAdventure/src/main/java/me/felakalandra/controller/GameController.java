@@ -315,7 +315,7 @@ public class GameController {
         if (gameTime.equals(LocalTime.of(7, 0))){
             showOptionButtons();
             fadeIn(npcsRight, 1);
-            setNpc();
+            advanceGameState();
         }
 
         // Recieve rewards at 1:00 AM
