@@ -2,8 +2,8 @@ package me.felakalandra.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.scene.image.Image;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import lombok.Data;
 import lombok.Getter;
 import org.tinylog.Logger;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 @Data
-public class Npc {
+public class EnemyNpc {
 
     @FXML
     @JsonProperty("name")
@@ -34,8 +34,8 @@ public class Npc {
     private NpcType type;
 
     @FXML
-    @JsonProperty("reliability")
-    private int reliability;
+    @JsonProperty("health")
+    private int health;
 
     @FXML
     @JsonProperty("dialogues")
@@ -43,20 +43,20 @@ public class Npc {
 
     @Getter
     @FXML
-    private static List<Npc> npcs = new ArrayList<>();
+    private static List<EnemyNpc> enemies = new ArrayList<>();
 
     // Static method to load NPCs from JSON
-    public static void loadNpcs() {
+    public static void loadEnemies() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             // Load the file as a resource from the classpath
-            InputStream inputStream = Npc.class.getClassLoader().getResourceAsStream("Data/Characters.Json");
+            InputStream inputStream = EnemyNpc.class.getClassLoader().getResourceAsStream("Data/EnemyCharacters.json");
             if (inputStream != null) {
                 Logger.info("JSON file found and loading.");
                 // Deserialize JSON into a list of Npc objects
-                List<Npc> loadedNpcs = objectMapper.readValue(
+                List<EnemyNpc> loadedEnemies = objectMapper.readValue(
                         inputStream,
-                        objectMapper.getTypeFactory().constructCollectionType(List.class, Npc.class)
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, EnemyNpc.class)
                 );
 
 //                // Log each NPC as it's loaded
@@ -65,8 +65,8 @@ public class Npc {
 //                }
 
                 // Update the static list with the loaded NPCs
-                npcs.clear();
-                npcs.addAll(loadedNpcs);
+                enemies.clear();
+                enemies.addAll(loadedEnemies);
                 Logger.info("NPCs loaded successfully.");
             } else {
                 Logger.error("JSON file not found in resources. Please check the path.");
@@ -79,7 +79,7 @@ public class Npc {
     // Updated getImage method to return a JavaFX Image from a classpath resource
     public static Image getImage(String path) {
         try {
-            InputStream imageStream = Npc.class.getClassLoader().getResourceAsStream(path);
+            InputStream imageStream = EnemyNpc.class.getClassLoader().getResourceAsStream(path);
             if (imageStream != null) {
                 return new Image(imageStream);
             } else {
@@ -99,14 +99,45 @@ public class Npc {
                 ", path='" + path + '\'' +
                 ", level=" + level +
                 ", type=" + type +
-                ", reliability=" + reliability +
+                ", health=" + health +
                 ", dialogues=" + dialogues +
                 '}';
     }
 
-    public static boolean reliable(Npc npc) {
-        Random random = new Random();
-        int randomIndex = random.nextInt(100);
-        return randomIndex <= npc.getReliability();
+    public String fight(Protagonist player) {
+        if (player.getDamagePoints() >= this.getHealth()) {
+            player.decreaseHealth((int) (player.getHealth() * 0.1));
+            return "win";
+        }
+        var dif = this.getHealth() - player.getDamagePoints();
+
+        if (dif <30){
+            boolean win = new Random().nextDouble() < 0.75;
+            if (win) {
+                player.decreaseHealth((int) (player.getHealth() * 0.15));
+                return "win";
+            } else {
+                player.decreaseHealth((int) (player.getHealth() * 0.50));
+                return "lose";
+            }
+        } else {
+            boolean win = new Random().nextDouble() < 0.30;
+            if (win) {
+                player.decreaseHealth((int) (player.getHealth() * 0.35));
+                return "win";
+            } else {
+                player.decreaseHealth((int) (player.getHealth() * 0.50));
+                return "lose";
+            }
+        }
     }
+
+    public void run(Protagonist player){
+        player.runningGoldLose();
+        var rnd = new Random().nextInt(10);
+        if (rnd < 5){
+            player.decreaseHealth((int) (player.getHealth() * 0.1));
+        }
+    }
+
 }
