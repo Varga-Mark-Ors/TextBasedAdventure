@@ -155,8 +155,6 @@ public class GameController {
             npcResponseLabel.setText("No response available.");
             resetResponseArea();
         }
-
-        // Do not update stats immediately
     }
 
     private void resetResponseArea() {
@@ -314,7 +312,10 @@ public class GameController {
         updateBackgroundAndTimeOfDay();
 
         // Set the option buttons visible at 7:00 AM
-        if (gameTime.equals(LocalTime.of(7, 0))) showOptionButtons();
+        if (gameTime.equals(LocalTime.of(7, 0))){
+            showOptionButtons();
+            setNpc();
+        }
 
         // Recieve rewards at 1:00 AM
         if (gameTime.equals(LocalTime.of(1, 0))){
