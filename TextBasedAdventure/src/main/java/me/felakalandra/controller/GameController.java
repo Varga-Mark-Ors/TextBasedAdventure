@@ -105,7 +105,7 @@ public class GameController {
     // Start the game clock
     private void startGameClock() {
         // 10 IRL seconds for each in-game minute
-        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> advanceTime()));
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> advanceTime()));
         clock.setCycleCount(Timeline.INDEFINITE);
         clock.play();
     }
