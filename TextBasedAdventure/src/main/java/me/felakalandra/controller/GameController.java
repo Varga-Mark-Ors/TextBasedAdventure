@@ -319,6 +319,7 @@ public class GameController {
 
         // Recieve rewards at 1:00 AM
         if (gameTime.equals(LocalTime.of(1, 0))){
+            hideOptionButtons();
             applyPendingRewards(); // Apply all pending rewards
         }
 
@@ -334,20 +335,25 @@ public class GameController {
     }
 
     private void applyPendingRewards() {
-        StringBuilder feedback = new StringBuilder(); // Collect feedback to show to the player
+        // Collect feedback to show to the player
+        StringBuilder feedback = new StringBuilder();
 
-        for (RewardTask reward : pendingRewards) {
-            if (reward.isSuccess()) {
-                statSetter(reward.getType(), reward.getValue());
-                feedback.append("You received ").append(reward.getValue()).append(" ").append(reward.getType()).append(".\n");
-            } else {
-                feedback.append("The NPC failed to deliver ").append(reward.getValue()).append(" ").append(reward.getType()).append(".\n");
+        if (pendingRewards.isEmpty()) {
+            // No rewards were selected
+            feedback.append("You were too hesitant to make a choice. The " + currentNpc.getName() + " left without giving you anything.");
+        } else {
+            for (RewardTask reward : pendingRewards) {
+                if (reward.isSuccess()) {
+                    statSetter(reward.getType(), reward.getValue());
+                    feedback.append("You received ").append(reward.getValue()).append(" ").append(reward.getType()).append(".\n");
+                } else {
+                    feedback.append("The NPC failed to deliver ").append(reward.getValue()).append(" ").append(reward.getType()).append(".\n");
+                }
             }
+            pendingRewards.clear(); // Clear the list after applying all rewards
+            // Update protagonist stats in the UI
+            updateProtagonistStats();
         }
-        pendingRewards.clear(); // Clear the list after applying all rewards
-
-        // Update protagonist stats in the UI
-        updateProtagonistStats();
 
         // Show feedback to the player
         showResponse(feedback.toString());
