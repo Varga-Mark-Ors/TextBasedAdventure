@@ -29,7 +29,7 @@ public class MenuController {
     public Button exitOptionsButton;
 
     @FXML
-    private VBox mainMenuBox;
+    private VBox menuBox;
 
     @FXML
     private VBox optionsMenuBox;
@@ -81,8 +81,8 @@ public class MenuController {
         Logger.info("Options menu opened");
 
         // Hide main buttons
-        mainMenuBox.setVisible(false);
-        mainMenuBox.setManaged(false);
+        menuBox.setVisible(false);
+        menuBox.setManaged(false);
         optionsMenuBox.setVisible(true);
         optionsMenuBox.setManaged(true);
     }
@@ -106,8 +106,8 @@ public class MenuController {
         // Show main menu and hide options menu
         optionsMenuBox.setVisible(false);
         optionsMenuBox.setManaged(false);
-        mainMenuBox.setVisible(true);
-        mainMenuBox.setManaged(true);
+        menuBox.setVisible(true);
+        menuBox.setManaged(true);
     }
 
 

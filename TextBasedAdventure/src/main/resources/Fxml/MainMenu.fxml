@@ -4,9 +4,18 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" spacing="50.0" style="-fx-background-image: url('/Images/menu/menu_background.jpg'); -fx-background-size: cover;" stylesheets="@../Styles/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.felakalandra.controller.MainMenuController">
-    <Button onAction="#startNewGame" text="New game" />
-    <Button onAction="#loadGame" text="Load game" />
-    <Button onAction="#leaderboard" text="Options" />
-    <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
-    <Button onAction="#exitGame" text="Exit" />
+
+    <VBox fx:id="mainMenuBox" alignment="CENTER" spacing="20.0">
+        <Button onAction="#startNewGame" text="New game" />
+        <Button onAction="#showOptions" text="Options" />
+        <Button onAction="#exitGame" text="Exit" />
+    </VBox>
+
+    <VBox fx:id="optionsMenuBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
+        <Button onAction="#loadSavedGame" text="Load game" />
+        <Button onAction="#leaderboard" text="Leaderboard" />
+        <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
+        <Button fx:id="exitOptionsButton" onAction="#exitOptions" text="Back to Menu" />
+    </VBox>
+
 </VBox>

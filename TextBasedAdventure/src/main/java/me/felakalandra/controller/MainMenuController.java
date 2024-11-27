@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import me.felakalandra.util.GameApplication;
@@ -17,6 +18,12 @@ public class MainMenuController {
     @FXML
     public Button handleToggleSoundButton;
     private final MediaPlayer mediaPlayer;
+    @FXML
+    public VBox mainMenuBox;
+    @FXML
+    public VBox optionsMenuBox;
+    @FXML
+    public Button exitOptionsButton;
     private boolean isMuted = false;
     public MainMenuController() {
         // Set the main menu music.
@@ -59,14 +66,38 @@ public class MainMenuController {
         Logger.info("Exiting game");
         mediaPlayer.stop();
     }
+
     @FXML
-    public void loadGame(ActionEvent actionEvent) {
-        Logger.info("Load game");
+    public void showOptions(ActionEvent actionEvent) {
+        Logger.info("Options menu opened");
+
+        // Hide main buttons
+        mainMenuBox.setVisible(false);
+        mainMenuBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
+    }
+
+    @FXML
+    public void exitOptions(ActionEvent actionEvent) {
+        Logger.info("Exiting options menu");
+
+        // Show main menu and hide options menu
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
+        mainMenuBox.setVisible(true);
+        mainMenuBox.setManaged(true);
+    }
+    @FXML
+    public void loadSavedGame(ActionEvent actionEvent) {
+        Logger.info("Load Saved Game");
     }
     @FXML
     public void leaderboard(ActionEvent actionEvent) {
         Logger.info("Open leaderboard");
     }
+
+
     @FXML
     public void initialize() {
         playMenuMusic();  // When the main menu is loaded, the music should start playing
