@@ -9,7 +9,6 @@
         <Button fx:id="continueGame" onAction="#continueCurrentGame" text="Continue" />
         <Button onAction="#startNewGame" text="New Game" />
         <Button onAction="#showOptions" text="Options" />
-        <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
         <Button onAction="#returnToMainMenu" text="Return to main menu" />
         <Button onAction="#exitGame" text="Exit" />
     </VBox>
@@ -18,6 +17,7 @@
     <VBox fx:id="optionsMenuBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
         <Button fx:id="saveGameButton" onAction="#saveGame" text="Save Game" />
         <Button fx:id="leaderboardButton" onAction="#showLeaderboard" text="Leaderboard" />
+        <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
         <Button fx:id="exitOptionsButton" onAction="#exitOptions" text="Back to Menu" />
     </VBox>
 </VBox>
