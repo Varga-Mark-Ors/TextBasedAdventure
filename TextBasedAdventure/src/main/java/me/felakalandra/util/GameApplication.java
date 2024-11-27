@@ -35,14 +35,14 @@ public class GameApplication extends Application {
     public void showMainMenu() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Fxml/MainMenu.fxml")));
         Scene scene = new Scene(root);
-        //
+
         if (primaryStage.getScene() == null) {
             // "Set the style only if setScene has not been called yet."
             primaryStage.setTitle("Main Menu");
             primaryStage.setResizable(false);
             primaryStage.initStyle(StageStyle.UNDECORATED);
         }
-
+        primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.show();

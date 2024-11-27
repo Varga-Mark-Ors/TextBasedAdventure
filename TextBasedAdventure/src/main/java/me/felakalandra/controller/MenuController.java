@@ -119,18 +119,28 @@ public class MenuController {
     @FXML
     public void returnToMainMenu(ActionEvent actionEvent) {
         try {
-            if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+            if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
                 gameController.stopGameMusic();
             }
-            // Close the game
-            GameApplication app = (GameApplication) GameApplication.getInstance();
-            app.getPrimaryStage().close();  // Close the current window.
 
-            // Load the main menu.
+            // Close the game window
+            GameApplication app = (GameApplication) GameApplication.getInstance();
+            Stage gameStage = app.getPrimaryStage();
+            if (gameStage != null) {
+                gameStage.close();
+            }
+
+            // Check that menu window is opened
+            Stage menuStage = (Stage) continueGame.getScene().getWindow();
+            if (menuStage != null) {
+                menuStage.close();  // Close the menu window if it's opened
+            }
+
+            // display the main menu
             app.showMainMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Logger.info("Returning to Main Menu");
+        Logger.info("Return to the main menu");
     }
 }
