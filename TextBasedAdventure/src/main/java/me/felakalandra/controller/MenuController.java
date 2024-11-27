@@ -17,9 +17,13 @@ public class MenuController {
 
     @FXML
     public Button continueGame;
+    @FXML
+    public Button handleToggleSoundButton;
 
     @Setter
     private GameController gameController;
+    private boolean isMuted = false;
+
 
     @FXML
     public void continueCurrentGame(ActionEvent actionEvent) {
@@ -43,9 +47,19 @@ public class MenuController {
     @FXML
     private void handleToggleSound()
     {
-        gameController.toggleMute();
-        Logger.info("Sound toggled");
+        if (isMuted){
+            gameController.toggleMute();
+            handleToggleSoundButton.setText("Toggle Sound: ON");
+            Logger.info("Sound toggled");
+        } else{
+            gameController.toggleMute();
+            handleToggleSoundButton.setText("Toggle Sound: OFF");
+            Logger.info("Sound toggled");
+        }
+        isMuted = !isMuted;
     }
+
+
 
     // Show the options menu
     @FXML
