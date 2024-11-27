@@ -15,7 +15,7 @@
         <Button onAction="#loadSavedGame" text="Load game" />
         <Button onAction="#leaderboard" text="Leaderboard" />
         <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
-        <Button fx:id="exitOptionsButton" onAction="#exitOptions" text="Back to Menu" />
+        <Button fx:id="exitOptionsButton" onAction="#exitOptions" text="Back to Main Menu" />
     </VBox>
 
 </VBox>
