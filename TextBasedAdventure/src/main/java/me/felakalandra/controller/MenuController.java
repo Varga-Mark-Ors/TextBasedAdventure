@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import lombok.Setter;
@@ -19,6 +20,19 @@ public class MenuController {
     public Button continueGame;
     @FXML
     public Button handleToggleSoundButton;
+
+    @FXML
+    public Button saveGameButton;
+    @FXML
+    public Button leaderboardButton;
+    @FXML
+    public Button exitOptionsButton;
+
+    @FXML
+    private VBox mainMenuBox;
+
+    @FXML
+    private VBox optionsMenuBox;
 
     @Setter
     private GameController gameController;
@@ -65,7 +79,37 @@ public class MenuController {
     @FXML
     public void showOptions(ActionEvent actionEvent) {
         Logger.info("Options menu opened");
+
+        // Hide main buttons
+        mainMenuBox.setVisible(false);
+        mainMenuBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
     }
+
+    @FXML
+    public void saveGame(ActionEvent actionEvent) {
+        Logger.info("Game saved");
+        // Save game logic goes here
+    }
+
+    @FXML
+    public void showLeaderboard(ActionEvent actionEvent) {
+        Logger.info("Leaderboard opened");
+        // Leaderboard logic goes here
+    }
+
+    @FXML
+    public void exitOptions(ActionEvent actionEvent) {
+        Logger.info("Exiting options menu");
+
+        // Show main menu and hide options menu
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
+        mainMenuBox.setVisible(true);
+        mainMenuBox.setManaged(true);
+    }
+
 
     // Exit the game
     @FXML
