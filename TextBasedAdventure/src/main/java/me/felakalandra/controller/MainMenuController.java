@@ -7,8 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import me.felakalandra.util.GameApplication;
+import me.felakalandra.GameApplication;
 import org.tinylog.Logger;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -25,11 +26,13 @@ public class MainMenuController {
     @FXML
     public Button exitOptionsButton;
     private boolean isMuted = false;
+
     public MainMenuController() {
         // Set the main menu music.
         Media media = new Media(Objects.requireNonNull(getClass().getResource("/Sounds/Main_Menu_Sound.mp3")).toExternalForm());
         mediaPlayer = new MediaPlayer(media);
     }
+
     public void startNewGame(ActionEvent actionEvent) {
         try {
             if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
@@ -60,6 +63,7 @@ public class MainMenuController {
         }
         isMuted = !isMuted;
     }
+
     @FXML
     private void exitGame() {
         Platform.exit();
@@ -92,11 +96,11 @@ public class MainMenuController {
     public void loadSavedGame(ActionEvent actionEvent) {
         Logger.info("Load Saved Game");
     }
+
     @FXML
     public void leaderboard(ActionEvent actionEvent) {
         Logger.info("Open leaderboard");
     }
-
 
     @FXML
     public void initialize() {

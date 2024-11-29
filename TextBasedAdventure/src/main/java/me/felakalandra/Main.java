@@ -1,4 +1,4 @@
-package me.felakalandra.util;
+package me.felakalandra;
 
 import javafx.application.Application;
 
