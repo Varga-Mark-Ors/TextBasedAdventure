@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import lombok.Setter;
-import me.felakalandra.util.GameApplication;
+import me.felakalandra.GameApplication;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -41,8 +41,7 @@ public class MenuController {
 
     // Toggle sound on or off
     @FXML
-    private void handleToggleSound()
-    {
+    private void handleToggleSound() {
         gameController.toggleMute();
         Logger.info("Sound toggled");
     }
@@ -58,10 +57,11 @@ public class MenuController {
     private void exitGame() {
         Platform.exit();
     }
+
     @FXML
     public void returnToMainMenu(ActionEvent actionEvent) {
         try {
-            if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+            if (gameController.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
                 gameController.stopGameMusic();
             }
             // Close the game

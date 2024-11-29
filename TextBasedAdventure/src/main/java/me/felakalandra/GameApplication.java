@@ -1,4 +1,4 @@
-package me.felakalandra.util;
+package me.felakalandra;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
-import me.felakalandra.model.Npc;
 
 import java.io.IOException;
 import java.util.Objects;
