@@ -1,5 +1,6 @@
 package me.felakalandra.services;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import me.felakalandra.model.Protagonist;
@@ -13,15 +14,17 @@ public class GameLogicService {
     private final Image protagonistImageLevel2 = new Image("Images/Protagonist/Main2.png");
     private final Image protagonistImageLevel3 = new Image("Images/Protagonist/Main3.png");
 
-    public void levelUp(Protagonist protagonist, ImageView protagonistLeft) {
+    public void levelUp(Protagonist protagonist, ImageView protagonistLeft, Label levelLabel) {
         if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 200) && (protagonist.getLevel() < 2)) {
             protagonistLeft.setImage(protagonistImageLevel2);
             protagonist.setLevel(2);
+            levelLabel.setText("Level: " + protagonist.getLevel());
         }
 
         if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 300) && (protagonist.getLevel() < 3)) {
             protagonistLeft.setImage(protagonistImageLevel3);
             protagonist.setLevel(3);
+            levelLabel.setText("Level: " + protagonist.getLevel());
         }
     }
 

@@ -18,7 +18,7 @@
             <VBox fx:id="protagonistLeftBg" alignment="CENTER" maxHeight="300.0">
                 <children>
                     <ImageView fx:id="protagonistLeft" fitHeight="260.0" fitWidth="260.0" />
-               <Label fx:id="levelLabel" text="Label" />
+                    <Label fx:id="levelLabel" text="Label" />
                 </children>
             </VBox>
 
@@ -58,37 +58,37 @@
                 </HBox>
 
                 <VBox fx:id="gameplayText" prefHeight="550.0" VBox.vgrow="ALWAYS">
-               <Label fx:id="questType" text="Label" wrapText="true" />
-               <VBox fx:id="questInfoRow">
-                  <children>
-                     <Label fx:id="questInfoInfo" text="Label" />
-                     <Label fx:id="questInfo" text="Label" wrapText="true" />
-                  </children>
-               </VBox>
-               <VBox fx:id="questTextRow">
-                  <children>
-                     <Label fx:id="questTextInfo" text="Label" />
-                          <Label fx:id="questText" text="Characters yapping here..." wrapText="true" />
-                  </children>
-               </VBox>
-               <VBox fx:id="questRewardRow">
-                  <children>
-                     <Label fx:id="questRewardInfo" text="Label" />
-                     <Label fx:id="questReward" text="Label" wrapText="true" />
-                  </children>
-               </VBox>
-               <VBox fx:id="questReliabilityRow">
-                  <children>
-                     <Label fx:id="questReliabilityInfo" text="Label" />
-                     <Label fx:id="questReliability" text="Label" wrapText="true" />
-                  </children>
-               </VBox>
+                    <Label fx:id="questType" text="Label" wrapText="true" />
+                    <VBox fx:id="questInfoRow">
+                        <children>
+                            <Label fx:id="questInfoInfo" text="Label" />
+                            <Label fx:id="questInfo" text="Label" wrapText="true" />
+                        </children>
+                    </VBox>
+                    <VBox fx:id="questTextRow">
+                        <children>
+                            <Label fx:id="questTextInfo" text="Label" />
+                            <Label fx:id="questText" text="Characters yapping here..." wrapText="true" />
+                        </children>
+                    </VBox>
+                    <VBox fx:id="questRewardRow">
+                        <children>
+                            <Label fx:id="questRewardInfo" text="Label" />
+                            <Label fx:id="questReward" text="Label" wrapText="true" />
+                        </children>
+                    </VBox>
+                    <VBox fx:id="questReliabilityRow">
+                        <children>
+                            <Label fx:id="questReliabilityInfo" text="Label" />
+                            <Label fx:id="questReliability" text="Label" wrapText="true" />
+                        </children>
+                    </VBox>
                 </VBox>
 
                 <HBox fx:id="choices" alignment="CENTER" prefHeight="80.0" spacing="10.0">
                     <Button fx:id="option1" onAction="#option1Button" text="option1" wrapText="true" />
                     <Button fx:id="option2" onAction="#option2Button" text="option2" wrapText="true" />
-               <Button fx:id="option3" onAction="#option3Button" text="option3" wrapText="true" />
+                    <Button fx:id="option3" onAction="#option3Button" text="option3" wrapText="true" />
                 </HBox>
             </VBox>
 
@@ -133,11 +133,11 @@
             </HBox>
         </children>
     </VBox>
-   <StackPane fx:id="responseArea" layoutX="910.0" layoutY="150.0" visible="false" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="145.0">
-      <children>
-         <Label fx:id="npcResponseLabel" text="The Blacksmith grunts. 'I need a large amount of coal to heat up the forge and start working. Can you gather it for me?" wrapText="true" />
-      </children>
-   </StackPane>
+    <StackPane fx:id="responseArea" layoutX="910.0" layoutY="150.0" visible="false" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="145.0">
+        <children>
+            <Label fx:id="npcResponseLabel" text="The Blacksmith grunts. 'I need a large amount of coal to heat up the forge and start working. Can you gather it for me?" wrapText="true" />
+        </children>
+    </StackPane>
 
     <Label fx:id="daysLabel" text="Days: 0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
 

@@ -168,7 +168,7 @@ public class GameController {
         }
 
         // Increase game time by X minute
-        gameTime = gameTime.plusMinutes(60);
+        gameTime = gameTime.plusMinutes(120);
 
         // Check if a new day has begun
         if (gameTime.equals(LocalTime.of(0, 0))) {
@@ -265,7 +265,7 @@ public class GameController {
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
-            gameLogicService.levelUp(protagonist, protagonistLeft);
+            gameLogicService.levelUp(protagonist, protagonistLeft, levelLabel);
         }
     }
 
@@ -286,7 +286,7 @@ public class GameController {
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
-            gameLogicService.levelUp(protagonist, protagonistLeft);
+            gameLogicService.levelUp(protagonist, protagonistLeft, levelLabel);
         }
     }
 
