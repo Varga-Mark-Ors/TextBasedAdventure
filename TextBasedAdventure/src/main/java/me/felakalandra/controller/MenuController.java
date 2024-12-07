@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -27,12 +28,22 @@ public class MenuController {
     public Button leaderboardButton;
     @FXML
     public Button exitOptionsButton;
+    public VBox returnToMainMenuConfirmationBox;
 
     @FXML
     private VBox menuBox;
 
     @FXML
     private VBox optionsMenuBox;
+
+    @FXML
+    private VBox exitConfirmationBox;
+
+    @FXML
+    private Label menuLabel;
+
+    @FXML
+    private Label optionsLabel;
 
     @Setter
     private GameController gameController;
@@ -80,6 +91,10 @@ public class MenuController {
     public void showOptions(ActionEvent actionEvent) {
         Logger.info("Options menu opened");
 
+        // Update labels
+        menuLabel.setVisible(false);
+        optionsLabel.setVisible(true);
+
         // Hide main buttons
         menuBox.setVisible(false);
         menuBox.setManaged(false);
@@ -103,6 +118,10 @@ public class MenuController {
     public void exitOptions(ActionEvent actionEvent) {
         Logger.info("Exiting options menu");
 
+        // Update labels
+        optionsLabel.setVisible(false);
+        menuLabel.setVisible(true);
+
         // Show main menu and hide options menu
         optionsMenuBox.setVisible(false);
         optionsMenuBox.setManaged(false);
@@ -114,6 +133,39 @@ public class MenuController {
     // Exit the game
     @FXML
     private void exitGame() {
+        Logger.info("Exit game button clicked");
+
+        // Hide the main menu and options menu
+        menuBox.setVisible(false);
+        menuBox.setManaged(false);
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
+
+        // Show the exit confirmation box
+        exitConfirmationBox.setVisible(true);
+        exitConfirmationBox.setManaged(true);
+    }
+
+    // Handle No button click
+    @FXML
+    private void noExit(ActionEvent actionEvent) {
+        Logger.info("User canceled exit");
+
+        // Hide the exit confirmation box and show the main menu or options
+        exitConfirmationBox.setVisible(false);
+        exitConfirmationBox.setManaged(false);
+
+        // Show the main menu or options menu
+        menuBox.setVisible(true);
+        menuBox.setManaged(true);
+    }
+
+    // Handle Yes button click
+    @FXML
+    private void yesExit(ActionEvent actionEvent) {
+        Logger.info("User confirmed exit");
+
+        // Close the application
         Platform.exit();
     }
 
@@ -143,5 +195,26 @@ public class MenuController {
             e.printStackTrace();
         }
         Logger.info("Return to the main menu");
+    }
+
+    public void noExitToMainMenu(ActionEvent actionEvent) {
+        Logger.info("User canceled exit");
+
+        // Hide the exit confirmation box and show the main menu or options
+        returnToMainMenuConfirmationBox.setVisible(false);
+        returnToMainMenuConfirmationBox.setManaged(false);
+
+        // Show the main menu or options menu
+        menuBox.setVisible(true);
+        menuBox.setManaged(true);
+    }
+
+    public void showConfirmation(ActionEvent actionEvent) {
+        menuBox.setVisible(false);
+        menuBox.setManaged(false);
+
+        // Show the main menu or options menu
+        returnToMainMenuConfirmationBox.setVisible(true);
+        returnToMainMenuConfirmationBox.setManaged(true);
     }
 }

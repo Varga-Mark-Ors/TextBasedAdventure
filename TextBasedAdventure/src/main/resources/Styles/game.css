@@ -131,3 +131,47 @@
     -fx-background-color: #a4dddb;
     -fx-text-fill: #151d28;
 }
+
+
+/* Styling for the exit confirmation buttons */
+#noButton, #yesButton {
+    -fx-background-color: #394a50;
+    -fx-text-fill: #ebede9;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+#noButton:hover, #yesButton:hover {
+    -fx-background-color: #a4dddb;
+    -fx-text-fill: #151d28;
+}
+
+/* Styling for the HBox containing the buttons */
+#exitConfirmationBox HBox {
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+/* Style for the menu background (same as exit confirmation) */
+#menuBox, #optionsMenuBox, #mainMenuBox, #exitConfirmationBox, #returnToMainMenuConfirmationBox {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-pref-width: 400px;
+}
+
+
+.menu-title {
+ -fx-font-size: 24px;
+    -fx-text-fill: #ebede9;
+    -fx-font-weight: bold;
+    -fx-padding: 0;
+
+    /* Creating underline */
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+}

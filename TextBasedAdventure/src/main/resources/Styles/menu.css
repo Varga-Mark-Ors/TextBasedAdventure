@@ -11,3 +11,12 @@
 .button:hover {
     -fx-background-color: #e0e1dd;
 }
+
+#exitConfirmationLabel {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ebede9;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-padding: 20;
+}
