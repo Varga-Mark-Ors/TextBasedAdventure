@@ -132,18 +132,6 @@
     -fx-text-fill: #151d28;
 }
 
-/* Style for the exit confirmation label */
-#exitConfirmationLabel {
-    -fx-font-size: 24px;
-    -fx-text-fill: #ebede9;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
-    -fx-wrap-text: true;
-    -fx-padding: 20;
-    -fx-background-color: #151d28;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-}
 
 /* Styling for the exit confirmation buttons */
 #noButton, #yesButton {
@@ -168,9 +156,22 @@
 }
 
 /* Style for the menu background (same as exit confirmation) */
-#menuBox {
-    -fx-background-color: rgba(0, 0, 0, 0.6); /* Fekete háttér 60% átlátszósággal */
-    -fx-background-radius: 15; /* Kerekített sarkok */
-    -fx-padding: 20; /* Gombok körüli térköz */
-    -fx-pref-width: 400px; /* A VBox szélessége 400px */
+#menuBox, #optionsMenuBox, #mainMenuBox, #exitConfirmationBox, #returnToMainMenuConfirmationBox {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-pref-width: 400px;
+}
+
+
+.menu-title {
+ -fx-font-size: 24px;
+    -fx-text-fill: #ebede9;
+    -fx-font-weight: bold;
+    -fx-padding: 0;
+
+    /* Creating underline */
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: white;
+    -fx-border-style: solid;
 }

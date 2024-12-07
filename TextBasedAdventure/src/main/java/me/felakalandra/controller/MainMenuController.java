@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -24,6 +25,8 @@ public class MainMenuController {
     public VBox optionsMenuBox;
     @FXML
     public Button exitOptionsButton;
+    public Label mainMenuLabel;
+    public Label mainMenuOptionsLabel;
     private boolean isMuted = false;
     public MainMenuController() {
         // Set the main menu music.
@@ -71,6 +74,10 @@ public class MainMenuController {
     public void showOptions(ActionEvent actionEvent) {
         Logger.info("Options menu opened");
 
+        // Update labels
+        mainMenuLabel.setVisible(false);
+        mainMenuOptionsLabel.setVisible(true);
+
         // Hide main buttons
         mainMenuBox.setVisible(false);
         mainMenuBox.setManaged(false);
@@ -81,6 +88,10 @@ public class MainMenuController {
     @FXML
     public void exitOptions(ActionEvent actionEvent) {
         Logger.info("Exiting options menu");
+
+        // Update labels
+        mainMenuOptionsLabel.setVisible(false);
+        mainMenuLabel.setVisible(true);
 
         // Show main menu and hide options menu
         optionsMenuBox.setVisible(false);
