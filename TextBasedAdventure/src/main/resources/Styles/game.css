@@ -131,3 +131,46 @@
     -fx-background-color: #a4dddb;
     -fx-text-fill: #151d28;
 }
+
+/* Style for the exit confirmation label */
+#exitConfirmationLabel {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ebede9;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-padding: 20;
+    -fx-background-color: #151d28;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+/* Styling for the exit confirmation buttons */
+#noButton, #yesButton {
+    -fx-background-color: #394a50;
+    -fx-text-fill: #ebede9;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+#noButton:hover, #yesButton:hover {
+    -fx-background-color: #a4dddb;
+    -fx-text-fill: #151d28;
+}
+
+/* Styling for the HBox containing the buttons */
+#exitConfirmationBox HBox {
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+/* Style for the menu background (same as exit confirmation) */
+#menuBox {
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Fekete háttér 60% átlátszósággal */
+    -fx-background-radius: 15; /* Kerekített sarkok */
+    -fx-padding: 20; /* Gombok körüli térköz */
+    -fx-pref-width: 400px; /* A VBox szélessége 400px */
+}

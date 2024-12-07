@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" spacing="50.0" style="-fx-background-image: url('/Images/menu/menu_background.jpg'); -fx-background-size: cover;" stylesheets="@../Styles/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.felakalandra.controller.MenuController">
 
-    <VBox fx:id="menuBox" alignment="CENTER" spacing="20.0">
+    <VBox fx:id="menuBox" alignment="CENTER" spacing="20.0" prefWidth="100.0" prefHeight="200.0">
         <Button fx:id="continueGame" onAction="#continueCurrentGame" text="Continue" />
         <Button onAction="#showOptions" text="Options" />
         <Button onAction="#returnToMainMenu" text="Return to Main Menu" />
-        <Button onAction="#exitGame" text="Exit" />
+        <Button fx:id="exitGame" onAction="#exitGame" text="Exit" />
     </VBox>
 
     <!-- Options Menu VBox -->
@@ -19,5 +21,14 @@
         <Button fx:id="leaderboardButton" onAction="#showLeaderboard" text="Leaderboard" />
         <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
         <Button fx:id="exitOptionsButton" onAction="#exitOptions" text="Back to Menu" />
+    </VBox>
+
+    <!-- Exit Confirmation VBox -->
+    <VBox fx:id="exitConfirmationBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
+        <Label fx:id="exitConfirmationLabel" text="Are you sure want to exit?" />
+        <HBox alignment="CENTER" spacing="20.0">
+            <Button text="No" onAction="#noExit" />
+            <Button text="Yes" onAction="#yesExit" />
+        </HBox>
     </VBox>
 </VBox>

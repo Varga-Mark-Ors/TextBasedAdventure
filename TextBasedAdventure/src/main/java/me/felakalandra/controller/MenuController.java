@@ -34,6 +34,9 @@ public class MenuController {
     @FXML
     private VBox optionsMenuBox;
 
+    @FXML
+    private VBox exitConfirmationBox;
+
     @Setter
     private GameController gameController;
     private boolean isMuted = false;
@@ -114,8 +117,42 @@ public class MenuController {
     // Exit the game
     @FXML
     private void exitGame() {
+        Logger.info("Exit game button clicked");
+
+        // Hide the main menu and options menu
+        menuBox.setVisible(false);
+        menuBox.setManaged(false);
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
+
+        // Show the exit confirmation box
+        exitConfirmationBox.setVisible(true);
+        exitConfirmationBox.setManaged(true);
+    }
+
+    // Handle No button click
+    @FXML
+    private void noExit(ActionEvent actionEvent) {
+        Logger.info("User canceled exit");
+
+        // Hide the exit confirmation box and show the main menu or options
+        exitConfirmationBox.setVisible(false);
+        exitConfirmationBox.setManaged(false);
+
+        // Show the main menu or options menu
+        menuBox.setVisible(true);
+        menuBox.setManaged(true);
+    }
+
+    // Handle Yes button click
+    @FXML
+    private void yesExit(ActionEvent actionEvent) {
+        Logger.info("User confirmed exit");
+
+        // Close the application
         Platform.exit();
     }
+
     @FXML
     public void returnToMainMenu(ActionEvent actionEvent) {
         try {
