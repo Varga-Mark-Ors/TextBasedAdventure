@@ -60,7 +60,7 @@ public class GameLogicService {
 
 
     // Generate a random number within a range based on the specified stat.
-    public int generateNumber(String stat, Protagonist protagonist, double npcReliability) {
+    public int generateNumber(String stat, Protagonist protagonist, double npcReliability, int days) {
         int min, max;
 
         // Calculate the range as 10% to 30% of the protagonist's current values.
@@ -84,6 +84,12 @@ public class GameLogicService {
         }
 
         // Returns a random value within the range and weighted by the reliability of the character
-        return (int) ((min + random.nextInt(max - min + 1)) * ((100 - npcReliability) * 0.1));
+        return (int) ((min + random.nextInt(max - min + 1)) * ((100 - npcReliability) * 0.1) * (increasingDifficulty(days)));
+    }
+
+    // Returns a double value that will help increase the difficulty of the game by days passed
+    public double increasingDifficulty(int days){
+        if (days > 46) return 3.3;
+        return 1 + (0.05 * days);
     }
 }
