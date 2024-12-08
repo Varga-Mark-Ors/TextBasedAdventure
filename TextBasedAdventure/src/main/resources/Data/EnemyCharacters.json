@@ -4,7 +4,7 @@
     "picture": "Images/NPCs/Orc.png",
     "level": 2,
     "type": "hostile",
-    "health": 40,
+    "health": 65,
     "dialogues": [
       {
         "text": "You look weak! Prove yourself worthy of my treasure!",
@@ -106,7 +106,7 @@
     "picture": "Images/NPCs/Assassin.png",
     "level": 3,
     "type": "hostile",
-    "health": 55,
+    "health": 95,
     "dialogues": [
       {
         "text": "The dragon has a bounty on your head. Time to collect!",
@@ -151,5 +151,158 @@
         }
       }
     ]
-  }
+  },
+  {
+    "name": "Archer",
+    "picture": "Images/NPCs/Archer.png",
+    "level": 1,
+    "type": "hostile",
+    "health": 35,
+    "dialogues": [
+        {
+          "text": "You’ve wandered into my sights. Let’s see if you can dodge my arrows!",
+          "type": "challenge",
+          "info": "Defeat Archer. Reward: + {number2} damage.",
+          "rewardType1": "none",
+          "rewardType2": "damage",
+          "options": {
+            "option1": {
+              "text": "Fight the Archer",
+              "response": "The Archer smirks. 'You’ll regret standing still!'"
+            },
+            "option2": {
+              "text": "Try to flee",
+              "response": "The Archer laughs. 'You can’t outrun an arrow!'"
+            },
+            "option3": {
+              "text": "Ask about the Archer’s skill",
+              "response": "The Archer grins. 'A lifetime of practice makes me the best.'"
+            }
+          }
+        },
+        {
+          "text": "Your journey ends here! My bow will strike you down!",
+          "type": "challenge",
+          "info": "Defeat Archer. Reward: + {number2} gold.",
+          "rewardType1": "none",
+          "rewardType2": "gold",
+          "options": {
+            "option1": {
+              "text": "Engage in battle",
+              "response": "The Archer nocks an arrow. 'Let’s see what you’re made of!'"
+            },
+            "option2": {
+              "text": "Attempt to run",
+              "response": "The Archer scoffs. 'Running? Pathetic!'"
+            },
+            "option3": {
+              "text": "Try to intimidate the Archer",
+              "response": "The Archer sneers. 'Words won’t save you now!'"
+            }
+          }
+        }
+      ]
+  },
+  {
+    "name": "Bandit",
+    "picture": "Images/NPCs/Bandit.png",
+    "level": 1,
+    "type": "hostile",
+    "health": 30,
+    "dialogues": [
+        {
+          "text": "Hand over your gold, or prepare to fight!",
+          "type": "challenge",
+          "info": "Defeat Bandit. Reward: + {number2} gold.",
+          "rewardType1": "none",
+          "rewardType2": "gold",
+          "options": {
+            "option1": {
+              "text": "Fight the Bandit",
+              "response": "The Bandit snarls. 'You’ll regret this decision!'"
+            },
+            "option2": {
+              "text": "Run away",
+              "response": "The Bandit jeers. 'Coward! Don’t come back!'"
+            },
+            "option3": {
+              "text": "Ask why they’re robbing you",
+              "response": "The Bandit shrugs. 'A thief’s gotta eat. Your loss is my gain.'"
+            }
+          }
+        },
+        {
+          "text": "You’re in the wrong place, traveler. Let’s see what you’re worth!",
+          "type": "challenge",
+          "info": "Defeat Bandit. Reward: + {number2} damage.",
+          "rewardType1": "none",
+          "rewardType2": "damage",
+          "options": {
+            "option1": {
+              "text": "Engage the Bandit",
+              "response": "The Bandit draws their blade. 'This will be fun!'"
+            },
+            "option2": {
+              "text": "Attempt to escape",
+              "response": "The Bandit laughs. 'Run all you like, I’ll still find you!'"
+            },
+            "option3": {
+              "text": "Negotiate with the Bandit",
+              "response": "The Bandit smirks. 'Gold speaks louder than words.'"
+            }
+          }
+        }
+      ]
+  },
+  {
+    "name": "Witch",
+    "picture": "Images/NPCs/Witch.png",
+    "level": 2,
+    "type": "hostile",
+    "health": 70,
+    "dialogues": [
+        {
+          "text": "You dare challenge my magic? Prepare to be cursed!",
+          "type": "challenge",
+          "info": "Defeat Witch. Reward: + {number2} damage.",
+          "rewardType1": "none",
+          "rewardType2": "damage",
+          "options": {
+            "option1": {
+              "text": "Fight the Witch",
+              "response": "The Witch cackles. 'Let’s see if you can handle my power!'"
+            },
+            "option2": {
+              "text": "Flee in fear",
+              "response": "The Witch laughs. 'Run, little mouse, but the curse will find you!'"
+            },
+            "option3": {
+              "text": "Demand to know why she’s attacking",
+              "response": "The Witch sneers. 'Because I can, foolish one.'"
+            }
+          }
+        },
+        {
+          "text": "I’ll crush you with my dark magic. Your life ends here!",
+          "type": "challenge",
+          "info": "Defeat Witch. Reward: + {number2} gold.",
+          "rewardType1": "none",
+          "rewardType2": "gold",
+          "options": {
+            "option1": {
+              "text": "Engage the Witch",
+              "response": "The Witch chants a spell. 'You’ll regret this choice!'"
+            },
+            "option2": {
+              "text": "Try to escape",
+              "response": "The Witch smirks. 'Flee if you like, but there’s no escape from me!'"
+            },
+            "option3": {
+              "text": "Attempt to reason with her",
+              "response": "The Witch laughs coldly. 'Reason? How quaint!'"
+            }
+          }
+        }
+      ]
+    }
 ]
