@@ -617,5 +617,221 @@
           }
         }
       ]
+    },
+    {
+      "name": "Shepherd",
+      "picture": "Images/NPCs/Shepherd.png",
+      "level": 1,
+      "type": "friendly",
+      "reliability": 88,
+      "dialogues": [
+        {
+          "text": "Wolves are attacking my flock! Drive them away, and I’ll reward you with wool.",
+          "type": "quest",
+          "info": "Defeat 3 wolves. Reward: Wool (+ {number2} gold).",
+          "rewardType1": "none",
+          "rewardType2": "gold",
+          "options": {
+            "option1": {
+              "text": "Accept the quest",
+              "response": "The Shepherd looks relieved. 'Thank you! My sheep will be safe with your help.'"
+            },
+            "option2": {
+              "text": "Decline",
+              "response": "The Shepherd sighs. 'I suppose I’ll have to figure something else out.'"
+            },
+            "option3": {
+              "text": "Ask about the wolves",
+              "response": "The Shepherd explains, 'They come at night and prey on the weak ones.'"
+            }
+          }
+        },
+        {
+          "text": "I need fresh grass for my sheep. Bring me some, and I’ll share some cheese.",
+          "type": "quest",
+          "info": "Deliver fresh grass. Reward: Cheese (+ {number2} health points).",
+          "rewardType1": "none",
+          "rewardType2": "hp",
+          "options": {
+            "option1": {
+              "text": "Accept the task",
+              "response": "The Shepherd smiles. 'Thank you! The sheep will be so happy.'"
+            },
+            "option2": {
+              "text": "Decline",
+              "response": "The Shepherd frowns. 'Without fresh grass, they’ll grow weak.'"
+            },
+            "option3": {
+              "text": "Ask about the grass",
+              "response": "The Shepherd says, 'It grows near the riverbank. Fresh and green!'"
+            }
+          }
+        },
+        {
+          "text": "I sell warm wool clothing for {number1} gold. Perfect for chilly nights.",
+          "type": "trade",
+          "info": "Buy wool clothing for {number1} gold. Reward: + {number2} health points.",
+          "rewardType1": "gold",
+          "rewardType2": "hp",
+          "options": {
+            "option1": {
+              "text": "Buy the clothing",
+              "response": "The Shepherd hands over the clothing. 'This will keep you warm and safe!'"
+            },
+            "option2": {
+              "text": "Refuse",
+              "response": "The Shepherd shrugs. 'Maybe next time.'"
+            },
+            "option3": {
+              "text": "Ask about the clothing",
+              "response": "The Shepherd says, 'Hand-spun wool, tough and warm.'"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fisherman",
+      "picture": "Images/NPCs/Fisherman.png",
+      "level": 1,
+      "type": "friendly",
+      "reliability": 93,
+      "dialogues": [
+        {
+          "text": "I’ve lost my best fishing net! Find it, and I’ll share my catch with you.",
+          "type": "quest",
+          "info": "Find the lost fishing net. Reward: Fresh fish (+ {number2} health points).",
+          "rewardType1": "none",
+          "rewardType2": "hp",
+          "options": {
+            "option1": {
+              "text": "Accept the quest",
+              "response": "The Fisherman nods eagerly. 'Thank you! The net must be near the lake.'"
+            },
+            "option2": {
+              "text": "Decline",
+              "response": "The Fisherman sighs. 'Without my net, I can’t make a living.'"
+            },
+            "option3": {
+              "text": "Ask about the net",
+              "response": "The Fisherman explains, 'It’s sturdy and hand-woven, but the waves took it.'"
+            }
+          }
+        },
+        {
+          "text": "I’m selling today’s catch. Fresh fish for {number1} gold.",
+          "type": "trade",
+          "info": "Buy fish for {number1} gold. Reward: + {number2} health points.",
+          "rewardType1": "gold",
+          "rewardType2": "hp",
+          "options": {
+            "option1": {
+              "text": "Buy the fish",
+              "response": "The Fisherman smiles. 'Good choice! Enjoy your meal.'"
+            },
+            "option2": {
+              "text": "Refuse",
+              "response": "The Fisherman shrugs. 'Maybe you’ll be back when you’re hungry.'"
+            },
+            "option3": {
+              "text": "Ask about the fish",
+              "response": "The Fisherman says, 'Caught this morning. Fresh as it gets!'"
+            }
+          }
+        },
+        {
+          "text": "Monsters are scaring away the fish! Deal with them, and I’ll teach you to fish.",
+          "type": "quest",
+          "info": "Defeat 2 monsters. Reward: Fishing skill (+ {number2} gold from fish sales).",
+          "rewardType1": "none",
+          "rewardType2": "gold",
+          "options": {
+            "option1": {
+              "text": "Accept the quest",
+              "response": "The Fisherman smiles. 'Thank you! The fish will return once they’re gone.'"
+            },
+            "option2": {
+              "text": "Decline",
+              "response": "The Fisherman frowns. 'Without fish, I won’t last long here.'"
+            },
+            "option3": {
+              "text": "Ask about the monsters",
+              "response": "The Fisherman describes, 'They’re slimy things that live near the shore.'"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fortune Teller",
+      "picture": "Images/NPCs/FortuneTeller.png",
+      "level": 3,
+      "type": "friendly",
+      "reliability": 75,
+      "dialogues": [
+        {
+          "text": "Bring me a rare crystal, and I’ll reveal your future.",
+          "type": "quest",
+          "info": "Deliver a rare crystal. Reward: Insight (+ {number2} chance to avoid traps).",
+          "rewardType1": "none",
+          "rewardType2": "other",
+          "options": {
+            "option1": {
+              "text": "Accept the quest",
+              "response": "The Fortune Teller nods. 'I see great potential in you. Hurry back!'"
+            },
+            "option2": {
+              "text": "Decline",
+              "response": "The Fortune Teller frowns. 'Your fate will remain unclear.'"
+            },
+            "option3": {
+              "text": "Ask about the crystal",
+              "response": "The Fortune Teller says, 'It shines with an inner light and is hard to find.'"
+            }
+          }
+        },
+        {
+          "text": "For {number1} gold, I’ll read your fortune and guide you to treasure.",
+          "type": "trade",
+          "info": "Pay {number1} gold. Reward: Treasure map (chance for {number2} extra gold in loot).",
+          "rewardType1": "gold",
+          "rewardType2": "gold",
+          "options": {
+            "option1": {
+              "text": "Pay for the fortune",
+              "response": "The Fortune Teller gazes into their crystal ball. 'The path becomes clear!'"
+            },
+            "option2": {
+              "text": "Refuse",
+              "response": "The Fortune Teller shrugs. 'Perhaps your fate is better left unknown.'"
+            },
+            "option3": {
+              "text": "Ask about the treasure",
+              "response": "The Fortune Teller says, 'It lies where shadows meet the light.'"
+            }
+          }
+        },
+        {
+          "text": "Beware of the cursed amulet! Destroy it, and I’ll reward you.",
+          "type": "quest",
+          "info": "Destroy the cursed amulet. Reward: Protection (+ {number2} health points).",
+          "rewardType1": "none",
+          "rewardType2": "hp",
+          "options": {
+            "option1": {
+              "text": "Accept the quest",
+              "response": "The Fortune Teller whispers, 'You are brave to accept this task.'"
+            },
+            "option2": {
+              "text": "Decline",
+              "response": "The Fortune Teller warns, 'The amulet’s curse will linger, then.'"
+            },
+            "option3": {
+              "text": "Ask about the amulet",
+              "response": "The Fortune Teller explains, 'It drains the life of those who wear it.'"
+            }
+          }
+        }
+      ]
     }
 ]
