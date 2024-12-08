@@ -26,6 +26,27 @@
             "response": "The Orc grins wickedly. 'If you survive, you’ll find it among my spoils.'"
           }
         }
+      },
+      {
+        "text": "You dare approach me again? Let’s see if you’ve learned anything!",
+        "type": "challenge",
+        "info": "Defeat Orc. Reward: + {number2} damage.",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Engage in battle",
+            "response": "The Orc snarls. 'You’ll wish you stayed away!'"
+          },
+          "option2": {
+            "text": "Retreat",
+            "response": "The Orc roars with laughter. 'Run, little mouse!'"
+          },
+          "option3": {
+            "text": "Mock the Orc",
+            "response": "The Orc growls. 'Your words will cost you dearly!'"
+          }
+        }
       }
     ]
   },
@@ -47,13 +68,34 @@
             "text": "Fight the Knight",
             "response": "The Knight raises his sword. 'This will be your final battle!'"
           },
-          "option3": {
-            "text": "Try to talk your way out",
-            "response": "The Knight laughs. 'Words won't save you, fool!'"
-          },
           "option2": {
             "text": "Run away",
             "response": "The Knight grins. 'Coward. You’ll regret running.'"
+          },
+          "option3": {
+            "text": "Try to talk your way out",
+            "response": "The Knight laughs. 'Words won't save you, fool!'"
+          }
+        }
+      },
+      {
+        "text": "Your journey ends here! The dragon commands your demise!",
+        "type": "challenge",
+        "info": "Defeat Knight. Reward: + {number2} damage.",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Engage the Knight",
+            "response": "The Knight growls. 'You’ll find no mercy here!'"
+          },
+          "option2": {
+            "text": "Attempt to flee",
+            "response": "The Knight smirks. 'Running won’t save you now!'"
+          },
+          "option3": {
+            "text": "Taunt the Knight",
+            "response": "The Knight scowls. 'You’ll regret those words, knave!'"
           }
         }
       }
@@ -84,6 +126,27 @@
           "option3": {
             "text": "Ask about the bounty",
             "response": "The Assassin smirks. 'The dragon’s always watching. Your death is inevitable.'"
+          }
+        }
+      },
+      {
+        "text": "The shadows are my ally, and your doom is certain!",
+        "type": "challenge",
+        "info": "Defeat Assassin. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Fight the Assassin",
+            "response": "The Assassin narrows their eyes. 'You’ll regret this.'"
+          },
+          "option2": {
+            "text": "Flee the scene",
+            "response": "The Assassin chuckles. 'Running won’t spare you!'"
+          },
+          "option3": {
+            "text": "Challenge the Assassin verbally",
+            "response": "The Assassin smiles coldly. 'Your words mean nothing in the face of death.'"
           }
         }
       }
