@@ -43,7 +43,7 @@ public class GameController {
     @FXML
     private Button option1, option2, option3;
     @FXML
-    private Label daysLabel, timeCurrent, timeDay, hpLabel, goldLabel, damageLabel, levelLabel, questText, questType, questInfo, questReward, questReliability, questInfoInfo, questTextInfo, questRewardInfo, questReliabilityInfo;
+    private Label scoreLabel, daysLabel, timeCurrent, timeDay, hpLabel, goldLabel, damageLabel, levelLabel, questText, questType, questInfo, questReward, questReliability, questInfoInfo, questTextInfo, questRewardInfo, questReliabilityInfo;
     @FXML
     private StackPane responseArea;
     @FXML
@@ -69,6 +69,8 @@ public class GameController {
     private int dailyEncounterCount = 0;
     private static final int MAX_DAILY_ENCOUNTERS = 3; // Maximális találkozások száma egy nap alatt
 
+    // Initializing the score
+    private int score = 0;
 
     //Initializing the values needed for the character process
     private int number1;
@@ -212,6 +214,7 @@ public class GameController {
                 && dailyEncounterCount < MAX_DAILY_ENCOUNTERS) {
             optionUtils.showOptionButtons(option1, option2, option3);
             gameUtils.fadeIn(npcsRight, 1);
+
             advanceGameState();
             dailyEncounterCount++;
 
@@ -223,9 +226,30 @@ public class GameController {
         if (gameTime.equals(LocalTime.of(1, 0))) {
             optionUtils.hideOptionButtons(option1, option2, option3);
             gameUtils.fadeOut(npcsRight, 1);
+            dailyScoreUpdate();
             showRewardResponse();
         }
     }
+
+    private void calculateScore() {
+        int hp = protagonist.getHealth();
+        int gold = protagonist.getGold();
+        int level = protagonist.getLevel();
+        int npcInteractions = objectiveService.getNpcInteractions();
+        boolean dragonBonus = objectiveService.isDragonDead();
+
+        score = (hp * 10) + (gold * 5) + (level * 100) + (npcInteractions * 2) + (dragonBonus ? 500 : 0);
+    }
+
+    private void dailyScoreUpdate() {
+        updateScoreLabel();
+    }
+
+    private void updateScoreLabel() {
+        calculateScore();
+        scoreLabel.setText("Score: " + score);
+    }
+
 
     private void advanceGameState() {
         if (days < 10 || protagonist.getLevel() < 2) {
