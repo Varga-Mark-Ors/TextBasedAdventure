@@ -69,6 +69,10 @@ public class GameController {
     // Main character's images (always displayed on the left) at level 1
     private final Image protagonistImageLevel1 = new Image("Images/Protagonist/Main1.png");
 
+    private int dailyEncounterCount = 0; // Napi találkozások számlálója
+    private static final int MAX_DAILY_ENCOUNTERS = 3; // Maximális találkozások száma egy nap alatt
+
+
     //Initializing the values needed for the character process
     private int number1;
     private int number2;
@@ -125,6 +129,7 @@ public class GameController {
         gameBackground.fitWidthProperty().bind(gameBase.widthProperty());
         gameBackground.fitHeightProperty().bind(gameBase.heightProperty());
 
+        // Set the initial text for quest-related labels
         questInfoInfo.setText("What to do:");
         questRewardInfo.setText("Rewards:");
 
@@ -132,7 +137,9 @@ public class GameController {
         protagonist = new Protagonist();
         days = 1;
         gameTime = INITIAL_GAME_TIME;
+        dailyEncounterCount = 0; // Reset the daily encounter count
 
+        // Initialize UI labels with default protagonist stats
         gameUtils.setInitialLabels(hpLabel, goldLabel, damageLabel, daysLabel, levelLabel, protagonist, days);
 
         // Set wallpaper and characters
@@ -145,15 +152,20 @@ public class GameController {
 
         // Set the first NPC
         timeUtils.updateGameTimeDisplay(timeCurrent, gameTime);
+
+        // Show initial option buttons and hide the response area
         optionUtils.showOptionButtons(option1, option2, option3);
         dialogueUtils.hideResponseArea(npcResponseLabel, responseArea);
 
+        // Clear any pending rewards
         rewardService.clearPendingRewards();
 
         Logger.info("Game state initialized");
 
+        // Start the game state with the first encounter
         advanceGameState();
     }
+
 
     private void startGameClock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> advanceTime()));
@@ -172,21 +184,23 @@ public class GameController {
 
         // Check if a new day has begun
         if (gameTime.equals(LocalTime.of(0, 0))) {
+            dailyEncounterCount = 0; // Reset the daily encounter count
             days++;
             daysLabel.setText("Days: " + days);
         }
 
         // Update the time and background display
         timeUtils.updateGameTimeDisplay(timeCurrent, gameTime);
-        ;
         timeUtils.updateBackgroundAndTimeOfDay(gameTime, gameBackground, timeDay);
 
-        // Set the option buttons visible at 7:00 AM and initiate a new NPC
-        if (gameTime.equals(LocalTime.of(7, 0))) {
+        // Trigger encounters at 7:00 AM, 1:00 PM, and 7:00 PM (up to 3 per day)
+        if ((gameTime.equals(LocalTime.of(7, 0)) || gameTime.equals(LocalTime.of(13, 0)) || gameTime.equals(LocalTime.of(19, 0)))
+                && dailyEncounterCount < MAX_DAILY_ENCOUNTERS) {
             optionUtils.showOptionButtons(option1, option2, option3);
             gameUtils.fadeIn(npcsRight, 1);
 
             advanceGameState();
+            dailyEncounterCount++;
         }
 
         // Recieve rewards at 1:00 AM
