@@ -21,5 +21,9 @@
         <Button fx:id="exitOptionsButton" onAction="#exitOptions" text="Back to Main Menu" />
     </VBox>
 
+    <VBox fx:id="savedGamesBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
+        <!-- A dinamikusan hozzáadott gombok ide kerülnek -->
+    </VBox>
+
 </VBox>
 

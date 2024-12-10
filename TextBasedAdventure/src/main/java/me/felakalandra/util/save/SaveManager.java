@@ -44,20 +44,20 @@ public class SaveManager {
         }
     }
 
-    public GameState loadGame() {
+    // Updated loadGame method to accept a file path
+    public GameState loadGame(String filePath) {
         try {
-            // Loading the JSON file and converting it into a GameState object.
-            File saveFile = new File(SAVE_DIRECTORY);
+            File saveFile = new File(filePath);
             if (!saveFile.exists()) {
-                Logger.error("A fájl nem található: " + SAVE_DIRECTORY);
+                Logger.error("File not found: " + filePath);
                 return null;
             }
 
             GameState gameState = objectMapper.readValue(saveFile, GameState.class);
-            Logger.info("Game loaded successfully!");
+            Logger.info("Game loaded successfully from: " + filePath);
             return gameState;
         } catch (IOException e) {
-            Logger.error("Failed to load game: " + e.getMessage());
+            Logger.error("Failed to load game from file: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
