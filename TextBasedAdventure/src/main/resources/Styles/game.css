@@ -156,7 +156,7 @@
 }
 
 /* Style for the menu background (same as exit confirmation) */
-#menuBox, #optionsMenuBox, #mainMenuBox, #exitConfirmationBox, #returnToMainMenuConfirmationBox {
+#menuBox, #optionsMenuBox, #mainMenuBox, #exitConfirmationBox, #returnToMainMenuConfirmationBox, #saveGameVBox {
     -fx-background-color: rgba(0, 0, 0, 0.6);
     -fx-background-radius: 15;
     -fx-padding: 20;
@@ -174,4 +174,26 @@
     -fx-border-width: 0 0 2px 0;
     -fx-border-color: white;
     -fx-border-style: solid;
+}
+
+/* TextField with centered text */
+#saveNameField {
+    -fx-background-color: rgba(255, 255, 255, 0.8); /* Light transparent background */
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-border-color: #b0b0b0; /* Light border color */
+    -fx-border-radius: 10px; /* Rounded corners on border */
+    -fx-border-width: 2px; /* Border width */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 10px; /* Padding inside the TextField */
+    -fx-pref-width: 250px; /* Preferred width */
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-font-family: "Arial", sans-serif; /* Font family */
+    -fx-alignment: center; /* Center the text inside the TextField */
+}
+
+/* Focus effect when the TextField is selected */
+#saveNameField:focused {
+    -fx-background-color: rgba(255, 255, 255, 1); /* Solid background when focused */
+    -fx-border-color: #4a90e2; /* Blue border on focus */
+    -fx-text-fill: #4a90e2; /* Blue text color when focused */
 }

@@ -20,7 +20,6 @@
     <VBox fx:id="optionsMenuBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
         <Label fx:id="optionsLabel" text="Options Menu" styleClass="menu-title" />
         <Button onAction="#startNewGame" text="New Game" />
-        <TextField fx:id="saveNameField" layoutX="150" layoutY="200" />
         <Button fx:id="saveGameButton" onAction="#saveGame" text="Save Game" />
         <Button fx:id="leaderboardButton" onAction="#showLeaderboard" text="Leaderboard" />
         <Button fx:id="handleToggleSoundButton" onAction="#handleToggleSound" text="Toggle Sound: ON" />
@@ -41,6 +40,15 @@
         <HBox alignment="CENTER" spacing="20.0">
             <Button text="No" onAction="#noExitToMainMenu" />
             <Button text="Yes" onAction="#returnToMainMenu"  />
+        </HBox>
+    </VBox>
+
+    <VBox fx:id="saveGameVBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
+        <Label fx:id="saveGameLabel" text="Enter Save Name" styleClass="menu-title"/>
+        <TextField fx:id="saveNameField" promptText="Enter save name here" />
+        <HBox alignment="CENTER" spacing="20.0">
+            <Button fx:id="confirmSaveButton" onAction="#confirmSaveGame" text="Save Game" />
+            <Button fx:id="cancelSaveButton" onAction="#cancelSaveGame" text="Cancel" />
         </HBox>
     </VBox>
 

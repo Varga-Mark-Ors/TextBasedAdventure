@@ -51,6 +51,9 @@ public class MenuController {
     @FXML
     private TextField saveNameField;
 
+    @FXML
+    private VBox saveGameVBox;
+
     @Setter
     private GameController gameController;
     private boolean isMuted = false;
@@ -76,20 +79,18 @@ public class MenuController {
 
     // Toggle sound on or off
     @FXML
-    private void handleToggleSound()
-    {
-        if (isMuted){
+    private void handleToggleSound() {
+        if (isMuted) {
             gameController.toggleMute();
             handleToggleSoundButton.setText("Toggle Sound: ON");
             Logger.info("Sound toggled");
-        } else{
+        } else {
             gameController.toggleMute();
             handleToggleSoundButton.setText("Toggle Sound: OFF");
             Logger.info("Sound toggled");
         }
         isMuted = !isMuted;
     }
-
 
 
     // Show the options menu
@@ -217,8 +218,23 @@ public class MenuController {
         returnToMainMenuConfirmationBox.setVisible(true);
         returnToMainMenuConfirmationBox.setManaged(true);
     }
+
     @FXML
-    public void saveGame(ActionEvent actionEvent) {
+    private void saveGame(ActionEvent actionEvent) {
+        // Hide the options menu
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
+
+        // Show the save game VBox
+        saveGameVBox.setVisible(true);
+        saveGameVBox.setManaged(true);
+
+        Logger.info("Save game menu opened");
+    }
+
+    // Method to handle the confirmation of the save
+    @FXML
+    public void confirmSaveGame(ActionEvent actionEvent) {
         String saveName = saveNameField.getText();
         if (saveName == null || saveName.isEmpty()) {
             Logger.warn("No save name provided. Using default name.");
@@ -228,5 +244,23 @@ public class MenuController {
         SaveManager saveManager = new SaveManager();
         saveManager.saveGame(saveName, gameController); // Pass the GameController instance
         Logger.info("Game saved with name: " + saveName);
+
+        // Hide the save game VBox and return to options menu
+        saveGameVBox.setVisible(false);
+        saveGameVBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
+    }
+
+    // Method to handle the cancel action for saving
+    @FXML
+    public void cancelSaveGame(ActionEvent actionEvent) {
+        // Hide the save game VBox and return to options menu
+        saveGameVBox.setVisible(false);
+        saveGameVBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
+
+        Logger.info("Save game canceled");
     }
 }

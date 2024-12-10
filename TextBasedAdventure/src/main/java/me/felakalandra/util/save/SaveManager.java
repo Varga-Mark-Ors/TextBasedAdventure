@@ -26,7 +26,7 @@ public class SaveManager {
             if (!saveDir.exists()) {
                 boolean dirCreated = saveDir.mkdirs();  // Create the folder if it does not exist
                 if (!dirCreated) {
-                    Logger.error("Nem sikerült létrehozni a mappát!");
+                    Logger.error("Couldn't cteare folder");
                     return;
                 }
             }
