@@ -219,18 +219,4 @@ public class MenuController {
         saveManager.saveGame(gameController); // Pass the GameController instance
         Logger.info("Game saved");
     }
-
-    // Load the game from MenuController
-    @FXML
-    public void loadGame(ActionEvent actionEvent) {
-        SaveManager saveManager = new SaveManager();
-        GameState loadedState = saveManager.loadGame();
-
-        if (loadedState != null) {
-            gameController.initializeFromGameState(loadedState);  // Call initialize in GameController
-            Logger.info("Successfully loaded saved game");
-        } else {
-            Logger.info("Cannot find saved game");
-        }
-    }
 }

@@ -32,7 +32,7 @@ public class SaveManager {
 
     public GameState loadGame() {
         try {
-            // Beolvassa a JSON fájlt GameState osztály példányává alakítva
+            // Reads the JSON file and converts it into an instance of the GameState class.
             GameState gameState = objectMapper.readValue(new File(SAVE_FILE), GameState.class);
             Logger.info("Game loaded successfully!");
             return gameState;

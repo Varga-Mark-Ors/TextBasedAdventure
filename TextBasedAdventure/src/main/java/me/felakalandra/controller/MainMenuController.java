@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import me.felakalandra.GameApplication;
+import me.felakalandra.util.save.GameState;
+import me.felakalandra.util.save.SaveManager;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -47,6 +49,29 @@ public class MainMenuController {
             e.printStackTrace();
         }
         Logger.info("Main Menu initialized");
+    }
+
+    // Load the game from MenuController
+    @FXML
+    public void loadSavedGame(ActionEvent actionEvent) {
+        SaveManager saveManager = new SaveManager();
+        GameState loadedState = saveManager.loadGame();
+
+        try {
+            if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.stop();
+            }
+            GameApplication app = (GameApplication) GameApplication.getInstance();
+            app.startGame(); // Change the scene from Main Menu into Game
+            // Before starting the new game, set up the game state
+            GameController gameController = app.getGameController();  // Get the GameController
+            gameController.initializeFromGameState(loadedState);  // Initialize GameController with saved state
+
+            Logger.info("Successfully loaded saved game");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void playMenuMusic() {
@@ -102,10 +127,6 @@ public class MainMenuController {
         optionsMenuBox.setManaged(false);
         mainMenuBox.setVisible(true);
         mainMenuBox.setManaged(true);
-    }
-    @FXML
-    public void loadSavedGame(ActionEvent actionEvent) {
-        Logger.info("Load Saved Game");
     }
 
     @FXML
