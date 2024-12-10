@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class SaveManager {
-    private static final String SAVE_DIRECTORY = "resources/SavedGames/";
+    private static final String SAVE_DIRECTORY = "src/main/resources/SavedGames/";
     private final ObjectMapper objectMapper;
 
     public SaveManager() {
@@ -22,7 +22,7 @@ public class SaveManager {
     public void saveGame(String saveName, GameController controller) {
         try {
             // Check if the folder exists, if not, create it.
-            File saveDir = new File("resources/SavedGames");
+            File saveDir = new File("src/main/resources/SavedGames");
             if (!saveDir.exists()) {
                 boolean dirCreated = saveDir.mkdirs();  // Create the folder if it does not exist
                 if (!dirCreated) {
