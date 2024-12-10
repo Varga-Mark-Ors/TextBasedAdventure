@@ -89,6 +89,11 @@ public class GameController {
     private final DialogueUtils dialogueUtils = new DialogueUtils();
     private final TimeUtils timeUtils = new TimeUtils();
 
+    private double enemyChance = 0.2; // Kezdeti esély az enemyRound-ra
+    private boolean lastRoundWasEnemy = false; // Nyomon követi, hogy az előző kör enemyRound volt-e
+    private final double enemyHpScale = 0.15;
+    private final int multiplierAfterXDays = 10;
+
     public GameController() {
         Media media = new Media(getClass().getResource("/Sounds/Gameplay_Sound.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(media);
@@ -255,10 +260,20 @@ public class GameController {
         if (days < 10 || protagonist.getLevel() < 2) {
             npcRound();
         } else {
-            if (new Random().nextDouble() < 0.8) {
+            if (lastRoundWasEnemy) {
+                // Ha az előző enemyRound volt, visszaállítjuk az esélyt
+                enemyChance = 0.2;
+                lastRoundWasEnemy = false;
                 npcRound();
             } else {
-                enemyRound();
+                if (new Random().nextDouble() < enemyChance) {
+                    enemyRound();
+                    lastRoundWasEnemy = true;
+                } else {
+                    npcRound();
+                    // Növeljük az esélyt az enemyRound-ra, amíg el nem éri az 50%-ot
+                    enemyChance = Math.min(0.5, enemyChance + 0.1);
+                }
             }
         }
     }
@@ -282,6 +297,17 @@ public class GameController {
             }
         } else {
             currentEnemyNpc = npcService.selectEnemyNpc(EnemyNpc.getEnemies(), protagonist);
+
+            // scale up the enemies for better difficulty
+
+            var currentHP = currentEnemyNpc.getHealth();
+
+            for (int i = 0; i < days; i += multiplierAfterXDays) {
+                currentHP *= (int) Math.floor((1+enemyHpScale));
+            }
+
+            currentEnemyNpc.setHealth(currentHP);
+
 
             if (currentEnemyNpc != null) {
                 Logger.info("Selected EnemyNpc: " + currentEnemyNpc.getName() + " with " + currentEnemyNpc.getDialogues().size() + " dialogues");
