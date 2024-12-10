@@ -50,12 +50,6 @@ public class GameController {
     private StackPane responseArea;
     @FXML
     private Label npcResponseLabel;
-    @FXML
-    private void saveGame() {
-        SaveManager saveManager = new SaveManager();
-        saveManager.saveGame(this); // Átadjuk a GameController példányt
-        System.out.println("Játék mentése sikeres.");
-    }
     @Getter
     private MediaPlayer mediaPlayer;
     @Getter
@@ -76,7 +70,8 @@ public class GameController {
 
     // Main character's images (always displayed on the left) at level 1
     private final Image protagonistImageLevel1 = new Image("Images/Protagonist/Main1.png");
-
+    private final Image protagonistImageLevel2 = new Image("Images/Protagonist/Main2.png");
+    private final Image protagonistImageLevel3 = new Image("Images/Protagonist/Main3.png");
     private int dailyEncounterCount = 0;
     private static final int MAX_DAILY_ENCOUNTERS = 3; // Maximális találkozások száma egy nap alatt
 
@@ -491,15 +486,47 @@ public class GameController {
             this.days = gameState.getDays();
             this.score = gameState.getScore();
 
-            // UI frissítése
+            // UI update
             updateScoreLabel();
             timeUtils.updateGameTimeDisplay(timeCurrent, gameTime);
             daysLabel.setText("Days: " + days);
+            levelLabel.setText(String.valueOf(gameState.getProtagonist().getLevel()));
             gameUtils.updateProtagonistStats(protagonist, hpLabel, goldLabel, damageLabel);
-
-            System.out.println("GameController successfully initialized from GameState.");
+            switch (gameState.getProtagonist().getLevel()) {
+                case 1:
+                    protagonistLeft.setImage(protagonistImageLevel1);
+                    break;
+                case 2:
+                    protagonistLeft.setImage(protagonistImageLevel2);
+                    break;
+                case 3:
+                    protagonistLeft.setImage(protagonistImageLevel3);
+                    break;
+                default:
+                    System.err.println("Unknown level: " + gameState.getProtagonist().getLevel());
+                    break;
+            }
+            Logger.info("GameController successfully initialized from GameState.");
         } else {
-            System.err.println("Failed to initialize GameController: GameState is null.");
+            Logger.error("Failed to initialize GameController: GameState is null.");
+        }
+    }
+    @FXML
+    private void saveGame() {
+        SaveManager saveManager = new SaveManager();
+        saveManager.saveGame(this); // Átadjuk a GameController példányt
+        Logger.info("Successfully saved game.");
+    }
+    @FXML
+    private void loadGame() {
+        SaveManager saveManager = new SaveManager();
+        GameState loadedState = saveManager.loadGame();
+
+        if (loadedState != null) {
+            initializeFromGameState(loadedState);
+            Logger.info("Successfully loaded saved game");
+        } else {
+            Logger.info("Can not found saved game");
         }
     }
 }
