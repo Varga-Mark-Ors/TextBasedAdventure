@@ -331,7 +331,7 @@ public class GameController {
             // Pick a random dialogue from the current NPC's dialogues
             Dialogue randomDialogue = dialogueService.getRandomDialogue(currentNpc.getDialogues());
 
-            setDialogueDetails(randomDialogue, currentNpc.getName(), currentNpc.getReliability() + "%");
+            setDialogueDetails(randomDialogue, currentNpc.getName(), currentNpc.getReliability() + "%", false);
 
             Logger.info("Random dialogue selected: " + randomDialogue.getText());
         } else {
@@ -352,7 +352,7 @@ public class GameController {
             // Pick a random dialogue from the current NPC's dialogues
             Dialogue randomDialogue = dialogueService.getRandomDialogue(currentEnemyNpc.getDialogues());
 
-            setDialogueDetails(randomDialogue, currentEnemyNpc.getName(), currentEnemyNpc.getHealth() + "");
+            setDialogueDetails(randomDialogue, currentEnemyNpc.getName(), currentEnemyNpc.getHealth() + "", true);
 
             Logger.info("Random dialogue selected: " + randomDialogue.getText());
         } else {
@@ -366,16 +366,16 @@ public class GameController {
         }
     }
 
-    public void setDialogueDetails(Dialogue dialogue, String name, String reliability) {
+    public void setDialogueDetails(Dialogue dialogue, String name, String reliability, boolean isEnemy) {
         // Update the quest stats (rewards, quest text, etc.)
-        updateQuestDetails(dialogue, name, reliability);
+        updateQuestDetails(dialogue, name, reliability, isEnemy);
 
         // Set the options for the dialogue
         dialogueService.setOptionButtons(dialogue, option1, option2, option3);
     }
 
     // Method to update quest-related stats such as rewards, quest info, and reliability
-    private void updateQuestDetails(Dialogue dialogue, String name, String reliability) {
+    private void updateQuestDetails(Dialogue dialogue, String name, String reliabilityOrHealth, boolean isEnemy) {
         // Set the reward details
         rewardType1 = dialogue.getRewardType1();
         rewardType2 = dialogue.getRewardType2();
@@ -392,8 +392,13 @@ public class GameController {
         questType.setText(dialogue.getType().substring(0, 1).toUpperCase() + dialogue.getType().substring(1));
         questInfo.setText(gameUtils.replacePlaceholders(dialogue.getInfo(), number1, number2));
         // Set the reliability info
-        questReliabilityInfo.setText("Should you trust the " + name + "?");
-        questReliability.setText(name + "'s reliability is " + reliability);
+        if (isEnemy){
+            questReliabilityInfo.setText("Should you fight the " + name + "?");
+            questReliability.setText(name + "'s health is " + reliabilityOrHealth);
+        } else {
+            questReliabilityInfo.setText("Should you trust the " + name + "?");
+            questReliability.setText(name + "'s reliability is " + reliabilityOrHealth);
+        }
     }
 
     public void option1Button(ActionEvent actionEvent) {
