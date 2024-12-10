@@ -7,8 +7,8 @@
 }
 
 #protagonistLeft, #npcsRight {
-    -fx-fit-width: 250px;
-    -fx-fit-height: 250px;
+    -fx-fit-width: 300px;
+    -fx-fit-height: 300px;
 }
 
 #protagonistLeftBg, #npcsRightBg {

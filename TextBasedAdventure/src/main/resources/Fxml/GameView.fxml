@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="gameBase" prefHeight="800" prefWidth="1280" stylesheets="@../Styles/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.felakalandra.controller.GameController">
+<AnchorPane fx:id="gameBase" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../Styles/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.felakalandra.controller.GameController">
 
     <ImageView fx:id="gameBackground" pickOnBounds="true" />
     <HBox fx:id="midContainer" alignment="CENTER" layoutX="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -22,7 +22,7 @@
                 </children>
             </VBox>
 
-            <VBox fx:id="midSection" alignment="TOP_CENTER" prefWidth="500.0" spacing="20.0">
+            <VBox fx:id="midSection" alignment="TOP_CENTER" prefWidth="600.0" spacing="20.0">
 
                 <HBox fx:id="upperSection" alignment="CENTER" prefHeight="80.0">
                     <HBox alignment="CENTER">
@@ -133,9 +133,9 @@
             </HBox>
         </children>
     </VBox>
-    <StackPane fx:id="responseArea" layoutX="910.0" layoutY="150.0" visible="false" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="145.0">
+    <StackPane fx:id="responseArea" alignment="BOTTOM_LEFT" layoutX="910.0" layoutY="150.0" minHeight="130.0" visible="false" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="150.0">
         <children>
-            <Label fx:id="npcResponseLabel" text="The Blacksmith grunts. 'I need a large amount of coal to heat up the forge and start working. Can you gather it for me?" wrapText="true" />
+            <Label fx:id="npcResponseLabel" text="The Blacksmith grunts. 'I need a large amount of coal to heat up the forge and start working. Can you gather it for me?" wrapText="true" StackPane.alignment="CENTER_LEFT" />
         </children>
     </StackPane>
 
