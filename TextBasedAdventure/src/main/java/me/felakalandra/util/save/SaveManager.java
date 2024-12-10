@@ -10,8 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class SaveManager {
-    // The file save and load path.
-    private static final String SAVE_FILE = "resources/SavedGames/game_save.json";
+    private static final String SAVE_DIRECTORY = "resources/SavedGames/";
     private final ObjectMapper objectMapper;
 
     public SaveManager() {
@@ -20,7 +19,7 @@ public class SaveManager {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
-    public void saveGame(GameController controller) {
+    public void saveGame(String saveName, GameController controller) {
         try {
             // Check if the folder exists, if not, create it.
             File saveDir = new File("resources/SavedGames");
@@ -34,8 +33,11 @@ public class SaveManager {
 
             // Save the GameState object in JSON format.
             GameState gameState = new GameState(controller.getProtagonist(), controller);
-            objectMapper.writeValue(new File(SAVE_FILE), gameState);
-            Logger.info("Game saved successfully!");
+
+            // Save the game state to a JSON file with the custom save name
+            File saveFile = new File(SAVE_DIRECTORY + saveName + ".json");
+            objectMapper.writeValue(saveFile, gameState);
+            Logger.info("Game saved successfully with name: " + saveName);
         } catch (IOException e) {
             Logger.error("Failed to save game: " + e.getMessage());
             e.printStackTrace();
@@ -45,9 +47,9 @@ public class SaveManager {
     public GameState loadGame() {
         try {
             // Loading the JSON file and converting it into a GameState object.
-            File saveFile = new File(SAVE_FILE);
+            File saveFile = new File(SAVE_DIRECTORY);
             if (!saveFile.exists()) {
-                Logger.error("A fájl nem található: " + SAVE_FILE);
+                Logger.error("A fájl nem található: " + SAVE_DIRECTORY);
                 return null;
             }
 

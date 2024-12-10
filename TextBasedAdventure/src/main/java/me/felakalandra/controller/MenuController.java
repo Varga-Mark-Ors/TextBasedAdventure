@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -46,6 +47,9 @@ public class MenuController {
 
     @FXML
     private Label optionsLabel;
+
+    @FXML
+    private TextField saveNameField;
 
     @Setter
     private GameController gameController;
@@ -215,8 +219,14 @@ public class MenuController {
     }
     @FXML
     public void saveGame(ActionEvent actionEvent) {
+        String saveName = saveNameField.getText();
+        if (saveName == null || saveName.isEmpty()) {
+            Logger.warn("No save name provided. Using default name.");
+            saveName = "game_save";  // Default save name if no input
+        }
+
         SaveManager saveManager = new SaveManager();
-        saveManager.saveGame(gameController); // Pass the GameController instance
-        Logger.info("Game saved");
+        saveManager.saveGame(saveName, gameController); // Pass the GameController instance
+        Logger.info("Game saved with name: " + saveName);
     }
 }
