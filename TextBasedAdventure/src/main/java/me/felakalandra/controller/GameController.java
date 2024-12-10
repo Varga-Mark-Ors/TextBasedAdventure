@@ -43,7 +43,7 @@ public class GameController {
     @FXML
     private Button option1, option2, option3;
     @FXML
-    private Label scoreLabel, daysLabel, timeCurrent, timeDay, hpLabel, goldLabel, damageLabel, levelLabel, questText, questType, questInfo, questReward, questReliability, questInfoInfo, questTextInfo, questRewardInfo, questReliabilityInfo;
+    private Label scoreLabel, daysLabel, timeCurrent, timeDay, hpLabel, goldLabel, damageLabel, levelLabel, questText, questType, questInfo, questReward, questReliability, questInfoInfo, questTextInfo, questRewardInfo, questReliabilityInfo, objectiveLabel2Counter;
     @FXML
     private StackPane responseArea;
     @FXML
@@ -218,7 +218,7 @@ public class GameController {
             advanceGameState();
             dailyEncounterCount++;
 
-            objectiveService.onNpcInteraction();
+            objectiveService.onNpcInteraction(objectiveLabel2Counter);
         }
     }
 
