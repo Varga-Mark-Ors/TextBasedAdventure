@@ -1,5 +1,6 @@
 package me.felakalandra.services;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class ObjectiveService {
     private final ImageView objectiveImage1;
     private final ImageView objectiveImage2;
     private final ImageView objectiveImage3;
+    private Label objectiveLabel2Counter;
 
     public ObjectiveService(Protagonist protagonist, ImageView objectiveImage1, ImageView objectiveImage2, ImageView objectiveImage3) {
         this.protagonist = protagonist;
@@ -77,8 +79,9 @@ public class ObjectiveService {
         updateObjective1();
     }
 
-    public void onNpcInteraction() {
+    public void onNpcInteraction(Label objectiveLabel2Counter) {
         npcInteractions++;
+        objectiveLabel2Counter.setText("(" + npcInteractions + ")");
         updateObjective2();
     }
 
