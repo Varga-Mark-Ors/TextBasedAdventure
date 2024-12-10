@@ -29,14 +29,16 @@ public class ObjectiveService {
         this.objectiveImage3 = objectiveImage3;
     }
 
+    // Method to update all objectives
     public void updateObjectives() {
         updateObjective1();
         updateObjective2();
         updateObjective3();
     }
 
+    // Update individual objectives
     private void updateObjective1() {
-        if (protagonist.getLevel() == 2) {
+        if (protagonist.getLevel() >= 3) {
             setChecked(objectiveImage1);
         } else {
             setUnchecked(objectiveImage1);
@@ -44,7 +46,7 @@ public class ObjectiveService {
     }
 
     private void updateObjective2() {
-        if (npcInteractions > 20) {
+        if (npcInteractions >= 30) {
             setChecked(objectiveImage2);
         } else {
             setUnchecked(objectiveImage2);
@@ -59,6 +61,7 @@ public class ObjectiveService {
         }
     }
 
+    // Helper methods to set checkbox states
     private void setChecked(ImageView objectiveImage) {
         objectiveImage.setImage(new Image(CHECKED_CHECKBOX));
         Logger.info("Objective checked: " + objectiveImage);
@@ -69,7 +72,7 @@ public class ObjectiveService {
         Logger.info("Objective unchecked: " + objectiveImage);
     }
 
-    // Methods to notify changes and trigger updates
+    // Methods for specific events
     public void onProtagonistLevelChange() {
         updateObjective1();
     }

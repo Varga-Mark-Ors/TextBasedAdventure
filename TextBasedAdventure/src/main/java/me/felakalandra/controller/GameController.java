@@ -66,7 +66,7 @@ public class GameController {
     // Main character's images (always displayed on the left) at level 1
     private final Image protagonistImageLevel1 = new Image("Images/Protagonist/Main1.png");
 
-    private int dailyEncounterCount = 0; // Napi találkozások számlálója
+    private int dailyEncounterCount = 0;
     private static final int MAX_DAILY_ENCOUNTERS = 3; // Maximális találkozások száma egy nap alatt
 
 
@@ -214,6 +214,8 @@ public class GameController {
             gameUtils.fadeIn(npcsRight, 1);
             advanceGameState();
             dailyEncounterCount++;
+
+            objectiveService.onNpcInteraction();
         }
     }
 

@@ -118,7 +118,7 @@
                             <Image url="@../Styles/Icons/unchecked-checkbox.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="objectiveLabel2" text="Interact with 30 NPCs!" wrapText="true" />
+                    <Label fx:id="objectiveLabel2" text="Interact with atleast 30 NPCs!" wrapText="true" />
                 </children>
             </HBox>
             <HBox fx:id="objectiveRow3" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
