@@ -52,10 +52,10 @@ public class EnemyNpc {
         return NpcLoader.getImage(path);
     }
 
-    public String fight(Protagonist player) {
+    public boolean fight(Protagonist player) {
         if (player.getDamagePoints() >= this.getHealth()) {
             player.decreaseHealth((int) (player.getHealth() * 0.1));
-            return "win";
+            return true;
         }
         var dif = this.getHealth() - player.getDamagePoints();
 
@@ -63,19 +63,19 @@ public class EnemyNpc {
             boolean win = new Random().nextDouble() < 0.75;
             if (win) {
                 player.decreaseHealth((int) (player.getHealth() * 0.15));
-                return "win";
+                return true;
             } else {
                 player.decreaseHealth((int) (player.getHealth() * 0.50));
-                return "lose";
+                return false;
             }
         } else {
             boolean win = new Random().nextDouble() < 0.30;
             if (win) {
                 player.decreaseHealth((int) (player.getHealth() * 0.35));
-                return "win";
+                return true;
             } else {
                 player.decreaseHealth((int) (player.getHealth() * 0.50));
-                return "lose";
+                return false;
             }
         }
     }

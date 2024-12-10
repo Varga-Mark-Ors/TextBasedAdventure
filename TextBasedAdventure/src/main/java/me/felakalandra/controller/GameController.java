@@ -62,6 +62,7 @@ public class GameController {
     private Protagonist protagonist = new Protagonist();
     private Npc currentNpc;
     private EnemyNpc currentEnemyNpc;
+    private boolean isEnemyRound = false;
 
     // Main character's images (always displayed on the left) at level 1
     private final Image protagonistImageLevel1 = new Image("Images/Protagonist/Main1.png");
@@ -257,19 +258,23 @@ public class GameController {
 
 
     private void advanceGameState() {
-        if (days < 10 || protagonist.getLevel() < 2) {
+        if (days < 5) {
+            isEnemyRound = false;
             npcRound();
         } else {
             if (lastRoundWasEnemy) {
                 // Ha az előző enemyRound volt, visszaállítjuk az esélyt
                 enemyChance = 0.2;
                 lastRoundWasEnemy = false;
+                isEnemyRound = false;
                 npcRound();
             } else {
                 if (new Random().nextDouble() < enemyChance) {
+                    isEnemyRound = true;
                     enemyRound();
                     lastRoundWasEnemy = true;
                 } else {
+                    isEnemyRound = false;
                     npcRound();
                     // Növeljük az esélyt az enemyRound-ra, amíg el nem éri az 50%-ot
                     enemyChance = Math.min(0.5, enemyChance + 0.1);
@@ -414,13 +419,34 @@ public class GameController {
     }
 
     private void handleOptionButton(String optionKey, boolean questAccepted, boolean hideButtons) {
-        DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get(optionKey);
-        if (option != null) {
-            double npcReliability = currentNpc.getReliability();
-            handleOptionSelection(option, rewardType1, number1, rewardType2, number2, questAccepted, npcReliability);
+        if (isEnemyRound){
+            DialogueOption option = currentEnemyNpc.getDialogues().get(0).getOptions().get(optionKey);
+            if (Objects.equals(optionKey, "option1")) {
+                boolean win = currentEnemyNpc.fight(protagonist);
+                if (win) {
+                    rewardService.addEnemyReward(protagonist, rewardType2, number2);
+                }
+                dialogueUtils.showResponse(option.getResponse(), npcResponseLabel, responseArea);
+                gameUtils.updateProtagonistStats(protagonist, hpLabel, goldLabel, damageLabel);
+            }
+            if (Objects.equals(optionKey, "option2")) {
+                currentEnemyNpc.run(protagonist);
+                dialogueUtils.showResponse(option.getResponse(), npcResponseLabel, responseArea);
+                gameUtils.updateProtagonistStats(protagonist, hpLabel, goldLabel, damageLabel);
+            }
+            if (hideButtons) {
+                optionUtils.hideOptionButtons(option1, option2, option3);
+            }
         }
-        if (hideButtons) {
-            optionUtils.hideOptionButtons(option1, option2, option3);
+        else {
+            DialogueOption option = currentNpc.getDialogues().get(0).getOptions().get(optionKey);
+            if (option != null) {
+                double npcReliability = currentNpc.getReliability();
+                handleOptionSelection(option, rewardType1, number1, rewardType2, number2, questAccepted, npcReliability);
+            }
+            if (hideButtons) {
+                optionUtils.hideOptionButtons(option1, option2, option3);
+            }
         }
     }
 

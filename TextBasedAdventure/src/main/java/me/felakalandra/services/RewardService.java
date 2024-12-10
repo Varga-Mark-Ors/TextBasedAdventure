@@ -12,6 +12,10 @@ public class RewardService {
     // List of pending rewards
     private final List<RewardTask> pendingRewards = new ArrayList<>();
 
+    public void addEnemyReward(Protagonist protagonist, String type, int value){
+        gameLogicService.modifyStat(protagonist, type, value);
+    }
+
     // Add a reward to the pending list
     public void addPendingReward(String type, int value, double npcReliability) {
         boolean success = (Math.floor(Math.random() * 100) + 1) <= npcReliability;
