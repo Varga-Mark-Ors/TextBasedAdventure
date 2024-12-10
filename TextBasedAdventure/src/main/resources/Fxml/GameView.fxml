@@ -89,6 +89,7 @@
                     <Button fx:id="option1" onAction="#option1Button" text="option1" wrapText="true" />
                     <Button fx:id="option2" onAction="#option2Button" text="option2" wrapText="true" />
                     <Button fx:id="option3" onAction="#option3Button" text="option3" wrapText="true" />
+                    <Button text="Mentés" onAction="#saveGame" />
                 </HBox>
             </VBox>
 

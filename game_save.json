@@ -1,0 +1,9 @@
+{
+  "protagonist" : {
+    "health" : 100,
+    "gold" : 30,
+    "damagePoints" : 20,
+    "alive" : true,
+    "level" : 1
+  },
+  "gameTime"
