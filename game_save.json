@@ -1,12 +1,12 @@
 {
   "protagonist" : {
     "health" : 100,
-    "gold" : 27,
+    "gold" : 30,
     "damagePoints" : 20,
     "alive" : true,
     "level" : 1
   },
-  "gameTime" : [ 17, 0 ],
-  "days" : 2,
-  "score" : 1254
+  "gameTime" : [ 15, 0 ],
+  "days" : 1,
+  "score" : 0
 }

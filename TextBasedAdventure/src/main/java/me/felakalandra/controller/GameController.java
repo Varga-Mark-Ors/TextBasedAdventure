@@ -511,22 +511,4 @@ public class GameController {
             Logger.error("Failed to initialize GameController: GameState is null.");
         }
     }
-    @FXML
-    private void saveGame() {
-        SaveManager saveManager = new SaveManager();
-        saveManager.saveGame(this); // Átadjuk a GameController példányt
-        Logger.info("Successfully saved game.");
-    }
-    @FXML
-    private void loadGame() {
-        SaveManager saveManager = new SaveManager();
-        GameState loadedState = saveManager.loadGame();
-
-        if (loadedState != null) {
-            initializeFromGameState(loadedState);
-            Logger.info("Successfully loaded saved game");
-        } else {
-            Logger.info("Can not found saved game");
-        }
-    }
 }

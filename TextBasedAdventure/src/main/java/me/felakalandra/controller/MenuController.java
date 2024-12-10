@@ -10,6 +10,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import lombok.Setter;
 import me.felakalandra.GameApplication;
+import me.felakalandra.util.save.GameState;
+import me.felakalandra.util.save.SaveManager;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -100,12 +102,6 @@ public class MenuController {
         menuBox.setManaged(false);
         optionsMenuBox.setVisible(true);
         optionsMenuBox.setManaged(true);
-    }
-
-    @FXML
-    public void saveGame(ActionEvent actionEvent) {
-        Logger.info("Game saved");
-        // Save game logic goes here
     }
 
     @FXML
@@ -216,5 +212,25 @@ public class MenuController {
         // Show the main menu or options menu
         returnToMainMenuConfirmationBox.setVisible(true);
         returnToMainMenuConfirmationBox.setManaged(true);
+    }
+    @FXML
+    public void saveGame(ActionEvent actionEvent) {
+        SaveManager saveManager = new SaveManager();
+        saveManager.saveGame(gameController); // Pass the GameController instance
+        Logger.info("Game saved");
+    }
+
+    // Load the game from MenuController
+    @FXML
+    public void loadGame(ActionEvent actionEvent) {
+        SaveManager saveManager = new SaveManager();
+        GameState loadedState = saveManager.loadGame();
+
+        if (loadedState != null) {
+            gameController.initializeFromGameState(loadedState);  // Call initialize in GameController
+            Logger.info("Successfully loaded saved game");
+        } else {
+            Logger.info("Cannot find saved game");
+        }
     }
 }
