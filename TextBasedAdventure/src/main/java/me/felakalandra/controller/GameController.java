@@ -174,49 +174,52 @@ public class GameController {
     }
 
     private void advanceTime() {
-        // If the game is paused, do not advance the time or update the game state
         if (isGamePaused) {
             return;
         }
 
-        // Store the previous game time
         LocalTime previousGameTime = gameTime;
+        gameTime = gameTime.plusMinutes(60);
 
-        // Increase game time by X minutes
-        gameTime = gameTime.plusMinutes(120);
-
-        // Check if a new day has begun
         if (previousGameTime.isAfter(gameTime)) {
-            dailyEncounterCount = 0; // Reset the daily encounter count
-            days++;
-            daysLabel.setText("Days: " + days);
+            resetDailyEncounterCount();
+            incrementDays();
         }
 
-        // Update the time and background display
+        updateTimeAndBackgroundDisplay();
+        triggerEncounters();
+        handleRewards();
+    }
+
+    private void resetDailyEncounterCount() {
+        dailyEncounterCount = 0;
+    }
+
+    private void incrementDays() {
+        days++;
+        daysLabel.setText("Days: " + days);
+    }
+
+    private void updateTimeAndBackgroundDisplay() {
         timeUtils.updateGameTimeDisplay(timeCurrent, gameTime);
         timeUtils.updateBackgroundAndTimeOfDay(gameTime, gameBackground, timeDay);
+    }
 
-        // Trigger encounters at 7:00 AM, 1:00 PM, and 7:00 PM (up to 3 per day)
+    private void triggerEncounters() {
         if ((gameTime.equals(LocalTime.of(7, 0)) || gameTime.equals(LocalTime.of(13, 0)) || gameTime.equals(LocalTime.of(19, 0)))
                 && dailyEncounterCount < MAX_DAILY_ENCOUNTERS) {
             optionUtils.showOptionButtons(option1, option2, option3);
             gameUtils.fadeIn(npcsRight, 1);
-
             advanceGameState();
             dailyEncounterCount++;
         }
+    }
 
-        // Receive rewards at 1:00 AM
+    private void handleRewards() {
         if (gameTime.equals(LocalTime.of(1, 0))) {
             optionUtils.hideOptionButtons(option1, option2, option3);
             gameUtils.fadeOut(npcsRight, 1);
-
             showRewardResponse();
-        }
-
-        // Hide the response area at 5:00 AM
-        if (gameTime.equals(LocalTime.of(5, 0))) {
-            dialogueUtils.hideResponseArea(npcResponseLabel, responseArea);
         }
     }
 
@@ -234,6 +237,7 @@ public class GameController {
 
     // Set's Npc-s up for the JavaFx
     public void setNpc(boolean isNpc) {
+        dialogueUtils.hideResponseArea(npcResponseLabel, responseArea);
         if (isNpc) {
             currentNpc = npcService.selectNpc(Npc.getNpcs(), protagonist);
 
@@ -266,6 +270,7 @@ public class GameController {
     }
 
     private void npcRound() {
+        dialogueUtils.hideResponseArea(npcResponseLabel, responseArea);
         setNpc(true);
 
         if (currentNpc != null && currentNpc.getDialogues() != null && !currentNpc.getDialogues().isEmpty()) {
