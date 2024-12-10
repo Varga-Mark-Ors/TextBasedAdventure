@@ -179,11 +179,14 @@ public class GameController {
             return;
         }
 
-        // Increase game time by X minute
+        // Store the previous game time
+        LocalTime previousGameTime = gameTime;
+
+        // Increase game time by X minutes
         gameTime = gameTime.plusMinutes(120);
 
         // Check if a new day has begun
-        if (gameTime.equals(LocalTime.of(0, 0))) {
+        if (previousGameTime.isAfter(gameTime)) {
             dailyEncounterCount = 0; // Reset the daily encounter count
             days++;
             daysLabel.setText("Days: " + days);
@@ -203,7 +206,7 @@ public class GameController {
             dailyEncounterCount++;
         }
 
-        // Recieve rewards at 1:00 AM
+        // Receive rewards at 1:00 AM
         if (gameTime.equals(LocalTime.of(1, 0))) {
             optionUtils.hideOptionButtons(option1, option2, option3);
             gameUtils.fadeOut(npcsRight, 1);
