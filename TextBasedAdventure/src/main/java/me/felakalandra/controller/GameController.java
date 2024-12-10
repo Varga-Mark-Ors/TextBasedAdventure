@@ -21,10 +21,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import lombok.Getter;
 import me.felakalandra.model.*;
-import me.felakalandra.services.DialogueService;
-import me.felakalandra.services.GameLogicService;
-import me.felakalandra.services.NpcService;
-import me.felakalandra.services.RewardService;
+import me.felakalandra.services.*;
 import me.felakalandra.util.DialogueUtils;
 import me.felakalandra.util.GameUtils;
 import me.felakalandra.util.OptionUtils;
@@ -42,7 +39,7 @@ public class GameController {
     @FXML
     private AnchorPane gameBase;
     @FXML
-    private ImageView gameBackground, protagonistLeft, npcsRight;
+    private ImageView gameBackground, protagonistLeft, npcsRight, objectiveImage1, objectiveImage2, objectiveImage3;
     @FXML
     private Button option1, option2, option3;
     @FXML
@@ -84,6 +81,7 @@ public class GameController {
     private final GameLogicService gameLogicService = new GameLogicService();
     private final GameUtils gameUtils = new GameUtils();
     private final DialogueService dialogueService = new DialogueService();
+    private ObjectiveService objectiveService;
 
     private final OptionUtils optionUtils = new OptionUtils();
     private final DialogueUtils dialogueUtils = new DialogueUtils();
@@ -159,6 +157,10 @@ public class GameController {
 
         // Clear any pending rewards
         rewardService.clearPendingRewards();
+
+        // Initialize the ObjectiveService with protagonist and objective images
+        objectiveService = new ObjectiveService(protagonist, objectiveImage1, objectiveImage2, objectiveImage3);
+        objectiveService.updateObjectives();
 
         Logger.info("Game state initialized");
 
@@ -287,7 +289,7 @@ public class GameController {
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
-            gameLogicService.levelUp(protagonist, protagonistLeft, levelLabel);
+            gameLogicService.levelUp(protagonist, protagonistLeft, levelLabel, objectiveService);
         }
     }
 
@@ -308,7 +310,7 @@ public class GameController {
 
         if (protagonist.isAlive()) {
             Logger.info("Protagonist is alive");
-            gameLogicService.levelUp(protagonist, protagonistLeft, levelLabel);
+            gameLogicService.levelUp(protagonist, protagonistLeft, levelLabel, objectiveService);
         }
     }
 

@@ -14,11 +14,13 @@ public class GameLogicService {
     private final Image protagonistImageLevel2 = new Image("Images/Protagonist/Main2.png");
     private final Image protagonistImageLevel3 = new Image("Images/Protagonist/Main3.png");
 
-    public void levelUp(Protagonist protagonist, ImageView protagonistLeft, Label levelLabel) {
+    public void levelUp(Protagonist protagonist, ImageView protagonistLeft, Label levelLabel, ObjectiveService objectiveService) {
         if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 200) && (protagonist.getLevel() < 2)) {
             protagonistLeft.setImage(protagonistImageLevel2);
             protagonist.setLevel(2);
             levelLabel.setText("Level: " + protagonist.getLevel());
+
+            objectiveService.onProtagonistLevelChange();
         }
 
         if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 300) && (protagonist.getLevel() < 3)) {

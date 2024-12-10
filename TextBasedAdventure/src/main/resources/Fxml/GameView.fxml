@@ -108,7 +108,7 @@
                             <Image url="@../Styles/Icons/unchecked-checkbox.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="objectiveLabel1" text="Achieve 200 HP!" wrapText="true" />
+                    <Label fx:id="objectiveLabel1" text="Achieve Level 3!" wrapText="true" />
                 </children>
             </HBox>
             <HBox fx:id="objectiveRow2" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -118,7 +118,7 @@
                             <Image url="@../Styles/Icons/unchecked-checkbox.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="objectiveLabel2" text="Interact with 5 different NPC!" wrapText="true" />
+                    <Label fx:id="objectiveLabel2" text="Interact with 30 NPCs!" wrapText="true" />
                 </children>
             </HBox>
             <HBox fx:id="objectiveRow3" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
