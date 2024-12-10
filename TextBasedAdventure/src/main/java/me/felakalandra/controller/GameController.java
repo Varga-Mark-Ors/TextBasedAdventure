@@ -490,7 +490,7 @@ public class GameController {
             updateScoreLabel();
             timeUtils.updateGameTimeDisplay(timeCurrent, gameTime);
             daysLabel.setText("Days: " + days);
-            levelLabel.setText(String.valueOf(gameState.getProtagonist().getLevel()));
+            levelLabel.setText("Level: " + gameState.getProtagonist().getLevel());
             gameUtils.updateProtagonistStats(protagonist, hpLabel, goldLabel, damageLabel);
             switch (gameState.getProtagonist().getLevel()) {
                 case 1:
