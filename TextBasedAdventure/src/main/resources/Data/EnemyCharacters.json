@@ -159,49 +159,49 @@
     "type": "hostile",
     "health": 35,
     "dialogues": [
-        {
-          "text": "You’ve wandered into my sights. Let’s see if you can dodge my arrows!",
-          "type": "challenge",
-          "info": "Defeat Archer. Reward: + {number2} damage.",
-          "rewardType1": "none",
-          "rewardType2": "damage",
-          "options": {
-            "option1": {
-              "text": "Fight the Archer",
-              "response": "The Archer smirks. 'You’ll regret standing still!'"
-            },
-            "option2": {
-              "text": "Try to flee",
-              "response": "The Archer laughs. 'You can’t outrun an arrow!'"
-            },
-            "option3": {
-              "text": "Ask about the Archer’s skill",
-              "response": "The Archer grins. 'A lifetime of practice makes me the best.'"
-            }
-          }
-        },
-        {
-          "text": "Your journey ends here! My bow will strike you down!",
-          "type": "challenge",
-          "info": "Defeat Archer. Reward: + {number2} gold.",
-          "rewardType1": "none",
-          "rewardType2": "gold",
-          "options": {
-            "option1": {
-              "text": "Engage in battle",
-              "response": "The Archer nocks an arrow. 'Let’s see what you’re made of!'"
-            },
-            "option2": {
-              "text": "Attempt to run",
-              "response": "The Archer scoffs. 'Running? Pathetic!'"
-            },
-            "option3": {
-              "text": "Try to intimidate the Archer",
-              "response": "The Archer sneers. 'Words won’t save you now!'"
-            }
+      {
+        "text": "You’ve wandered into my sights. Let’s see if you can dodge my arrows!",
+        "type": "challenge",
+        "info": "Defeat Archer. Reward: + {number2} damage.",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Fight the Archer",
+            "response": "The Archer smirks. 'You’ll regret standing still!'"
+          },
+          "option2": {
+            "text": "Try to flee",
+            "response": "The Archer laughs. 'You can’t outrun an arrow!'"
+          },
+          "option3": {
+            "text": "Ask about the Archer’s skill",
+            "response": "The Archer grins. 'A lifetime of practice makes me the best.'"
           }
         }
-      ]
+      },
+      {
+        "text": "Your journey ends here! My bow will strike you down!",
+        "type": "challenge",
+        "info": "Defeat Archer. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Engage in battle",
+            "response": "The Archer nocks an arrow. 'Let’s see what you’re made of!'"
+          },
+          "option2": {
+            "text": "Attempt to run",
+            "response": "The Archer scoffs. 'Running? Pathetic!'"
+          },
+          "option3": {
+            "text": "Try to intimidate the Archer",
+            "response": "The Archer sneers. 'Words won’t save you now!'"
+          }
+        }
+      }
+    ]
   },
   {
     "name": "Bandit",
@@ -210,49 +210,49 @@
     "type": "hostile",
     "health": 30,
     "dialogues": [
-        {
-          "text": "Hand over your gold, or prepare to fight!",
-          "type": "challenge",
-          "info": "Defeat Bandit. Reward: + {number2} gold.",
-          "rewardType1": "none",
-          "rewardType2": "gold",
-          "options": {
-            "option1": {
-              "text": "Fight the Bandit",
-              "response": "The Bandit snarls. 'You’ll regret this decision!'"
-            },
-            "option2": {
-              "text": "Run away",
-              "response": "The Bandit jeers. 'Coward! Don’t come back!'"
-            },
-            "option3": {
-              "text": "Ask why they’re robbing you",
-              "response": "The Bandit shrugs. 'A thief’s gotta eat. Your loss is my gain.'"
-            }
-          }
-        },
-        {
-          "text": "You’re in the wrong place, traveler. Let’s see what you’re worth!",
-          "type": "challenge",
-          "info": "Defeat Bandit. Reward: + {number2} damage.",
-          "rewardType1": "none",
-          "rewardType2": "damage",
-          "options": {
-            "option1": {
-              "text": "Engage the Bandit",
-              "response": "The Bandit draws their blade. 'This will be fun!'"
-            },
-            "option2": {
-              "text": "Attempt to escape",
-              "response": "The Bandit laughs. 'Run all you like, I’ll still find you!'"
-            },
-            "option3": {
-              "text": "Negotiate with the Bandit",
-              "response": "The Bandit smirks. 'Gold speaks louder than words.'"
-            }
+      {
+        "text": "Hand over your gold, or prepare to fight!",
+        "type": "challenge",
+        "info": "Defeat Bandit. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Fight the Bandit",
+            "response": "The Bandit snarls. 'You’ll regret this decision!'"
+          },
+          "option2": {
+            "text": "Run away",
+            "response": "The Bandit jeers. 'Coward! Don’t come back!'"
+          },
+          "option3": {
+            "text": "Ask why they’re robbing you",
+            "response": "The Bandit shrugs. 'A thief’s gotta eat. Your loss is my gain.'"
           }
         }
-      ]
+      },
+      {
+        "text": "You’re in the wrong place, traveler. Let’s see what you’re worth!",
+        "type": "challenge",
+        "info": "Defeat Bandit. Reward: + {number2} damage.",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Engage the Bandit",
+            "response": "The Bandit draws their blade. 'This will be fun!'"
+          },
+          "option2": {
+            "text": "Attempt to escape",
+            "response": "The Bandit laughs. 'Run all you like, I’ll still find you!'"
+          },
+          "option3": {
+            "text": "Negotiate with the Bandit",
+            "response": "The Bandit smirks. 'Gold speaks louder than words.'"
+          }
+        }
+      }
+    ]
   },
   {
     "name": "Witch",
@@ -261,48 +261,150 @@
     "type": "hostile",
     "health": 70,
     "dialogues": [
-        {
-          "text": "You dare challenge my magic? Prepare to be cursed!",
-          "type": "challenge",
-          "info": "Defeat Witch. Reward: + {number2} damage.",
-          "rewardType1": "none",
-          "rewardType2": "damage",
-          "options": {
-            "option1": {
-              "text": "Fight the Witch",
-              "response": "The Witch cackles. 'Let’s see if you can handle my power!'"
-            },
-            "option2": {
-              "text": "Flee in fear",
-              "response": "The Witch laughs. 'Run, little mouse, but the curse will find you!'"
-            },
-            "option3": {
-              "text": "Demand to know why she’s attacking",
-              "response": "The Witch sneers. 'Because I can, foolish one.'"
-            }
-          }
-        },
-        {
-          "text": "I’ll crush you with my dark magic. Your life ends here!",
-          "type": "challenge",
-          "info": "Defeat Witch. Reward: + {number2} gold.",
-          "rewardType1": "none",
-          "rewardType2": "gold",
-          "options": {
-            "option1": {
-              "text": "Engage the Witch",
-              "response": "The Witch chants a spell. 'You’ll regret this choice!'"
-            },
-            "option2": {
-              "text": "Try to escape",
-              "response": "The Witch smirks. 'Flee if you like, but there’s no escape from me!'"
-            },
-            "option3": {
-              "text": "Attempt to reason with her",
-              "response": "The Witch laughs coldly. 'Reason? How quaint!'"
-            }
+      {
+        "text": "You dare challenge my magic? Prepare to be cursed!",
+        "type": "challenge",
+        "info": "Defeat Witch. Reward: + {number2} damage.",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Fight the Witch",
+            "response": "The Witch cackles. 'Let’s see if you can handle my power!'"
+          },
+          "option2": {
+            "text": "Flee in fear",
+            "response": "The Witch laughs. 'Run, little mouse, but the curse will find you!'"
+          },
+          "option3": {
+            "text": "Demand to know why she’s attacking",
+            "response": "The Witch sneers. 'Because I can, foolish one.'"
           }
         }
-      ]
-    }
+      },
+      {
+        "text": "I’ll crush you with my dark magic. Your life ends here!",
+        "type": "challenge",
+        "info": "Defeat Witch. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Engage the Witch",
+            "response": "The Witch chants a spell. 'You’ll regret this choice!'"
+          },
+          "option2": {
+            "text": "Try to escape",
+            "response": "The Witch smirks. 'Flee if you like, but there’s no escape from me!'"
+          },
+          "option3": {
+            "text": "Attempt to reason with her",
+            "response": "The Witch laughs coldly. 'Reason? How quaint!'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Warlock",
+    "picture": "Images/NPCs/Warlock.png",
+    "level": 4,
+    "type": "hostile",
+    "health": 120,
+    "dialogues": [
+      {
+        "text": "The dragon has entrusted me with its secrets. You shall not pass!",
+        "type": "challenge",
+        "info": "Defeat Warlock. Reward: Spellbook (+ {number2} damage).",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Fight the Warlock",
+            "response": "The Warlock raises his staff. 'Prepare to be destroyed!'"
+          },
+          "option2": {
+            "text": "Attempt to flee",
+            "response": "The Warlock laughs. 'Run, but the dragon will find you!'"
+          },
+          "option3": {
+            "text": "Demand to know the dragon’s secrets",
+            "response": "The Warlock smiles. 'Knowledge is power, and you have none.'"
+          }
+        }
+      },
+      {
+        "text": "You survived once, but this time you won’t be so lucky!",
+        "type": "challenge",
+        "info": "Defeat Warlock. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Engage in battle",
+            "response": "The Warlock snarls. 'Foolish mortal!'"
+          },
+          "option2": {
+            "text": "Attempt to escape",
+            "response": "The Warlock smirks. 'You’ll never outrun the dragon’s wrath.'"
+          },
+          "option3": {
+            "text": "Mock the Warlock",
+            "response": "The Warlock glares. 'Your insolence will be punished!'"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Beastmaster",
+    "picture": "Images/NPCs/Beastmaster.png",
+    "level": 5,
+    "type": "hostile",
+    "health": 150,
+    "dialogues": [
+      {
+        "text": "You face me and my beasts! Prepare yourself!",
+        "type": "challenge",
+        "info": "Defeat Beastmaster. Reward: + {number2} damage.",
+        "rewardType1": "none",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Fight the Beastmaster",
+            "response": "The Beastmaster commands his beasts. 'Tear them apart!'"
+          },
+          "option2": {
+            "text": "Try to flee",
+            "response": "The Beastmaster laughs. 'You can’t escape my pack!'"
+          },
+          "option3": {
+            "text": "Attempt to reason with the Beastmaster",
+            "response": "The Beastmaster scoffs. 'Words mean nothing to beasts!'"
+          }
+        }
+      },
+      {
+        "text": "You think you can best me again? The beasts are hungry!",
+        "type": "challenge",
+        "info": "Defeat Beastmaster. Reward: + {number2} gold.",
+        "rewardType1": "none",
+        "rewardType2": "gold",
+        "options": {
+          "option1": {
+            "text": "Engage in battle",
+            "response": "The Beastmaster roars. 'You’re no match for me!'"
+          },
+          "option2": {
+            "text": "Attempt to escape",
+            "response": "The Beastmaster sneers. 'Run all you want, my beasts will find you!'"
+          },
+          "option3": {
+            "text": "Challenge the Beastmaster verbally",
+            "response": "The Beastmaster smirks. 'Brave, but foolish!'"
+          }
+        }
+      }
+    ]
+  }
 ]
