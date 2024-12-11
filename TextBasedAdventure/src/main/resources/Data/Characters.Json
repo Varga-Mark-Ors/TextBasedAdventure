@@ -833,5 +833,78 @@
           }
         }
       ]
-    }
+    },
+  {
+    "name": "Skeleton",
+    "picture": "Images/NPCs/Skeleton.png",
+    "level": 1,
+    "type": "friendly",
+    "reliability": 80,
+    "dialogues": [
+      {
+        "text": "I’ve lost my way. Help me find my lost bones, and I’ll reward you.",
+        "type": "quest",
+        "info": "Retrieve the lost bones. Reward: Bone Armor (+ {number2} defense).",
+        "rewardType1": "none",
+        "rewardType2": "hp",
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Skeleton smiles faintly. 'I knew you were a kind soul!'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Skeleton nods solemnly. 'I understand. Not all wish to help the dead.'"
+          },
+          "option3": {
+            "text": "Ask about the bones",
+            "response": "The Skeleton sighs. 'I’ve misplaced them during my travels... I can’t move without them.'"
+          }
+        }
+      },
+      {
+        "text": "I can offer you a special enchanted bone for {number1} gold. It may bring you luck.",
+        "type": "trade",
+        "info": "Pay {number1} gold. Reward: Enchanted Bone (grants a {number2} weapon).",
+        "rewardType1": "gold",
+        "rewardType2": "damage",
+        "options": {
+          "option1": {
+            "text": "Buy the enchanted bone",
+            "response": "The Skeleton hands you the bone with a grin. 'May it bring you fortune.'"
+          },
+          "option2": {
+            "text": "Refuse",
+            "response": "The Skeleton shrugs. 'Perhaps another time then.'"
+          },
+          "option3": {
+            "text": "Ask about the enchanted bone",
+            "response": "The Skeleton says, 'It’s a relic of my past life. It brings luck to those who hold it.'"
+          }
+        }
+      },
+      {
+        "text": "I sense a great power in you. If you can retrieve a rare gem, I’ll reward you with my blessing.",
+        "type": "quest",
+        "info": "Retrieve the rare gem. Reward: Blessing (increases health points by {number2}).",
+        "rewardType1": "none",
+        "rewardType2": "hp",
+        "options": {
+          "option1": {
+            "text": "Accept the quest",
+            "response": "The Skeleton nods eagerly. 'I believe you’re the one who can succeed where others have failed.'"
+          },
+          "option2": {
+            "text": "Decline",
+            "response": "The Skeleton looks disappointed. 'The gem remains beyond your reach, then.'"
+          },
+          "option3": {
+            "text": "Ask about the gem",
+            "response": "The Skeleton explains, 'It’s hidden deep within the enchanted forest, guarded by creatures of the dark.'"
+          }
+        }
+      }
+    ]
+  }
+
 ]

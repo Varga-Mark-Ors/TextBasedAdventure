@@ -196,7 +196,7 @@ public class GameController {
         }
 
         LocalTime previousGameTime = gameTime;
-        gameTime = gameTime.plusMinutes(60);
+        gameTime = gameTime.plusMinutes(30);
 
         if (previousGameTime.isAfter(gameTime)) {
             resetDailyEncounterCount();
