@@ -34,7 +34,7 @@ public class MainMenuController {
     public Button exitOptionsButton;
 
     @FXML
-    private VBox savedGamesBox;
+    public VBox savedGamesBox;
     private final MediaPlayer mediaPlayer;
     public Label mainMenuLabel;
     public Label mainMenuOptionsLabel;
@@ -139,7 +139,7 @@ public class MainMenuController {
     }
 
     @FXML
-    private void exitGame() {
+    public void exitGame() {
         Platform.exit();
         Logger.info("Exiting game");
         mediaPlayer.stop();
