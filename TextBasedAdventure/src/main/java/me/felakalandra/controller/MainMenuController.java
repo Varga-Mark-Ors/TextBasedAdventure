@@ -102,6 +102,9 @@ public class MainMenuController {
 
         if (loadedState != null) {
             try {
+                if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                    mediaPlayer.stop();
+                }
                 // We continue the game based on the saved state.
                 GameApplication app = (GameApplication) GameApplication.getInstance();
                 app.startGame();
