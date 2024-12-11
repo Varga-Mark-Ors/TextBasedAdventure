@@ -5,11 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import lombok.Setter;
 import me.felakalandra.GameApplication;
+import me.felakalandra.util.save.GameState;
+import me.felakalandra.util.save.SaveManager;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -45,6 +48,12 @@ public class MenuController {
     @FXML
     private Label optionsLabel;
 
+    @FXML
+    private TextField saveNameField;
+
+    @FXML
+    private VBox saveGameVBox;
+
     @Setter
     private GameController gameController;
     private boolean isMuted = false;
@@ -70,20 +79,18 @@ public class MenuController {
 
     // Toggle sound on or off
     @FXML
-    private void handleToggleSound()
-    {
-        if (isMuted){
+    private void handleToggleSound() {
+        if (isMuted) {
             gameController.toggleMute();
             handleToggleSoundButton.setText("Toggle Sound: ON");
             Logger.info("Sound toggled");
-        } else{
+        } else {
             gameController.toggleMute();
             handleToggleSoundButton.setText("Toggle Sound: OFF");
             Logger.info("Sound toggled");
         }
         isMuted = !isMuted;
     }
-
 
 
     // Show the options menu
@@ -100,12 +107,6 @@ public class MenuController {
         menuBox.setManaged(false);
         optionsMenuBox.setVisible(true);
         optionsMenuBox.setManaged(true);
-    }
-
-    @FXML
-    public void saveGame(ActionEvent actionEvent) {
-        Logger.info("Game saved");
-        // Save game logic goes here
     }
 
     @FXML
@@ -216,5 +217,50 @@ public class MenuController {
         // Show the main menu or options menu
         returnToMainMenuConfirmationBox.setVisible(true);
         returnToMainMenuConfirmationBox.setManaged(true);
+    }
+
+    @FXML
+    private void saveGame(ActionEvent actionEvent) {
+        // Hide the options menu
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
+
+        // Show the save game VBox
+        saveGameVBox.setVisible(true);
+        saveGameVBox.setManaged(true);
+
+        Logger.info("Save game menu opened");
+    }
+
+    // Method to handle the confirmation of the save
+    @FXML
+    public void confirmSaveGame(ActionEvent actionEvent) {
+        String saveName = saveNameField.getText();
+        if (saveName == null || saveName.isEmpty()) {
+            Logger.warn("No save name provided. Using default name.");
+            saveName = "game_save";  // Default save name if no input
+        }
+
+        SaveManager saveManager = new SaveManager();
+        saveManager.saveGame(saveName, gameController); // Pass the GameController instance
+        Logger.info("Game saved with name: " + saveName);
+
+        // Hide the save game VBox and return to options menu
+        saveGameVBox.setVisible(false);
+        saveGameVBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
+    }
+
+    // Method to handle the cancel action for saving
+    @FXML
+    public void cancelSaveGame(ActionEvent actionEvent) {
+        // Hide the save game VBox and return to options menu
+        saveGameVBox.setVisible(false);
+        saveGameVBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
+
+        Logger.info("Save game canceled");
     }
 }

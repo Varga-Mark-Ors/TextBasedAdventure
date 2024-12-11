@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
+import me.felakalandra.controller.GameController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -19,6 +20,9 @@ public class GameApplication extends Application {
     //To get GameApplication instance in MainMenu controller.
     @Getter
     private static GameApplication instance;
+
+    @Getter
+    private GameController gameController;
 
     public GameApplication() {
         instance = this;
@@ -50,7 +54,12 @@ public class GameApplication extends Application {
 
     // First game launch
     public void startGame() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Fxml/GameView.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/GameView.fxml"));
+        Parent root = loader.load();
+
+        // Store the GameController instance
+        gameController = loader.getController();
+
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("Game");

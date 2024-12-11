@@ -26,6 +26,8 @@ import me.felakalandra.util.DialogueUtils;
 import me.felakalandra.util.GameUtils;
 import me.felakalandra.util.OptionUtils;
 import me.felakalandra.util.TimeUtils;
+import me.felakalandra.util.save.GameState;
+import me.felakalandra.util.save.SaveManager;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -50,7 +52,9 @@ public class GameController {
     private Label npcResponseLabel;
     @Getter
     private MediaPlayer mediaPlayer;
+    @Getter
     private LocalTime gameTime;
+    @Getter
     private int days = 0;
     private boolean isMuted = false;
 
@@ -59,6 +63,7 @@ public class GameController {
     private boolean isGamePaused = false;
 
     // Initializing the main and side characters
+    @Getter
     private Protagonist protagonist = new Protagonist();
     private Npc currentNpc;
     private EnemyNpc currentEnemyNpc;
@@ -66,11 +71,13 @@ public class GameController {
 
     // Main character's images (always displayed on the left) at level 1
     private final Image protagonistImageLevel1 = new Image("Images/Protagonist/Main1.png");
-
+    private final Image protagonistImageLevel2 = new Image("Images/Protagonist/Main2.png");
+    private final Image protagonistImageLevel3 = new Image("Images/Protagonist/Main3.png");
     private int dailyEncounterCount = 0;
     private static final int MAX_DAILY_ENCOUNTERS = 3; // Maximális találkozások száma egy nap alatt
 
     // Initializing the score
+    @Getter
     private int score = 0;
 
     //Initializing the values needed for the character process
@@ -527,5 +534,38 @@ public class GameController {
             gameClock.play();
         }
         isGamePaused = false;
+    }
+
+    public void initializeFromGameState(GameState gameState) {
+        if (gameState != null) {
+            this.protagonist = gameState.getProtagonist();
+            this.gameTime = gameState.getGameTime();
+            this.days = gameState.getDays();
+            this.score = gameState.getScore();
+
+            // UI update
+            updateScoreLabel();
+            timeUtils.updateGameTimeDisplay(timeCurrent, gameTime);
+            daysLabel.setText("Days: " + days);
+            levelLabel.setText("Level: " + gameState.getProtagonist().getLevel());
+            gameUtils.updateProtagonistStats(protagonist, hpLabel, goldLabel, damageLabel);
+            switch (gameState.getProtagonist().getLevel()) {
+                case 1:
+                    protagonistLeft.setImage(protagonistImageLevel1);
+                    break;
+                case 2:
+                    protagonistLeft.setImage(protagonistImageLevel2);
+                    break;
+                case 3:
+                    protagonistLeft.setImage(protagonistImageLevel3);
+                    break;
+                default:
+                    System.err.println("Unknown level: " + gameState.getProtagonist().getLevel());
+                    break;
+            }
+            Logger.info("GameController successfully initialized from GameState.");
+        } else {
+            Logger.error("Failed to initialize GameController: GameState is null.");
+        }
     }
 }
