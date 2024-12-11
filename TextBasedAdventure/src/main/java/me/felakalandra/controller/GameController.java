@@ -258,7 +258,7 @@ public class GameController {
 
 
     private void advanceGameState() {
-        if (days < 5) {
+        if (days < 10) {
             isEnemyRound = false;
             npcRound();
         } else {
@@ -304,7 +304,6 @@ public class GameController {
             currentEnemyNpc = npcService.selectEnemyNpc(EnemyNpc.getEnemies(), protagonist);
 
             // scale up the enemies for better difficulty
-
             var currentHP = currentEnemyNpc.getHealth();
 
             for (int i = 0; i < days; i += multiplierAfterXDays) {
@@ -386,8 +385,8 @@ public class GameController {
         rewardType2 = dialogue.getRewardType2();
         // int days2 = days / 2; To decrease difficulty we can add a days2 to help grow the reward.
         // TODO test the game to know how balance
-        number1 = gameLogicService.generateNumber(rewardType1, protagonist, currentNpc.getReliability(), days);
-        number2 = gameLogicService.generateNumber(rewardType2, protagonist, currentNpc.getReliability(), 0);   //days2);
+        number1 = Math.max(1, gameLogicService.generateNumber(rewardType1, protagonist, currentNpc.getReliability(), days));
+        number2 = Math.max(1, gameLogicService.generateNumber(rewardType2, protagonist, currentNpc.getReliability(), 0));   //days2);
         questReward.setText(gameUtils.formattedReward(rewardType1, rewardType2, number1, number2));
 
         // Set the dialogue text

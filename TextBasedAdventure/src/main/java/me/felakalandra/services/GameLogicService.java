@@ -79,34 +79,77 @@ public class GameLogicService {
     // Generate a random number within a range based on the specified stat.
     public int generateNumber(String stat, Protagonist protagonist, double npcReliability, int days) {
         int min, max;
+        double reliabilityFactor = 0.8 + ((100 - npcReliability) * 0.002);
 
-        // Calculate the range as 10% to 30% of the protagonist's current values.
         switch (stat) {
             case "gold" -> {
-                min = (int) (protagonist.getGold() * 0.2);
-                max = (int) (protagonist.getGold() * 0.3);
+                min = Math.max(1, (int) (protagonist.getGold() * 0.15));
+                max = Math.max(min + 1, (int) (protagonist.getGold() * 0.25));
+                int baseGoldReward = min + random.nextInt(max - min + 1);
+
+                // Dynamic boost for under-leveled gold
+                double goldBoostFactor = 1.0;
+                if (protagonist.getGold() < (protagonist.getHealth() / 2) ||
+                        protagonist.getGold() < (protagonist.getDamagePoints() * 2)) {
+                    goldBoostFactor = 1.1;
+                }
+
+                // Late-game boost
+                if (days > 35) {
+                    baseGoldReward *= 1.2;
+                }
+
+                return Math.max(1, (int) (baseGoldReward * goldBoostFactor * reliabilityFactor * increasingDifficulty(days)));
             }
             case "damage" -> {
-                min = (int) (protagonist.getDamagePoints() * 0.2);
-                max = (int) (protagonist.getDamagePoints() * 0.3);
+                min = Math.max(1, (int) (protagonist.getDamagePoints() * 0.2 + 3));
+                max = Math.max(min + 1, (int) (protagonist.getDamagePoints() * 0.3 + 6));
+                int baseDamageReward = min + random.nextInt(max - min + 1);
+
+                // Boost based on difficulty
+                double damageDifficultyFactor = increasingDifficulty(days) * 1.1;
+
+                return Math.max(1, (int) (baseDamageReward * reliabilityFactor * damageDifficultyFactor));
             }
             case "hp" -> {
-                min = (int) (protagonist.getHealth() * 0.2);
-                max = (int) (protagonist.getHealth() * 0.3);
+                min = Math.max(1, (int) (protagonist.getHealth() * 0.08));
+                max = Math.max(min + 1, (int) (protagonist.getHealth() * 0.15));
+                int baseHpReward = min + random.nextInt(max - min + 1);
+
+                // Dynamic boost for under-leveled HP
+                double hpBoostFactor = 1.0;
+                if (protagonist.getHealth() < (protagonist.getGold() / 2) ||
+                        protagonist.getHealth() < (protagonist.getDamagePoints() * 5)) {
+                    hpBoostFactor = 1.2;
+                }
+
+                // Late-game boost
+                if (days > 35) {
+                    baseHpReward *= 1.1;
+                }
+
+                return Math.max(1, (int) (baseHpReward * hpBoostFactor * reliabilityFactor * increasingDifficulty(days)));
             }
             default -> {
-                System.err.println("Unrecognized stat: " + stat);
+                Logger.error("Unrecognized stat: " + stat);
                 return 0;
             }
         }
-
-        // Returns a random value within the range and weighted by the reliability of the character
-        return (int) ((min + random.nextInt(max - min + 1)) * ((100 - npcReliability) * 0.1) * (increasingDifficulty(days)));
     }
 
     // Returns a double value that will help increase the difficulty of the game by days passed
-    public double increasingDifficulty(int days){
-        if (days > 46) return 3.3;
-        return 1 + (0.05 * days);
+    public double increasingDifficulty(int days) {
+        // Early game: Start closer to 1 and scale faster
+        if (days < 10) {
+            return 0.9 + (0.01 * days); // Starts at 0.9, reaches 1.0 on day 10
+        }
+
+        // Cap difficulty multiplier to 2.5 for late game
+        if (days > 46) {
+            return 2.5;
+        }
+
+        // Mid-game progression: logarithmic scaling for smooth growth
+        return 1 + Math.log(1 + days) / Math.log(10);
     }
 }
