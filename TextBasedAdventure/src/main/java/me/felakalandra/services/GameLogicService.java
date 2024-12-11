@@ -13,19 +13,34 @@ public class GameLogicService {
 
     private final Image protagonistImageLevel2 = new Image("Images/Protagonist/Main2.png");
     private final Image protagonistImageLevel3 = new Image("Images/Protagonist/Main3.png");
+    private final Image protagonistImageLevel4 = new Image("Images/Protagonist/Main4.png");
+    private final Image protagonistImageLevel5 = new Image("Images/Protagonist/Main5.png");
 
     public void levelUp(Protagonist protagonist, ImageView protagonistLeft, Label levelLabel, ObjectiveService objectiveService) {
-        if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 200) && (protagonist.getLevel() < 2)) {
+        int totalPoints = protagonist.getHealth() + protagonist.getDamagePoints();
+
+        if (totalPoints > 200 && protagonist.getLevel() < 2) {
             protagonistLeft.setImage(protagonistImageLevel2);
             protagonist.setLevel(2);
             levelLabel.setText("Level: " + protagonist.getLevel());
-
-            objectiveService.onProtagonistLevelChange();
+            objectiveService.onProtagonistLevelChange(); // Triggered only for level 2
         }
 
-        if (((protagonist.getHealth() + protagonist.getDamagePoints()) > 300) && (protagonist.getLevel() < 3)) {
+        if (totalPoints > 300 && protagonist.getLevel() < 3) {
             protagonistLeft.setImage(protagonistImageLevel3);
             protagonist.setLevel(3);
+            levelLabel.setText("Level: " + protagonist.getLevel());
+        }
+
+        if (totalPoints > 450 && protagonist.getLevel() < 4) {
+            protagonistLeft.setImage(protagonistImageLevel4);
+            protagonist.setLevel(4);
+            levelLabel.setText("Level: " + protagonist.getLevel());
+        }
+
+        if (totalPoints > 600 && protagonist.getLevel() < 5) {
+            protagonistLeft.setImage(protagonistImageLevel5);
+            protagonist.setLevel(5);
             levelLabel.setText("Level: " + protagonist.getLevel());
         }
     }
