@@ -156,7 +156,7 @@
 }
 
 /* Style for the menu background (same as exit confirmation) */
-#menuBox, #optionsMenuBox, #mainMenuBox, #exitConfirmationBox, #returnToMainMenuConfirmationBox, #saveGameVBox {
+#menuBox, #optionsMenuBox, #mainMenuBox, #exitConfirmationBox, #returnToMainMenuConfirmationBox, #saveGameVBox, #savedGamesBox {
     -fx-background-color: rgba(0, 0, 0, 0.6);
     -fx-background-radius: 15;
     -fx-padding: 20;

@@ -22,7 +22,8 @@
     </VBox>
 
     <VBox fx:id="savedGamesBox" alignment="CENTER" spacing="20.0" visible="false" managed="false">
-        <!-- A dinamikusan hozzáadott gombok ide kerülnek -->
+        <Label fx:id="savedGamesLabel" text="Saved Games" styleClass="menu-title" visible="false" managed="false"/>
+        <!-- The dynamically added buttons are placed here. -->
     </VBox>
 
 </VBox>

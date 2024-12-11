@@ -15,10 +15,7 @@ import me.felakalandra.util.save.SaveManager;
 import org.tinylog.Logger;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -65,40 +62,38 @@ public class MainMenuController {
     // Load the game from MenuController
     @FXML
     public void loadSavedGame(ActionEvent actionEvent) {
-        // Elrejteni az optionsMenuBox-ot és megjeleníteni a savedGamesBox-ot
-        optionsMenuBox.setVisible(false);
-        optionsMenuBox.setManaged(false);
-        savedGamesBox.setVisible(true);
-        savedGamesBox.setManaged(true);
-
-        // Beolvassuk a mentett játékok fájljait a SavedGames mappából
+        // Load the saved game files from the SavedGames folder.
         File saveDir = new File("TextBasedAdventure/src/main/resources/SavedGames");
-        File[] savedGames = saveDir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".json");  // Csak JSON fájlok
-            }
-        });
+        File[] savedGames = saveDir.listFiles((dir, name) -> name.endsWith(".json")); // Csak JSON fájlok
 
-        // A mentett játékokat tartalmazó gombok létrehozása
+        // Remove the previous buttons but keep the Label.
+        savedGamesBox.getChildren().removeIf(node -> node instanceof Button);
+
         if (savedGames != null && savedGames.length > 0) {
-            List<Button> saveGameButtons = new ArrayList<>();
+            // A mentett játékokat tartalmazó gombok létrehozása
             for (File saveFile : savedGames) {
                 Button button = new Button(saveFile.getName().replace(".json", ""));
                 button.setOnAction(event -> loadGameFromFile(saveFile));  // Betöltjük a játékot a gombokkal
-                saveGameButtons.add(button);
+                savedGamesBox.getChildren().add(button);  // Hozzáadjuk a gombot a meglévő tartalomhoz
             }
-
-            // A gombokat hozzáadjuk a savedGamesBox-hoz
-            savedGamesBox.getChildren().setAll(saveGameButtons);
         } else {
-            // Ha nincs elmentett játék, akkor figyelmeztetjük a játékost
+            // If there are no saved games then alert the player.
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No saved games");
             alert.setHeaderText(null);
             alert.setContentText("There are no saved games available.");
             alert.showAndWait();
         }
+        // Create the exitSavedGamesButton dynamically and add it last.
+        Button exitButton = new Button("Exit Saved Games");
+        exitButton.setOnAction(this::exitSavedGames);
+        savedGamesBox.getChildren().add(exitButton);
+
+        // Show the saved games box and hide the options menu
+        savedGamesBox.setVisible(true);
+        savedGamesBox.setManaged(true);
+        optionsMenuBox.setVisible(false);
+        optionsMenuBox.setManaged(false);
     }
 
     private void loadGameFromFile(File saveFile) {
@@ -107,11 +102,11 @@ public class MainMenuController {
 
         if (loadedState != null) {
             try {
-                // A mentett állapot alapján folytatjuk a játékot
+                // We continue the game based on the saved state.
                 GameApplication app = (GameApplication) GameApplication.getInstance();
-                app.startGame();  // Játék indítása
-                GameController gameController = app.getGameController();  // Játékvezérlő
-                gameController.initializeFromGameState(loadedState);  // Inicializálás mentett állapot alapján
+                app.startGame();
+                GameController gameController = app.getGameController();
+                gameController.initializeFromGameState(loadedState);
 
                 Logger.info("Successfully loaded saved game: " + saveFile.getName());
             } catch (IOException e) {
@@ -185,6 +180,14 @@ public class MainMenuController {
     @FXML
     public void initialize() {
         playMenuMusic();  // When the main menu is loaded, the music should start playing
+    }
+
+    @FXML
+    public void exitSavedGames(ActionEvent actionEvent) {
+        savedGamesBox.setVisible(false);
+        savedGamesBox.setManaged(false);
+        optionsMenuBox.setVisible(true);
+        optionsMenuBox.setManaged(true);
     }
 
 }
